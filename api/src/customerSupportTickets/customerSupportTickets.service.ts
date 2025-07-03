@@ -1,6 +1,6 @@
 // customerSupportTickets.service.ts
 import { eq } from "drizzle-orm";
-import db from "../Drizzle/db";
+import db from "../Drizzle/db";hh
 import { customerSupportTickets } from "../Drizzle/schema";
 
 export const createCustomerSupportTicketService = async (ticket: any) => {

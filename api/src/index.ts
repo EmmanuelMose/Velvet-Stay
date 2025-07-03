@@ -1,18 +1,31 @@
-
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { db } from "./Drizzle/db";
+import db from "./Drizzle/db";
+import userRoutes from "../src/users/users.router";  
+import roomRoutes from "./rooms/rooms.router";
+import hotelRoutes from "./hotels/hotels.router";
+import bookingRoutes from "./bookings/bookings.router";
+import paymentRoutes from "./payments/payments.router";
+import customerSupportRoutes from "./customerSupportTickets/customerSupportTickets.router";
 
-// Load environment variables
+
 dotenv.config();
 
 const app = express();
-const PORT =  3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Routes
+userRoutes(app);  // Apply user routes here
+roomRoutes(app);
+hotelRoutes(app);
+bookingRoutes(app);
+paymentRoutes(app);
+customerSupportRoutes(app)
 
 // Test route
 app.get("/", async (req, res) => {

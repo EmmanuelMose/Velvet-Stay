@@ -1,5 +1,5 @@
 {
-  "id": "0e6c969d-ecb5-4869-9217-70a671959b32",
+  "id": "c3d1573e-639a-4487-b71b-731d52dae212",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -417,14 +417,14 @@
           "primaryKey": true,
           "notNull": true
         },
-        "Firstname": {
-          "name": "Firstname",
+        "FirstName": {
+          "name": "FirstName",
           "type": "varchar(100)",
           "primaryKey": false,
           "notNull": false
         },
-        "Lastname": {
-          "name": "Lastname",
+        "LastName": {
+          "name": "LastName",
           "type": "varchar(100)",
           "primaryKey": false,
           "notNull": false
@@ -459,7 +459,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
-          "default": "'user'"
+          "default": "'User'"
         },
         "CreatedAt": {
           "name": "CreatedAt",
@@ -516,8 +516,8 @@
       "name": "Role",
       "schema": "public",
       "values": [
-        "user",
-        "admin"
+        "User",
+        "Admin"
       ]
     },
     "public.TicketStatus": {

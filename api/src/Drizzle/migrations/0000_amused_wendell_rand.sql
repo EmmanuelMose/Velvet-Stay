@@ -1,6 +1,6 @@
 CREATE TYPE "public"."BookingStatus" AS ENUM('Pending', 'Confirmed', 'Cancelled');--> statement-breakpoint
 CREATE TYPE "public"."PaymentStatus" AS ENUM('Pending', 'Completed', 'Failed');--> statement-breakpoint
-CREATE TYPE "public"."Role" AS ENUM('user', 'admin');--> statement-breakpoint
+CREATE TYPE "public"."Role" AS ENUM('User', 'Admin');--> statement-breakpoint
 CREATE TYPE "public"."TicketStatus" AS ENUM('Open', 'Resolved');--> statement-breakpoint
 CREATE TABLE "Bookings" (
 	"BookingId" serial PRIMARY KEY NOT NULL,
@@ -61,13 +61,13 @@ CREATE TABLE "Rooms" (
 --> statement-breakpoint
 CREATE TABLE "Users" (
 	"UserId" serial PRIMARY KEY NOT NULL,
-	"Firstname" varchar(100),
-	"Lastname" varchar(100),
+	"FirstName" varchar(100),
+	"LastName" varchar(100),
 	"Email" varchar(255),
 	"Password" varchar(255),
 	"ContactPhone" varchar(20),
 	"Address" text,
-	"Role" "Role" DEFAULT 'user',
+	"Role" "Role" DEFAULT 'User',
 	"CreatedAt" timestamp DEFAULT now(),
 	"UpdatedAt" timestamp DEFAULT now(),
 	CONSTRAINT "Users_Email_unique" UNIQUE("Email")

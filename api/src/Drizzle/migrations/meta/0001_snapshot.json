@@ -1,0 +1,542 @@
+{
+  "id": "2ee5cee1-7741-4be0-a33f-22db222a2a8b",
+  "prevId": "c3d1573e-639a-4487-b71b-731d52dae212",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.Bookings": {
+      "name": "Bookings",
+      "schema": "",
+      "columns": {
+        "BookingId": {
+          "name": "BookingId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "RoomId": {
+          "name": "RoomId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CheckInDate": {
+          "name": "CheckInDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CheckOutDate": {
+          "name": "CheckOutDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "TotalAmount": {
+          "name": "TotalAmount",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "BookingStatus": {
+          "name": "BookingStatus",
+          "type": "BookingStatus",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Pending'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "UpdatedAt": {
+          "name": "UpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Bookings_UserId_Users_UserId_fk": {
+          "name": "Bookings_UserId_Users_UserId_fk",
+          "tableFrom": "Bookings",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "columnsTo": [
+            "UserId"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "Bookings_RoomId_Rooms_RoomId_fk": {
+          "name": "Bookings_RoomId_Rooms_RoomId_fk",
+          "tableFrom": "Bookings",
+          "tableTo": "Rooms",
+          "columnsFrom": [
+            "RoomId"
+          ],
+          "columnsTo": [
+            "RoomId"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.CustomerSupportTickets": {
+      "name": "CustomerSupportTickets",
+      "schema": "",
+      "columns": {
+        "TicketId": {
+          "name": "TicketId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Subject": {
+          "name": "Subject",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "TicketStatus",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Open'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "UpdatedAt": {
+          "name": "UpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "CustomerSupportTickets_UserId_Users_UserId_fk": {
+          "name": "CustomerSupportTickets_UserId_Users_UserId_fk",
+          "tableFrom": "CustomerSupportTickets",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "columnsTo": [
+            "UserId"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Hotels": {
+      "name": "Hotels",
+      "schema": "",
+      "columns": {
+        "HotelId": {
+          "name": "HotelId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Name": {
+          "name": "Name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Location": {
+          "name": "Location",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Address": {
+          "name": "Address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ContactPhone": {
+          "name": "ContactPhone",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Category": {
+          "name": "Category",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Rating": {
+          "name": "Rating",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "UpdatedAt": {
+          "name": "UpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Payments": {
+      "name": "Payments",
+      "schema": "",
+      "columns": {
+        "PaymentId": {
+          "name": "PaymentId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "BookingId": {
+          "name": "BookingId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Amount": {
+          "name": "Amount",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "PaymentStatus": {
+          "name": "PaymentStatus",
+          "type": "PaymentStatus",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Pending'"
+        },
+        "PaymentDate": {
+          "name": "PaymentDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "PaymentMethod": {
+          "name": "PaymentMethod",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "TransactionId": {
+          "name": "TransactionId",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "UpdatedAt": {
+          "name": "UpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Payments_BookingId_Bookings_BookingId_fk": {
+          "name": "Payments_BookingId_Bookings_BookingId_fk",
+          "tableFrom": "Payments",
+          "tableTo": "Bookings",
+          "columnsFrom": [
+            "BookingId"
+          ],
+          "columnsTo": [
+            "BookingId"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Rooms": {
+      "name": "Rooms",
+      "schema": "",
+      "columns": {
+        "RoomId": {
+          "name": "RoomId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "HotelId": {
+          "name": "HotelId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "RoomType": {
+          "name": "RoomType",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "PricePerNight": {
+          "name": "PricePerNight",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Capacity": {
+          "name": "Capacity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Amenities": {
+          "name": "Amenities",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "IsAvailable": {
+          "name": "IsAvailable",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Rooms_HotelId_Hotels_HotelId_fk": {
+          "name": "Rooms_HotelId_Hotels_HotelId_fk",
+          "tableFrom": "Rooms",
+          "tableTo": "Hotels",
+          "columnsFrom": [
+            "HotelId"
+          ],
+          "columnsTo": [
+            "HotelId"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Users": {
+      "name": "Users",
+      "schema": "",
+      "columns": {
+        "UserId": {
+          "name": "UserId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "FirstName": {
+          "name": "FirstName",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "LastName": {
+          "name": "LastName",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Email": {
+          "name": "Email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Password": {
+          "name": "Password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ContactPhone": {
+          "name": "ContactPhone",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Address": {
+          "name": "Address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Role": {
+          "name": "Role",
+          "type": "Role",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'User'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "UpdatedAt": {
+          "name": "UpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "Users_Email_unique": {
+          "name": "Users_Email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "Email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.BookingStatus": {
+      "name": "BookingStatus",
+      "schema": "public",
+      "values": [
+        "Pending",
+        "Confirmed",
+        "Cancelled"
+      ]
+    },
+    "public.PaymentStatus": {
+      "name": "PaymentStatus",
+      "schema": "public",
+      "values": [
+        "Pending",
+        "Completed",
+        "Failed"
+      ]
+    },
+    "public.Role": {
+      "name": "Role",
+      "schema": "public",
+      "values": [
+        "User",
+        "Admin"
+      ]
+    },
+    "public.TicketStatus": {
+      "name": "TicketStatus",
+      "schema": "public",
+      "values": [
+        "Open",
+        "Resolved"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

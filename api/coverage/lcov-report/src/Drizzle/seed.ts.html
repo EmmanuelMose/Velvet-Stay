@@ -1,0 +1,310 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/Drizzle/seed.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/Drizzle</a> seed.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/13</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/13</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import db from "../Drizzle/db";</span>
+<span class="cstat-no" title="statement not covered" >import {</span>
+  users,
+  hotels,
+  rooms,
+  bookings,
+  payments,
+  customerSupportTickets,
+} from "../Drizzle/schema";
+&nbsp;
+async function <span class="fstat-no" title="function not covered" >seed(</span>) {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    console.log("Seeding database...");</span>
+&nbsp;
+    // USERS
+    const userData = <span class="cstat-no" title="statement not covered" >await db.insert(users).values([</span>
+      { firstName: "Alice", lastName: "Smith", email: "alice@example.com", password: "hashedpassword1", contactPhone: "0712345678", address: "Nairobi", role: "User" },
+      { firstName: "Bob", lastName: "Johnson", email: "bob@example.com", password: "hashedpassword2", contactPhone: "0722334455", address: "Mombasa", role: "Admin" },
+      { firstName: "Carol", lastName: "Brown", email: "carol@example.com", password: "hashedpassword3", contactPhone: "0733445566", address: "Kisumu", role: "User" },
+      { firstName: "David", lastName: "Lee", email: "david@example.com", password: "hashedpassword4", contactPhone: "0744556677", address: "Nakuru", role: "User" },
+      { firstName: "Eve", lastName: "Davis", email: "eve@example.com", password: "hashedpassword5", contactPhone: "0755667788", address: "Eldoret", role: "User" },
+    ]).returning();
+&nbsp;
+    // HOTELS
+    const hotelData = <span class="cstat-no" title="statement not covered" >await db.insert(hotels).values([</span>
+      { name: "Ocean View Hotel", location: "Mombasa", address: "Beach Road", contactPhone: "0700111222", category: "Luxury", rating: 4.8 },
+      { name: "Mountain Breeze", location: "Nyeri", address: "Hill Lane", contactPhone: "0711223344", category: "Standard", rating: 4.2 },
+      { name: "City Inn", location: "Nairobi", address: "CBD", contactPhone: "0722334455", category: "Budget", rating: 3.9 },
+      { name: "Sunset Retreat", location: "Naivasha", address: "Lakeview Estate", contactPhone: "0733445566", category: "Luxury", rating: 4.5 },
+      { name: "Green Paradise", location: "Kericho", address: "Tea Gardens", contactPhone: "0744556677", category: "Eco", rating: 4.6 },
+    ]).returning();
+&nbsp;
+    // ROOMS
+    const roomData = <span class="cstat-no" title="statement not covered" >await db.insert(rooms).values([</span>
+      { hotelId: hotelData[0].hotelId, roomType: "Single", pricePerNight: 5000, capacity: 1, amenities: "WiFi, AC", isAvailable: true },
+      { hotelId: hotelData[1].hotelId, roomType: "Double", pricePerNight: 7000, capacity: 2, amenities: "WiFi, AC, TV", isAvailable: true },
+      { hotelId: hotelData[2].hotelId, roomType: "Suite", pricePerNight: 12000, capacity: 3, amenities: "WiFi, AC, TV, Bathtub", isAvailable: false },
+      { hotelId: hotelData[3].hotelId, roomType: "Twin", pricePerNight: 6000, capacity: 2, amenities: "WiFi, Fan", isAvailable: true },
+      { hotelId: hotelData[4].hotelId, roomType: "King", pricePerNight: 15000, capacity: 4, amenities: "WiFi, AC, Pool Access", isAvailable: true },
+    ]).returning();
+&nbsp;
+    // BOOKINGS
+    const bookingData = <span class="cstat-no" title="statement not covered" >await db.insert(bookings).values([</span>
+      { userId: userData[0].userId, roomId: roomData[0].roomId, checkInDate: new Date("2025-07-10"), checkOutDate: new Date("2025-07-15"), totalAmount: 25000, bookingStatus: "Confirmed" },
+      { userId: userData[1].userId, roomId: roomData[1].roomId, checkInDate: new Date("2025-07-12"), checkOutDate: new Date("2025-07-14"), totalAmount: 14000, bookingStatus: "Pending" },
+      { userId: userData[2].userId, roomId: roomData[2].roomId, checkInDate: new Date("2025-08-01"), checkOutDate: new Date("2025-08-03"), totalAmount: 24000, bookingStatus: "Cancelled" },
+      { userId: userData[3].userId, roomId: roomData[3].roomId, checkInDate: new Date("2025-07-20"), checkOutDate: new Date("2025-07-22"), totalAmount: 12000, bookingStatus: "Confirmed" },
+      { userId: userData[4].userId, roomId: roomData[4].roomId, checkInDate: new Date("2025-09-10"), checkOutDate: new Date("2025-09-15"), totalAmount: 75000, bookingStatus: "Confirmed" },
+    ]).returning();
+&nbsp;
+    // PAYMENTS
+<span class="cstat-no" title="statement not covered" >    await db.insert(payments).values([</span>
+      { bookingId: bookingData[0].bookingId, amount: 25000, paymentStatus: "Completed", paymentMethod: "M-Pesa", transactionId: "TXN1001" },
+      { bookingId: bookingData[1].bookingId, amount: 14000, paymentStatus: "Pending", paymentMethod: "Card", transactionId: "TXN1002" },
+      { bookingId: bookingData[2].bookingId, amount: 24000, paymentStatus: "Failed", paymentMethod: "Bank Transfer", transactionId: "TXN1003" },
+      { bookingId: bookingData[3].bookingId, amount: 12000, paymentStatus: "Completed", paymentMethod: "Cash", transactionId: "TXN1004" },
+      { bookingId: bookingData[4].bookingId, amount: 75000, paymentStatus: "Completed", paymentMethod: "M-Pesa", transactionId: "TXN1005" },
+    ]);
+&nbsp;
+    // CUSTOMER SUPPORT TICKETS
+<span class="cstat-no" title="statement not covered" >    await db.insert(customerSupportTickets).values([</span>
+      { userId: userData[0].userId, subject: "Late check-in issue", description: "Room wasn't ready by 3 PM", status: "Open" },
+      { userId: userData[1].userId, subject: "Payment failed", description: "Card transaction didn't go through", status: "Resolved" },
+      { userId: userData[2].userId, subject: "WiFi not working", description: "Internet was down in room 203", status: "Open" },
+      { userId: userData[3].userId, subject: "Room not cleaned", description: "The room was not cleaned on day 2", status: "Resolved" },
+      { userId: userData[4].userId, subject: "No hot water", description: "Hot water system not functioning", status: "Open" },
+    ]);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    console.log("Seeding completed.");</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error("Seeding failed:", error);</span>
+  }
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >seed();</span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-07-08T08:45:11.871Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    

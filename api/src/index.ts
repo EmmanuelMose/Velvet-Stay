@@ -20,14 +20,14 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-userRoutes(app);  // Apply user routes here
+userRoutes(app); 
 roomRoutes(app);
 hotelRoutes(app);
 bookingRoutes(app);
 paymentRoutes(app);
 customerSupportRoutes(app)
 
-// Test route
+
 app.get("/", async (req, res) => {
   res.send("Hotel Management API is running!");
 });

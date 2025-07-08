@@ -6,14 +6,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
-// Load environment variables
+const users_router_1 = __importDefault(require("../src/users/users.router"));
+const rooms_router_1 = __importDefault(require("./rooms/rooms.router"));
+const hotels_router_1 = __importDefault(require("./hotels/hotels.router"));
+const bookings_router_1 = __importDefault(require("./bookings/bookings.router"));
+const payments_router_1 = __importDefault(require("./payments/payments.router"));
+const customerSupportTickets_router_1 = __importDefault(require("./customerSupportTickets/customerSupportTickets.router"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 // Middleware
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-// Test route
+// Routes
+(0, users_router_1.default)(app);
+(0, rooms_router_1.default)(app);
+(0, hotels_router_1.default)(app);
+(0, bookings_router_1.default)(app);
+(0, payments_router_1.default)(app);
+(0, customerSupportTickets_router_1.default)(app);
 app.get("/", async (req, res) => {
     res.send("Hotel Management API is running!");
 });

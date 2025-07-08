@@ -1,5 +1,5 @@
 
-// booking.routes.ts
+
 import { Express } from "express";
 import {
   createBookingController,

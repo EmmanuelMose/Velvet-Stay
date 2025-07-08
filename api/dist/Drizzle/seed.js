@@ -9,252 +9,52 @@ async function seed() {
     try {
         console.log("Seeding database...");
         // USERS
-        const users = await db_1.default.insert(schema_1.Users).values([
-            {
-                FirstName: "Alice",
-                LastName: "Smith",
-                Email: "alice@example.com",
-                Password: "hashedpassword1",
-                ContactPhone: "0712345678",
-                Address: "Nairobi",
-                Role: "user"
-            },
-            {
-                FirstName: "Bob",
-                LastName: "Johnson",
-                Email: "bob@example.com",
-                Password: "hashedpassword2",
-                ContactPhone: "0722334455",
-                Address: "Mombasa",
-                Role: "admin"
-            },
-            {
-                FirstName: "Carol",
-                LastName: "Brown",
-                Email: "carol@example.com",
-                Password: "hashedpassword3",
-                ContactPhone: "0733445566",
-                Address: "Kisumu",
-                Role: "user"
-            },
-            {
-                FirstName: "David",
-                LastName: "Lee",
-                Email: "david@example.com",
-                Password: "hashedpassword4",
-                ContactPhone: "0744556677",
-                Address: "Nakuru",
-                Role: "user"
-            },
-            {
-                FirstName: "Eve",
-                LastName: "Davis",
-                Email: "eve@example.com",
-                Password: "hashedpassword5",
-                ContactPhone: "0755667788",
-                Address: "Eldoret",
-                Role: "user"
-            }
+        const userData = await db_1.default.insert(schema_1.users).values([
+            { firstName: "Alice", lastName: "Smith", email: "alice@example.com", password: "hashedpassword1", contactPhone: "0712345678", address: "Nairobi", role: "User" },
+            { firstName: "Bob", lastName: "Johnson", email: "bob@example.com", password: "hashedpassword2", contactPhone: "0722334455", address: "Mombasa", role: "Admin" },
+            { firstName: "Carol", lastName: "Brown", email: "carol@example.com", password: "hashedpassword3", contactPhone: "0733445566", address: "Kisumu", role: "User" },
+            { firstName: "David", lastName: "Lee", email: "david@example.com", password: "hashedpassword4", contactPhone: "0744556677", address: "Nakuru", role: "User" },
+            { firstName: "Eve", lastName: "Davis", email: "eve@example.com", password: "hashedpassword5", contactPhone: "0755667788", address: "Eldoret", role: "User" },
         ]).returning();
         // HOTELS
-        const hotels = await db_1.default.insert(schema_1.Hotels).values([
-            {
-                Name: "Ocean View Hotel",
-                Location: "Mombasa",
-                Address: "Beach Road",
-                ContactPhone: "0700111222",
-                Category: "Luxury",
-                Rating: 4.8
-            },
-            {
-                Name: "Mountain Breeze",
-                Location: "Nyeri",
-                Address: "Hill Lane",
-                ContactPhone: "0711223344",
-                Category: "Standard",
-                Rating: 4.2
-            },
-            {
-                Name: "City Inn",
-                Location: "Nairobi",
-                Address: "CBD",
-                ContactPhone: "0722334455",
-                Category: "Budget",
-                Rating: 3.9
-            },
-            {
-                Name: "Sunset Retreat",
-                Location: "Naivasha",
-                Address: "Lakeview Estate",
-                ContactPhone: "0733445566",
-                Category: "Luxury",
-                Rating: 4.5
-            },
-            {
-                Name: "Green Paradise",
-                Location: "Kericho",
-                Address: "Tea Gardens",
-                ContactPhone: "0744556677",
-                Category: "Eco",
-                Rating: 4.6
-            }
+        const hotelData = await db_1.default.insert(schema_1.hotels).values([
+            { name: "Ocean View Hotel", location: "Mombasa", address: "Beach Road", contactPhone: "0700111222", category: "Luxury", rating: 4.8 },
+            { name: "Mountain Breeze", location: "Nyeri", address: "Hill Lane", contactPhone: "0711223344", category: "Standard", rating: 4.2 },
+            { name: "City Inn", location: "Nairobi", address: "CBD", contactPhone: "0722334455", category: "Budget", rating: 3.9 },
+            { name: "Sunset Retreat", location: "Naivasha", address: "Lakeview Estate", contactPhone: "0733445566", category: "Luxury", rating: 4.5 },
+            { name: "Green Paradise", location: "Kericho", address: "Tea Gardens", contactPhone: "0744556677", category: "Eco", rating: 4.6 },
         ]).returning();
         // ROOMS
-        const rooms = await db_1.default.insert(schema_1.Rooms).values([
-            {
-                HotelId: hotels[0].HotelId,
-                RoomType: "Single",
-                PricePerNight: 5000,
-                Capacity: 1,
-                Amenities: "WiFi, AC",
-                IsAvailable: true
-            },
-            {
-                HotelId: hotels[1].HotelId,
-                RoomType: "Double",
-                PricePerNight: 7000,
-                Capacity: 2,
-                Amenities: "WiFi, AC, TV",
-                IsAvailable: true
-            },
-            {
-                HotelId: hotels[2].HotelId,
-                RoomType: "Suite",
-                PricePerNight: 12000,
-                Capacity: 3,
-                Amenities: "WiFi, AC, TV, Bathtub",
-                IsAvailable: false
-            },
-            {
-                HotelId: hotels[3].HotelId,
-                RoomType: "Twin",
-                PricePerNight: 6000,
-                Capacity: 2,
-                Amenities: "WiFi, Fan",
-                IsAvailable: true
-            },
-            {
-                HotelId: hotels[4].HotelId,
-                RoomType: "King",
-                PricePerNight: 15000,
-                Capacity: 4,
-                Amenities: "WiFi, AC, Pool Access",
-                IsAvailable: true
-            }
+        const roomData = await db_1.default.insert(schema_1.rooms).values([
+            { hotelId: hotelData[0].hotelId, roomType: "Single", pricePerNight: 5000, capacity: 1, amenities: "WiFi, AC", isAvailable: true },
+            { hotelId: hotelData[1].hotelId, roomType: "Double", pricePerNight: 7000, capacity: 2, amenities: "WiFi, AC, TV", isAvailable: true },
+            { hotelId: hotelData[2].hotelId, roomType: "Suite", pricePerNight: 12000, capacity: 3, amenities: "WiFi, AC, TV, Bathtub", isAvailable: false },
+            { hotelId: hotelData[3].hotelId, roomType: "Twin", pricePerNight: 6000, capacity: 2, amenities: "WiFi, Fan", isAvailable: true },
+            { hotelId: hotelData[4].hotelId, roomType: "King", pricePerNight: 15000, capacity: 4, amenities: "WiFi, AC, Pool Access", isAvailable: true },
         ]).returning();
         // BOOKINGS
-        const bookings = await db_1.default.insert(schema_1.Bookings).values([
-            {
-                UserId: users[0].UserId,
-                RoomId: rooms[0].RoomId,
-                CheckInDate: new Date("2025-07-10"),
-                CheckOutDate: new Date("2025-07-15"),
-                TotalAmount: 25000,
-                BookingStatus: "Confirmed"
-            },
-            {
-                UserId: users[1].UserId,
-                RoomId: rooms[1].RoomId,
-                CheckInDate: new Date("2025-07-12"),
-                CheckOutDate: new Date("2025-07-14"),
-                TotalAmount: 14000,
-                BookingStatus: "Pending"
-            },
-            {
-                UserId: users[2].UserId,
-                RoomId: rooms[2].RoomId,
-                CheckInDate: new Date("2025-08-01"),
-                CheckOutDate: new Date("2025-08-03"),
-                TotalAmount: 24000,
-                BookingStatus: "Cancelled"
-            },
-            {
-                UserId: users[3].UserId,
-                RoomId: rooms[3].RoomId,
-                CheckInDate: new Date("2025-07-20"),
-                CheckOutDate: new Date("2025-07-22"),
-                TotalAmount: 12000,
-                BookingStatus: "Confirmed"
-            },
-            {
-                UserId: users[4].UserId,
-                RoomId: rooms[4].RoomId,
-                CheckInDate: new Date("2025-09-10"),
-                CheckOutDate: new Date("2025-09-15"),
-                TotalAmount: 75000,
-                BookingStatus: "Confirmed"
-            }
+        const bookingData = await db_1.default.insert(schema_1.bookings).values([
+            { userId: userData[0].userId, roomId: roomData[0].roomId, checkInDate: new Date("2025-07-10"), checkOutDate: new Date("2025-07-15"), totalAmount: 25000, bookingStatus: "Confirmed" },
+            { userId: userData[1].userId, roomId: roomData[1].roomId, checkInDate: new Date("2025-07-12"), checkOutDate: new Date("2025-07-14"), totalAmount: 14000, bookingStatus: "Pending" },
+            { userId: userData[2].userId, roomId: roomData[2].roomId, checkInDate: new Date("2025-08-01"), checkOutDate: new Date("2025-08-03"), totalAmount: 24000, bookingStatus: "Cancelled" },
+            { userId: userData[3].userId, roomId: roomData[3].roomId, checkInDate: new Date("2025-07-20"), checkOutDate: new Date("2025-07-22"), totalAmount: 12000, bookingStatus: "Confirmed" },
+            { userId: userData[4].userId, roomId: roomData[4].roomId, checkInDate: new Date("2025-09-10"), checkOutDate: new Date("2025-09-15"), totalAmount: 75000, bookingStatus: "Confirmed" },
         ]).returning();
         // PAYMENTS
-        await db_1.default.insert(schema_1.Payments).values([
-            {
-                BookingId: bookings[0].BookingId,
-                Amount: 25000,
-                PaymentStatus: "Completed",
-                PaymentMethod: "M-Pesa",
-                TransactionId: "TXN1001"
-            },
-            {
-                BookingId: bookings[1].BookingId,
-                Amount: 14000,
-                PaymentStatus: "Pending",
-                PaymentMethod: "Card",
-                TransactionId: "TXN1002"
-            },
-            {
-                BookingId: bookings[2].BookingId,
-                Amount: 24000,
-                PaymentStatus: "Failed",
-                PaymentMethod: "Bank Transfer",
-                TransactionId: "TXN1003"
-            },
-            {
-                BookingId: bookings[3].BookingId,
-                Amount: 12000,
-                PaymentStatus: "Completed",
-                PaymentMethod: "Cash",
-                TransactionId: "TXN1004"
-            },
-            {
-                BookingId: bookings[4].BookingId,
-                Amount: 75000,
-                PaymentStatus: "Completed",
-                PaymentMethod: "M-Pesa",
-                TransactionId: "TXN1005"
-            }
+        await db_1.default.insert(schema_1.payments).values([
+            { bookingId: bookingData[0].bookingId, amount: 25000, paymentStatus: "Completed", paymentMethod: "M-Pesa", transactionId: "TXN1001" },
+            { bookingId: bookingData[1].bookingId, amount: 14000, paymentStatus: "Pending", paymentMethod: "Card", transactionId: "TXN1002" },
+            { bookingId: bookingData[2].bookingId, amount: 24000, paymentStatus: "Failed", paymentMethod: "Bank Transfer", transactionId: "TXN1003" },
+            { bookingId: bookingData[3].bookingId, amount: 12000, paymentStatus: "Completed", paymentMethod: "Cash", transactionId: "TXN1004" },
+            { bookingId: bookingData[4].bookingId, amount: 75000, paymentStatus: "Completed", paymentMethod: "M-Pesa", transactionId: "TXN1005" },
         ]);
         // CUSTOMER SUPPORT TICKETS
-        await db_1.default.insert(schema_1.CustomerSupportTickets).values([
-            {
-                UserId: users[0].UserId,
-                Subject: "Late check-in issue",
-                Description: "Room wasn't ready by 3 PM",
-                Status: "Open"
-            },
-            {
-                UserId: users[1].UserId,
-                Subject: "Payment failed",
-                Description: "Card transaction didn't go through",
-                Status: "Resolved"
-            },
-            {
-                UserId: users[2].UserId,
-                Subject: "WiFi not working",
-                Description: "Internet was down in room 203",
-                Status: "Open"
-            },
-            {
-                UserId: users[3].UserId,
-                Subject: "Room not cleaned",
-                Description: "The room was not cleaned on day 2",
-                Status: "Resolved"
-            },
-            {
-                UserId: users[4].UserId,
-                Subject: "No hot water",
-                Description: "Hot water system not functioning",
-                Status: "Open"
-            }
+        await db_1.default.insert(schema_1.customerSupportTickets).values([
+            { userId: userData[0].userId, subject: "Late check-in issue", description: "Room wasn't ready by 3 PM", status: "Open" },
+            { userId: userData[1].userId, subject: "Payment failed", description: "Card transaction didn't go through", status: "Resolved" },
+            { userId: userData[2].userId, subject: "WiFi not working", description: "Internet was down in room 203", status: "Open" },
+            { userId: userData[3].userId, subject: "Room not cleaned", description: "The room was not cleaned on day 2", status: "Resolved" },
+            { userId: userData[4].userId, subject: "No hot water", description: "Hot water system not functioning", status: "Open" },
         ]);
         console.log("Seeding completed.");
     }

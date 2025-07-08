@@ -1,4 +1,4 @@
-// customerSupport.routes.ts
+
 import { Express } from "express";
 import {
   createCustomerSupportTicketController,

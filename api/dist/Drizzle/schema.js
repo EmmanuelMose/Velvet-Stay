@@ -1,95 +1,95 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BookingToPayment = exports.RoomToBookings = exports.HotelToRooms = exports.UserToTickets = exports.UserToBookings = exports.CustomerSupportTickets = exports.Payments = exports.Bookings = exports.Rooms = exports.Hotels = exports.Users = exports.TicketStatusEnum = exports.PaymentStatusEnum = exports.BookingStatusEnum = exports.RoleEnum = void 0;
+exports.bookingToPayment = exports.roomToBookings = exports.hotelToRooms = exports.userToTickets = exports.userToBookings = exports.customerSupportTickets = exports.payments = exports.bookings = exports.rooms = exports.hotels = exports.users = exports.ticketStatusEnum = exports.paymentStatusEnum = exports.bookingStatusEnum = exports.roleEnum = void 0;
 const pg_core_1 = require("drizzle-orm/pg-core");
 // Enums
-exports.RoleEnum = (0, pg_core_1.pgEnum)("Role", ["user", "admin"]);
-exports.BookingStatusEnum = (0, pg_core_1.pgEnum)("BookingStatus", ["Pending", "Confirmed", "Cancelled"]);
-exports.PaymentStatusEnum = (0, pg_core_1.pgEnum)("PaymentStatus", ["Pending", "Completed", "Failed"]);
-exports.TicketStatusEnum = (0, pg_core_1.pgEnum)("TicketStatus", ["Open", "Resolved"]);
+exports.roleEnum = (0, pg_core_1.pgEnum)("Role", ["User", "Admin"]);
+exports.bookingStatusEnum = (0, pg_core_1.pgEnum)("BookingStatus", ["Pending", "Confirmed", "Cancelled"]);
+exports.paymentStatusEnum = (0, pg_core_1.pgEnum)("PaymentStatus", ["Pending", "Completed", "Failed"]);
+exports.ticketStatusEnum = (0, pg_core_1.pgEnum)("TicketStatus", ["Open", "Resolved"]);
 // Tables
-exports.Users = (0, pg_core_1.pgTable)("Users", {
-    UserId: (0, pg_core_1.serial)("UserId").primaryKey(),
-    FirstName: (0, pg_core_1.varchar)("FirstName", { length: 100 }),
-    LastName: (0, pg_core_1.varchar)("LastName", { length: 100 }),
-    Email: (0, pg_core_1.varchar)("Email", { length: 255 }).unique(),
-    Password: (0, pg_core_1.varchar)("Password", { length: 255 }),
-    ContactPhone: (0, pg_core_1.varchar)("ContactPhone", { length: 20 }),
-    Address: (0, pg_core_1.text)("Address"),
-    Role: (0, exports.RoleEnum)("Role").default("user"),
-    CreatedAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
-    UpdatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
+exports.users = (0, pg_core_1.pgTable)("Users", {
+    userId: (0, pg_core_1.serial)("UserId").primaryKey(),
+    firstName: (0, pg_core_1.varchar)("FirstName", { length: 100 }),
+    lastName: (0, pg_core_1.varchar)("LastName", { length: 100 }),
+    email: (0, pg_core_1.varchar)("Email", { length: 255 }).unique(),
+    password: (0, pg_core_1.varchar)("Password", { length: 255 }),
+    contactPhone: (0, pg_core_1.varchar)("ContactPhone", { length: 20 }),
+    address: (0, pg_core_1.text)("Address"),
+    role: (0, exports.roleEnum)("Role").default("User"),
+    createdAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
+    updatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
 });
-exports.Hotels = (0, pg_core_1.pgTable)("Hotels", {
-    HotelId: (0, pg_core_1.serial)("HotelId").primaryKey(),
-    Name: (0, pg_core_1.varchar)("Name", { length: 255 }),
-    Location: (0, pg_core_1.varchar)("Location", { length: 255 }),
-    Address: (0, pg_core_1.text)("Address"),
-    ContactPhone: (0, pg_core_1.varchar)("ContactPhone", { length: 20 }),
-    Category: (0, pg_core_1.varchar)("Category", { length: 100 }),
-    Rating: (0, pg_core_1.real)("Rating"),
-    CreatedAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
-    UpdatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
+exports.hotels = (0, pg_core_1.pgTable)("Hotels", {
+    hotelId: (0, pg_core_1.serial)("HotelId").primaryKey(),
+    name: (0, pg_core_1.varchar)("Name", { length: 255 }),
+    location: (0, pg_core_1.varchar)("Location", { length: 255 }),
+    address: (0, pg_core_1.text)("Address"),
+    contactPhone: (0, pg_core_1.varchar)("ContactPhone", { length: 20 }),
+    category: (0, pg_core_1.varchar)("Category", { length: 100 }),
+    rating: (0, pg_core_1.real)("Rating"),
+    createdAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
+    updatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
 });
-exports.Rooms = (0, pg_core_1.pgTable)("Rooms", {
-    RoomId: (0, pg_core_1.serial)("RoomId").primaryKey(),
-    HotelId: (0, pg_core_1.integer)("HotelId").references(() => exports.Hotels.HotelId),
-    RoomType: (0, pg_core_1.varchar)("RoomType", { length: 100 }),
-    PricePerNight: (0, pg_core_1.real)("PricePerNight"),
-    Capacity: (0, pg_core_1.integer)("Capacity"),
-    Amenities: (0, pg_core_1.text)("Amenities"),
-    IsAvailable: (0, pg_core_1.boolean)("IsAvailable").default(true),
-    CreatedAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
+exports.rooms = (0, pg_core_1.pgTable)("Rooms", {
+    roomId: (0, pg_core_1.serial)("RoomId").primaryKey(),
+    hotelId: (0, pg_core_1.integer)("HotelId").references(() => exports.hotels.hotelId),
+    roomType: (0, pg_core_1.varchar)("RoomType", { length: 100 }),
+    pricePerNight: (0, pg_core_1.real)("PricePerNight"),
+    capacity: (0, pg_core_1.integer)("Capacity"),
+    amenities: (0, pg_core_1.text)("Amenities"),
+    isAvailable: (0, pg_core_1.boolean)("IsAvailable").default(true),
+    createdAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
 });
-exports.Bookings = (0, pg_core_1.pgTable)("Bookings", {
-    BookingId: (0, pg_core_1.serial)("BookingId").primaryKey(),
-    UserId: (0, pg_core_1.integer)("UserId").references(() => exports.Users.UserId),
-    RoomId: (0, pg_core_1.integer)("RoomId").references(() => exports.Rooms.RoomId),
-    CheckInDate: (0, pg_core_1.timestamp)("CheckInDate"),
-    CheckOutDate: (0, pg_core_1.timestamp)("CheckOutDate"),
-    TotalAmount: (0, pg_core_1.real)("TotalAmount"),
-    BookingStatus: (0, exports.BookingStatusEnum)("BookingStatus").default("Pending"),
-    CreatedAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
-    UpdatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
+exports.bookings = (0, pg_core_1.pgTable)("Bookings", {
+    bookingId: (0, pg_core_1.serial)("BookingId").primaryKey(),
+    userId: (0, pg_core_1.integer)("UserId").references(() => exports.users.userId),
+    roomId: (0, pg_core_1.integer)("RoomId").references(() => exports.rooms.roomId),
+    checkInDate: (0, pg_core_1.timestamp)("CheckInDate"),
+    checkOutDate: (0, pg_core_1.timestamp)("CheckOutDate"),
+    totalAmount: (0, pg_core_1.real)("TotalAmount"),
+    bookingStatus: (0, exports.bookingStatusEnum)("BookingStatus").default("Pending"),
+    createdAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
+    updatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
 });
-exports.Payments = (0, pg_core_1.pgTable)("Payments", {
-    PaymentId: (0, pg_core_1.serial)("PaymentId").primaryKey(),
-    BookingId: (0, pg_core_1.integer)("BookingId").references(() => exports.Bookings.BookingId),
-    Amount: (0, pg_core_1.real)("Amount"),
-    PaymentStatus: (0, exports.PaymentStatusEnum)("PaymentStatus").default("Pending"),
-    PaymentDate: (0, pg_core_1.timestamp)("PaymentDate").defaultNow(),
-    PaymentMethod: (0, pg_core_1.varchar)("PaymentMethod", { length: 100 }),
-    TransactionId: (0, pg_core_1.varchar)("TransactionId", { length: 255 }),
-    CreatedAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
-    UpdatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
+exports.payments = (0, pg_core_1.pgTable)("Payments", {
+    paymentId: (0, pg_core_1.serial)("PaymentId").primaryKey(),
+    bookingId: (0, pg_core_1.integer)("BookingId").references(() => exports.bookings.bookingId),
+    amount: (0, pg_core_1.real)("Amount"),
+    paymentStatus: (0, exports.paymentStatusEnum)("PaymentStatus").default("Pending"),
+    paymentDate: (0, pg_core_1.timestamp)("PaymentDate").defaultNow(),
+    paymentMethod: (0, pg_core_1.varchar)("PaymentMethod", { length: 100 }),
+    transactionId: (0, pg_core_1.varchar)("TransactionId", { length: 255 }),
+    createdAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
+    updatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
 });
-exports.CustomerSupportTickets = (0, pg_core_1.pgTable)("CustomerSupportTickets", {
-    TicketId: (0, pg_core_1.serial)("TicketId").primaryKey(),
-    UserId: (0, pg_core_1.integer)("UserId").references(() => exports.Users.UserId),
-    Subject: (0, pg_core_1.varchar)("Subject", { length: 255 }),
-    Description: (0, pg_core_1.text)("Description"),
-    Status: (0, exports.TicketStatusEnum)("Status").default("Open"),
-    CreatedAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
-    UpdatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
+exports.customerSupportTickets = (0, pg_core_1.pgTable)("CustomerSupportTickets", {
+    ticketId: (0, pg_core_1.serial)("TicketId").primaryKey(),
+    userId: (0, pg_core_1.integer)("UserId").references(() => exports.users.userId),
+    subject: (0, pg_core_1.varchar)("Subject", { length: 255 }),
+    description: (0, pg_core_1.text)("Description"),
+    status: (0, exports.ticketStatusEnum)("Status").default("Open"),
+    createdAt: (0, pg_core_1.timestamp)("CreatedAt").defaultNow(),
+    updatedAt: (0, pg_core_1.timestamp)("UpdatedAt").defaultNow(),
 });
-//Relationships.
-exports.UserToBookings = {
-    one: exports.Users.UserId,
-    many: exports.Bookings.UserId,
+// Relationships
+exports.userToBookings = {
+    one: exports.users.userId,
+    many: exports.bookings.userId,
 };
-exports.UserToTickets = {
-    one: exports.Users.UserId,
-    many: exports.CustomerSupportTickets.UserId,
+exports.userToTickets = {
+    one: exports.users.userId,
+    many: exports.customerSupportTickets.userId,
 };
-exports.HotelToRooms = {
-    one: exports.Hotels.HotelId,
-    many: exports.Rooms.HotelId,
+exports.hotelToRooms = {
+    one: exports.hotels.hotelId,
+    many: exports.rooms.hotelId,
 };
-exports.RoomToBookings = {
-    one: exports.Rooms.RoomId,
-    many: exports.Bookings.RoomId,
+exports.roomToBookings = {
+    one: exports.rooms.roomId,
+    many: exports.bookings.roomId,
 };
-exports.BookingToPayment = {
-    one: exports.Bookings.BookingId,
-    oneToOne: exports.Payments.BookingId,
+exports.bookingToPayment = {
+    one: exports.bookings.bookingId,
+    onetoone: exports.payments.bookingId,
 };

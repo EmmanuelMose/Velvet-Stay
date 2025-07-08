@@ -1,4 +1,4 @@
-// customerSupportTickets.controller.ts
+
 import { Request, Response } from "express";
 import {
   createCustomerSupportTicketService,
@@ -12,7 +12,7 @@ export const createCustomerSupportTicketController = async (req: Request, res: R
   try {
     const ticketData = req.body;
 
-    // Prevent createdAt and updatedAt from being set by client
+    
     delete ticketData.createdAt;
     delete ticketData.updatedAt;
 

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Hotel Management API using Express, TypeScript, Drizzle ORM, and PostgreSQL",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
@@ -10,7 +11,7 @@
     "generate": "drizzle-kit generate --config=src/drizzle.config.ts",
     "migrate": "tsx src/drizzle/migrate.ts",
     "seed": "tsx src/Drizzle/seed.ts",
-    "test": "echo \"No test suite configured\" && exit 0"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Emmanuel Mose",
@@ -25,11 +26,15 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
-    "@types/dotenv": "^8.2.3",
-    "@types/express": "^5.0.3",
+    "@types/dotenv": "latest",
+    "@types/express": "latest",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.0.10",
     "@types/pg": "^8.15.4",
     "drizzle-kit": "^0.31.4",
+    "jest": "^30.0.4",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"

@@ -45,7 +45,10 @@ export const hotels = pgTable("Hotels", {
 
 export const rooms = pgTable("Rooms", {
   roomId: serial("RoomId").primaryKey(),
-  hotelId: integer("HotelId").references(() => hotels.hotelId),
+  hotelId: integer("HotelId").references(() => hotels.hotelId, {
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  }),
   roomType: varchar("RoomType", { length: 100 }),
   pricePerNight: real("PricePerNight"),
   capacity: integer("Capacity"),
@@ -56,8 +59,14 @@ export const rooms = pgTable("Rooms", {
 
 export const bookings = pgTable("Bookings", {
   bookingId: serial("BookingId").primaryKey(),
-  userId: integer("UserId").references(() => users.userId),
-  roomId: integer("RoomId").references(() => rooms.roomId),
+  userId: integer("UserId").references(() => users.userId, {
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  }),
+  roomId: integer("RoomId").references(() => rooms.roomId, {
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  }),
   checkInDate: timestamp("CheckInDate"),
   checkOutDate: timestamp("CheckOutDate"),
   totalAmount: real("TotalAmount"),
@@ -68,7 +77,10 @@ export const bookings = pgTable("Bookings", {
 
 export const payments = pgTable("Payments", {
   paymentId: serial("PaymentId").primaryKey(),
-  bookingId: integer("BookingId").references(() => bookings.bookingId),
+  bookingId: integer("BookingId").references(() => bookings.bookingId, {
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  }),
   amount: real("Amount"),
   paymentStatus: paymentStatusEnum("PaymentStatus").default("Pending"),
   paymentDate: timestamp("PaymentDate").defaultNow(),
@@ -80,7 +92,10 @@ export const payments = pgTable("Payments", {
 
 export const customerSupportTickets = pgTable("CustomerSupportTickets", {
   ticketId: serial("TicketId").primaryKey(),
-  userId: integer("UserId").references(() => users.userId),
+  userId: integer("UserId").references(() => users.userId, {
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  }),
   subject: varchar("Subject", { length: 255 }),
   description: text("Description"),
   status: ticketStatusEnum("Status").default("Open"),
@@ -88,7 +103,7 @@ export const customerSupportTickets = pgTable("CustomerSupportTickets", {
   updatedAt: timestamp("UpdatedAt").defaultNow(),
 });
 
-// Relationships
+// Relationships (for reference)
 
 export const userToBookings = {
   one: users.userId,

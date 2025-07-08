@@ -1,4 +1,4 @@
-// bookings.service.ts
+
 import { eq } from "drizzle-orm";
 import db from "../Drizzle/db";
 import { bookings } from "../Drizzle/schema";

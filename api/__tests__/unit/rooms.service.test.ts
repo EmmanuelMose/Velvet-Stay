@@ -36,9 +36,8 @@ describe("Rooms Service", () => {
 
   it("should create a room", async () => {
     const returning = jest.fn().mockResolvedValue([mockRoom]);
-    (db.insert as jest.Mock).mockReturnValue({
-      values: jest.fn().mockReturnValue({ returning }),
-    });
+    const values = jest.fn().mockReturnValue({ returning });
+    (db.insert as jest.Mock).mockReturnValue({ values });
 
     const result = await createRoomService(mockRoom);
     expect(result).toEqual(mockRoom);
@@ -55,11 +54,10 @@ describe("Rooms Service", () => {
   });
 
   it("should get room by ID", async () => {
-    const from = jest.fn().mockResolvedValue([mockRoom]);
-    (db.select as jest.Mock).mockReturnValue({
-      from,
-      where: () => from(),
-    });
+    const where = jest.fn().mockResolvedValue([mockRoom]);
+    const from = jest.fn().mockReturnValue({ where });
+
+    (db.select as jest.Mock).mockReturnValue({ from });
 
     const result = await getRoomByIdService(1);
     expect(result).toEqual(mockRoom);
@@ -67,7 +65,7 @@ describe("Rooms Service", () => {
   });
 
   it("should update a room", async () => {
-    const where = jest.fn();
+    const where = jest.fn().mockResolvedValue([mockRoom]);   
     const set = jest.fn().mockReturnValue({ where });
     (db.update as jest.Mock).mockReturnValue({ set });
 
@@ -77,7 +75,7 @@ describe("Rooms Service", () => {
   });
 
   it("should delete a room", async () => {
-    const returning = jest.fn();
+    const returning = jest.fn().mockResolvedValue([mockRoom]);
     const where = jest.fn().mockReturnValue({ returning });
     (db.delete as jest.Mock).mockReturnValue({ where });
 

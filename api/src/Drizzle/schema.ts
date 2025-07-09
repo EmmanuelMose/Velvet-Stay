@@ -29,6 +29,8 @@ export const users = pgTable("Users", {
   role: roleEnum("Role").default("User"),
   createdAt: timestamp("CreatedAt").defaultNow(),
   updatedAt: timestamp("UpdatedAt").defaultNow(),
+  isVerified: boolean("IsVerified").default(false),                        
+  verificationCode: varchar("VerificationCode", { length: 10 }), 
 });
 
 export const hotels = pgTable("Hotels", {

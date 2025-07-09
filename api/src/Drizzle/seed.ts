@@ -6,7 +6,7 @@ import {
   bookings,
   payments,
   customerSupportTickets,
-} from "../Drizzle/schema";
+} from "../Drizzle/schema.js";
 
 async function seed() {
   try {

@@ -62,7 +62,7 @@ describe("Hotels Service", () => {
   });
 
   it("should update a hotel", async () => {
-    const where = jest.fn().mockReturnValue(Promise.resolve());
+    const where = jest.fn().mockResolvedValue([mockHotel]);
     const set = jest.fn().mockReturnValue({ where });
     (db.update as jest.Mock).mockReturnValue({ set });
 
@@ -72,7 +72,8 @@ describe("Hotels Service", () => {
   });
 
   it("should delete a hotel", async () => {
-    const where = jest.fn().mockReturnValue(Promise.resolve());
+    const returning = jest.fn().mockResolvedValue([mockHotel]);
+    const where = jest.fn().mockReturnValue({ returning });
     (db.delete as jest.Mock).mockReturnValue({ where });
 
     const result = await deleteHotelService(1);

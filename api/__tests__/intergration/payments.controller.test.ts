@@ -1,5 +1,6 @@
 import request from 'supertest';
-import app from '../../app';
+import app from '../../src/index';
+//import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import {
   createPaymentService,
   getAllPaymentsService,

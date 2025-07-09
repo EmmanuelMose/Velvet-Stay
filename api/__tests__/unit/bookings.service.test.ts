@@ -4,6 +4,7 @@ import { createBookingService, getAllBookingsService, getBookingByIdService, upd
 import db from "../../src/Drizzle/db";
 import { bookings } from "../../src/Drizzle/schema";
 
+
 // Mock the entire db module
 jest.mock("../../src/Drizzle/db", () => ({
   insert: jest.fn(),
@@ -47,13 +48,16 @@ describe("Bookings Service", () => {
   });
 
   it("should get booking by ID", async () => {
-    const from = jest.fn().mockResolvedValue([mockBooking]);
-    (db.select as jest.Mock).mockReturnValue({ from, where: () => from() });
+  const where = jest.fn().mockResolvedValue([mockBooking]);  
+  const from = jest.fn().mockReturnValue({ where });         
 
-    const result = await getBookingByIdService(1);
-    expect(result).toEqual(mockBooking);
-    expect(db.select).toHaveBeenCalled();
-  });
+  (db.select as jest.Mock).mockReturnValue({ from });
+
+  const result = await getBookingByIdService(1);
+  expect(result).toEqual(mockBooking);
+  expect(db.select).toHaveBeenCalled();
+});
+
 
   it("should update a booking", async () => {
     const set = jest.fn().mockReturnValue({ where: jest.fn() });

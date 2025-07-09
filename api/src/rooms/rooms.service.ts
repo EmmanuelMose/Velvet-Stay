@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import  db  from "../Drizzle/db";
+import db from "../Drizzle/db";
 import { rooms } from "../Drizzle/schema";
 
 // Create Room
@@ -20,9 +20,17 @@ export const getRoomByIdService = async (id: number) => {
   return room ?? null;
 };
 
-// Update Room
+// Update Room (Fixed .toISOString issue)
 export const updateRoomService = async (id: number, updateData: any) => {
-  await db.update(rooms).set({ ...updateData }).where(eq(rooms.roomId, id));
+  const { createdAt, updatedAt, ...safeUpdateData } = updateData;  // Remove unwanted fields
+
+  await db.update(rooms)
+    .set({
+      ...safeUpdateData,
+      updatedAt: new Date()  // Always use fresh Date object
+    })
+    .where(eq(rooms.roomId, id));
+
   return "Room updated successfully";
 };
 

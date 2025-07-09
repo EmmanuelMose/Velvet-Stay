@@ -86,7 +86,7 @@ export const deleteCustomerSupportTicketController = async (req: Request, res: R
     }
 
     const deleted = await deleteCustomerSupportTicketService(id);
-    return res.status(204).json({ message: deleted });
+    return res.status(202).json({ message: deleted });
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }

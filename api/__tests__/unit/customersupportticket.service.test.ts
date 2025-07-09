@@ -34,9 +34,8 @@ describe("Customer Support Tickets Service", () => {
 
   it("should create a customer support ticket", async () => {
     const returning = jest.fn().mockResolvedValue([mockTicket]);
-    (db.insert as jest.Mock).mockReturnValue({
-      values: jest.fn().mockReturnValue({ returning }),
-    });
+    const values = jest.fn().mockReturnValue({ returning });
+    (db.insert as jest.Mock).mockReturnValue({ values });
 
     const result = await createCustomerSupportTicketService(mockTicket);
     expect(result).toEqual(mockTicket);
@@ -53,8 +52,10 @@ describe("Customer Support Tickets Service", () => {
   });
 
   it("should get a customer support ticket by ID", async () => {
-    const from = jest.fn().mockResolvedValue([mockTicket]);
-    (db.select as jest.Mock).mockReturnValue({ from, where: () => from() });
+    const where = jest.fn().mockResolvedValue([mockTicket]);   
+    const from = jest.fn().mockReturnValue({ where });         
+
+    (db.select as jest.Mock).mockReturnValue({ from });
 
     const result = await getCustomerSupportTicketByIdService(1);
     expect(result).toEqual(mockTicket);
@@ -62,7 +63,8 @@ describe("Customer Support Tickets Service", () => {
   });
 
   it("should update a customer support ticket", async () => {
-    const set = jest.fn().mockReturnValue({ where: jest.fn() });
+    const where = jest.fn().mockResolvedValue([mockTicket]);   
+    const set = jest.fn().mockReturnValue({ where });          
     (db.update as jest.Mock).mockReturnValue({ set });
 
     const result = await updateCustomerSupportTicketService(1, { status: "Resolved" });
@@ -71,7 +73,8 @@ describe("Customer Support Tickets Service", () => {
   });
 
   it("should delete a customer support ticket", async () => {
-    const where = jest.fn().mockReturnValue({ returning: jest.fn() });
+    const returning = jest.fn().mockResolvedValue([mockTicket]);
+    const where = jest.fn().mockReturnValue({ returning });
     (db.delete as jest.Mock).mockReturnValue({ where });
 
     const result = await deleteCustomerSupportTicketService(1);

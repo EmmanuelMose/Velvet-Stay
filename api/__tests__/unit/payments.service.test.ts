@@ -35,9 +35,8 @@ describe("Payments Service", () => {
 
   it("should create a payment", async () => {
     const returning = jest.fn().mockResolvedValue([mockPayment]);
-    (db.insert as jest.Mock).mockReturnValue({
-      values: jest.fn().mockReturnValue({ returning }),
-    });
+    const values = jest.fn().mockReturnValue({ returning });
+    (db.insert as jest.Mock).mockReturnValue({ values });
 
     const result = await createPaymentService(mockPayment);
     expect(result).toEqual(mockPayment);
@@ -54,8 +53,9 @@ describe("Payments Service", () => {
   });
 
   it("should get payment by ID", async () => {
-    const from = jest.fn().mockResolvedValue([mockPayment]);
-    (db.select as jest.Mock).mockReturnValue({ from, where: () => from() });
+    const where = jest.fn().mockResolvedValue([mockPayment]);
+    const from = jest.fn().mockReturnValue({ where });
+    (db.select as jest.Mock).mockReturnValue({ from });
 
     const result = await getPaymentByIdService(1);
     expect(result).toEqual(mockPayment);
@@ -63,7 +63,8 @@ describe("Payments Service", () => {
   });
 
   it("should update a payment", async () => {
-    const set = jest.fn().mockReturnValue({ where: jest.fn() });
+    const where = jest.fn().mockResolvedValue([mockPayment]);
+    const set = jest.fn().mockReturnValue({ where });
     (db.update as jest.Mock).mockReturnValue({ set });
 
     const result = await updatePaymentService(1, { paymentStatus: "Pending" });
@@ -72,7 +73,8 @@ describe("Payments Service", () => {
   });
 
   it("should delete a payment", async () => {
-    const where = jest.fn().mockReturnValue({ returning: jest.fn() });
+    const returning = jest.fn().mockResolvedValue([mockPayment]);
+    const where = jest.fn().mockReturnValue({ returning });
     (db.delete as jest.Mock).mockReturnValue({ where });
 
     const result = await deletePaymentService(1);

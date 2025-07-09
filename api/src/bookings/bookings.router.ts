@@ -9,6 +9,7 @@ import {
   deleteBookingController
 } from "../bookings/bookings.controller";
 
+//create booking
 const bookingRoutes = (app: Express) => {
   app.route('/booking').post(async (req, res, next) => {
     try {
@@ -17,7 +18,7 @@ const bookingRoutes = (app: Express) => {
       next(error);
     }
   });
-
+//get all bookings
   app.route('/bookings').get(async (req, res, next) => {
     try {
       await getAllBookingsController(req, res);
@@ -25,7 +26,7 @@ const bookingRoutes = (app: Express) => {
       next(error);
     }
   });
-
+//get booking by id
   app.route('/booking/:id').get(async (req, res, next) => {
     try {
       await getBookingByIdController(req, res);
@@ -33,7 +34,7 @@ const bookingRoutes = (app: Express) => {
       next(error);
     }
   });
-
+//update booking
   app.route('/booking/:id').put(async (req, res, next) => {
     try {
       await updateBookingController(req, res);
@@ -41,7 +42,7 @@ const bookingRoutes = (app: Express) => {
       next(error);
     }
   });
-
+//delete booking
   app.route('/booking/:id').delete(async (req, res, next) => {
     try {
       await deleteBookingController(req, res);

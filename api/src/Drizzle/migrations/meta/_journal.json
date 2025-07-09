@@ -15,6 +15,27 @@
       "when": 1751913240684,
       "tag": "0001_clever_wind_dancer",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752049552102,
+      "tag": "0002_stormy_overlord",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1752050284278,
+      "tag": "0003_sloppy_starbolt",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1752051117326,
+      "tag": "0004_chubby_captain_cross",
+      "breakpoints": true
     }
   ]
 }

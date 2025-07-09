@@ -1,5 +1,6 @@
 import request from 'supertest';
-import app from '../../src/index'; 
+import app from '../../src/index';
+
 import {
   createBookingService,
   getAllBookingsService,
@@ -8,7 +9,8 @@ import {
   deleteBookingService
 } from '../../src/bookings/bookings.service';
 
-jest.mock('../bookings/bookings.service');
+// ✅ Correct mock path (same as import)
+jest.mock('../../src/bookings/bookings.service');
 
 const mockedCreateBookingService = createBookingService as jest.Mock;
 const mockedGetAllBookingsService = getAllBookingsService as jest.Mock;

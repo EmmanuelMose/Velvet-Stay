@@ -1,14 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+
 import db from "./Drizzle/db";
-import userRoutes from "../src/users/users.router";  
+import userRoutes from "./users/users.router";
 import roomRoutes from "./rooms/rooms.router";
 import hotelRoutes from "./hotels/hotels.router";
 import bookingRoutes from "./bookings/bookings.router";
 import paymentRoutes from "./payments/payments.router";
 import customerSupportRoutes from "./customerSupportTickets/customerSupportTickets.router";
-
+import authRoutes from "./auth/auth.router";
 
 dotenv.config();
 
@@ -20,15 +21,15 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-userRoutes(app); 
+userRoutes(app);
 roomRoutes(app);
 hotelRoutes(app);
 bookingRoutes(app);
 paymentRoutes(app);
-customerSupportRoutes(app)
+customerSupportRoutes(app);
+authRoutes(app);
 
-
-app.get("/", async (req, res) => {
+app.get("/", (_req, res) => {
   res.send("Hotel Management API is running!");
 });
 
@@ -36,3 +37,5 @@ app.get("/", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
+
+export default app;

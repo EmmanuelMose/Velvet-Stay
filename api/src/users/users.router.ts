@@ -6,12 +6,11 @@ import {
   updateUserController,
   deleteUserController,
 } from "../users/users.controller";
-
+import { adminRoleAuth, bothRoleAuth, userRoleAuth } from "../middleware/bearAuth";
 
 //create user
 const userRoutes = (app: Express) => {
   app.route('/user').post(
-    
     async (req, res, next) => {
       try {
         await createUserController(req, res);
@@ -22,7 +21,7 @@ const userRoutes = (app: Express) => {
   );
 //get all users
   app.route('/users').get(
-    
+    adminRoleAuth,
     async (req, res, next) => {
       try {
         await getAllUsersController(req, res);
@@ -33,7 +32,7 @@ const userRoutes = (app: Express) => {
   );
 //update user
   app.route('/user/:id').get(
-    
+    userRoleAuth,
     async (req, res, next) => {
       try {
         await getUserByIdController(req, res);
@@ -44,7 +43,7 @@ const userRoutes = (app: Express) => {
   );
 //get user by id
   app.route('/user/:id').put(
-    
+    userRoleAuth,
     async (req, res, next) => {
       try {
         await updateUserController(req, res);
@@ -55,7 +54,7 @@ const userRoutes = (app: Express) => {
   );
 //delete user
   app.route('/user/:id').delete(
-    
+    bothRoleAuth,
     async (req, res, next) => {
       try {
         await deleteUserController(req, res);

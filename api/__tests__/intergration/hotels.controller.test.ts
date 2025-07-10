@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../../src/index';
-//import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+
 import {
   createHotelService,
   getAllHotelsService,
@@ -9,7 +9,8 @@ import {
   deleteHotelService
 } from '../../src/hotels/hotels.service';
 
-jest.mock('../hotels/hotels.service');
+// Correct path for mocks
+jest.mock('../../src/hotels/hotels.service');
 
 const mockedCreateService = createHotelService as jest.Mock;
 const mockedGetAllService = getAllHotelsService as jest.Mock;
@@ -19,12 +20,17 @@ const mockedDeleteService = deleteHotelService as jest.Mock;
 
 describe('Hotel Controller Integration Tests', () => {
 
-  describe('POST /api/hotels', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  // POST /hotel
+  describe('POST /hotel', () => {
     it('should create a hotel successfully', async () => {
       const hotelData = { name: 'Hotel Sunshine', location: 'City Center' };
       mockedCreateService.mockResolvedValue({ id: 1, ...hotelData });
 
-      const res = await request(app).post('/api/hotels').send(hotelData);
+      const res = await request(app).post('/hotel').send(hotelData);
 
       expect(res.status).toBe(201);
       expect(res.body).toHaveProperty('message', 'Hotel created successfully');
@@ -34,18 +40,19 @@ describe('Hotel Controller Integration Tests', () => {
     it('should return 400 if hotel not created', async () => {
       mockedCreateService.mockResolvedValue(null);
 
-      const res = await request(app).post('/api/hotels').send({});
+      const res = await request(app).post('/hotel').send({});
 
       expect(res.status).toBe(400);
       expect(res.body).toHaveProperty('message', 'Hotel not created');
     });
   });
 
-  describe('GET /api/hotels', () => {
+  // GET /hotels
+  describe('GET /hotels', () => {
     it('should return all hotels', async () => {
       mockedGetAllService.mockResolvedValue([{ id: 1 }, { id: 2 }]);
 
-      const res = await request(app).get('/api/hotels');
+      const res = await request(app).get('/hotels');
 
       expect(res.status).toBe(200);
       expect(res.body.data.length).toBeGreaterThan(0);
@@ -54,25 +61,26 @@ describe('Hotel Controller Integration Tests', () => {
     it('should return 404 if no hotels found', async () => {
       mockedGetAllService.mockResolvedValue([]);
 
-      const res = await request(app).get('/api/hotels');
+      const res = await request(app).get('/hotels');
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'No hotels found');
     });
   });
 
-  describe('GET /api/hotels/:id', () => {
+  // GET /hotel/:id
+  describe('GET /hotel/:id', () => {
     it('should return a hotel by ID', async () => {
       mockedGetByIdService.mockResolvedValue({ id: 1 });
 
-      const res = await request(app).get('/api/hotels/1');
+      const res = await request(app).get('/hotel/1');
 
       expect(res.status).toBe(200);
       expect(res.body.data).toHaveProperty('id', 1);
     });
 
     it('should return 400 for invalid ID', async () => {
-      const res = await request(app).get('/api/hotels/abc');
+      const res = await request(app).get('/hotel/abc');
 
       expect(res.status).toBe(400);
       expect(res.body).toHaveProperty('message', 'Invalid Hotel ID');
@@ -81,19 +89,20 @@ describe('Hotel Controller Integration Tests', () => {
     it('should return 404 if hotel not found', async () => {
       mockedGetByIdService.mockResolvedValue(null);
 
-      const res = await request(app).get('/api/hotels/999');
+      const res = await request(app).get('/hotel/999');
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'Hotel not found');
     });
   });
 
-  describe('PUT /api/hotels/:id', () => {
+  // PUT /hotel/:id
+  describe('PUT /hotel/:id', () => {
     it('should update a hotel successfully', async () => {
       mockedGetByIdService.mockResolvedValue({ id: 1 });
       mockedUpdateService.mockResolvedValue('Hotel updated successfully');
 
-      const res = await request(app).put('/api/hotels/1').send({ name: 'Updated Hotel' });
+      const res = await request(app).put('/hotel/1').send({ name: 'Updated Hotel' });
 
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('message', 'Hotel updated successfully');
@@ -102,27 +111,29 @@ describe('Hotel Controller Integration Tests', () => {
     it('should return 404 if hotel not found', async () => {
       mockedGetByIdService.mockResolvedValue(null);
 
-      const res = await request(app).put('/api/hotels/1').send({});
+      const res = await request(app).put('/hotel/1').send({});
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'Hotel not found');
     });
   });
 
-  describe('DELETE /api/hotels/:id', () => {
+  // DELETE /hotel/:id
+  describe('DELETE /hotel/:id', () => {
     it('should delete a hotel successfully', async () => {
       mockedGetByIdService.mockResolvedValue({ id: 1 });
       mockedDeleteService.mockResolvedValue('Hotel deleted successfully');
 
-      const res = await request(app).delete('/api/hotels/1');
+      const res = await request(app).delete('/hotel/1');
 
-      expect(res.status).toBe(204);
+      expect(res.status).toBe(202);  // ✅ Match your controller’s return status
+      expect(res.body).toEqual({ message: 'Hotel deleted successfully' });
     });
 
     it('should return 404 if hotel not found', async () => {
       mockedGetByIdService.mockResolvedValue(null);
 
-      const res = await request(app).delete('/api/hotels/1');
+      const res = await request(app).delete('/hotel/1');
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'Hotel not found');

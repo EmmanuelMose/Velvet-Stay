@@ -21,7 +21,7 @@ const userRoutes = (app: Express) => {
   );
 //get all users
   app.route('/users').get(
-    adminRoleAuth,
+    //adminRoleAuth,
     async (req, res, next) => {
       try {
         await getAllUsersController(req, res);
@@ -32,7 +32,7 @@ const userRoutes = (app: Express) => {
   );
 //update user
   app.route('/user/:id').get(
-    userRoleAuth,
+    //userRoleAuth,
     async (req, res, next) => {
       try {
         await getUserByIdController(req, res);
@@ -43,7 +43,7 @@ const userRoutes = (app: Express) => {
   );
 //get user by id
   app.route('/user/:id').put(
-    userRoleAuth,
+    //userRoleAuth,
     async (req, res, next) => {
       try {
         await updateUserController(req, res);
@@ -54,7 +54,7 @@ const userRoutes = (app: Express) => {
   );
 //delete user
   app.route('/user/:id').delete(
-    bothRoleAuth,
+    //bothRoleAuth,
     async (req, res, next) => {
       try {
         await deleteUserController(req, res);

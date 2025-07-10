@@ -9,7 +9,7 @@ import {
   deleteBookingService
 } from '../../src/bookings/bookings.service';
 
-// ✅ Correct mock path (same as import)
+// Mock the services
 jest.mock('../../src/bookings/bookings.service');
 
 const mockedCreateBookingService = createBookingService as jest.Mock;
@@ -20,12 +20,22 @@ const mockedDeleteBookingService = deleteBookingService as jest.Mock;
 
 describe('Bookings Controller Integration Tests', () => {
 
-  describe('POST /api/bookings', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  // POST /booking
+  describe('POST /booking', () => {
     it('should create a booking successfully', async () => {
-      const bookingData = { customerId: 1, roomId: 2, checkInDate: '2024-08-01', checkOutDate: '2024-08-05' };
+      const bookingData = {
+        customerId: 1,
+        roomId: 2,
+        checkInDate: '2024-08-01',
+        checkOutDate: '2024-08-05'
+      };
       mockedCreateBookingService.mockResolvedValue({ id: 1, ...bookingData });
 
-      const res = await request(app).post('/api/bookings').send(bookingData);
+      const res = await request(app).post('/booking').send(bookingData);
 
       expect(res.status).toBe(201);
       expect(res.body).toHaveProperty('message', 'Booking created successfully');
@@ -35,18 +45,19 @@ describe('Bookings Controller Integration Tests', () => {
     it('should return 400 if booking not created', async () => {
       mockedCreateBookingService.mockResolvedValue(null);
 
-      const res = await request(app).post('/api/bookings').send({});
+      const res = await request(app).post('/booking').send({});
 
       expect(res.status).toBe(400);
       expect(res.body).toHaveProperty('message', 'Booking not created');
     });
   });
 
-  describe('GET /api/bookings', () => {
+  // GET /bookings
+  describe('GET /bookings', () => {
     it('should return all bookings', async () => {
       mockedGetAllBookingsService.mockResolvedValue([{ id: 1 }, { id: 2 }]);
 
-      const res = await request(app).get('/api/bookings');
+      const res = await request(app).get('/bookings');
 
       expect(res.status).toBe(200);
       expect(res.body.data.length).toBeGreaterThan(0);
@@ -55,25 +66,26 @@ describe('Bookings Controller Integration Tests', () => {
     it('should return 404 if no bookings found', async () => {
       mockedGetAllBookingsService.mockResolvedValue([]);
 
-      const res = await request(app).get('/api/bookings');
+      const res = await request(app).get('/bookings');
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'No bookings found');
     });
   });
 
-  describe('GET /api/bookings/:id', () => {
+  // GET /booking/:id
+  describe('GET /booking/:id', () => {
     it('should return a booking by ID', async () => {
       mockedGetBookingByIdService.mockResolvedValue({ id: 1 });
 
-      const res = await request(app).get('/api/bookings/1');
+      const res = await request(app).get('/booking/1');
 
       expect(res.status).toBe(200);
       expect(res.body.data).toHaveProperty('id', 1);
     });
 
     it('should return 400 for invalid ID', async () => {
-      const res = await request(app).get('/api/bookings/abc');
+      const res = await request(app).get('/booking/invalid-id');
 
       expect(res.status).toBe(400);
       expect(res.body).toHaveProperty('message', 'Invalid Booking ID');
@@ -82,19 +94,20 @@ describe('Bookings Controller Integration Tests', () => {
     it('should return 404 if booking not found', async () => {
       mockedGetBookingByIdService.mockResolvedValue(null);
 
-      const res = await request(app).get('/api/bookings/999');
+      const res = await request(app).get('/booking/999');
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'Booking not found');
     });
   });
 
-  describe('PUT /api/bookings/:id', () => {
+  // PUT /booking/:id
+  describe('PUT /booking/:id', () => {
     it('should update a booking successfully', async () => {
       mockedGetBookingByIdService.mockResolvedValue({ id: 1 });
       mockedUpdateBookingService.mockResolvedValue('Booking updated successfully');
 
-      const res = await request(app).put('/api/bookings/1').send({ checkInDate: '2024-08-10' });
+      const res = await request(app).put('/booking/1').send({ checkInDate: '2024-08-10' });
 
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('message', 'Booking updated successfully');
@@ -103,27 +116,29 @@ describe('Bookings Controller Integration Tests', () => {
     it('should return 404 if booking not found', async () => {
       mockedGetBookingByIdService.mockResolvedValue(null);
 
-      const res = await request(app).put('/api/bookings/1').send({});
+      const res = await request(app).put('/booking/1').send({});
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'Booking not found');
     });
   });
 
-  describe('DELETE /api/bookings/:id', () => {
+  // DELETE /booking/:id
+  describe('DELETE /booking/:id', () => {
     it('should delete a booking successfully', async () => {
       mockedGetBookingByIdService.mockResolvedValue({ id: 1 });
       mockedDeleteBookingService.mockResolvedValue('Booking deleted successfully');
 
-      const res = await request(app).delete('/api/bookings/1');
+      const res = await request(app).delete('/booking/1');
 
-      expect(res.status).toBe(204);
+      expect(res.status).toBe(202);
+      expect(res.body).toEqual({ message: 'Booking deleted successfully' });
     });
 
     it('should return 404 if booking not found', async () => {
       mockedGetBookingByIdService.mockResolvedValue(null);
 
-      const res = await request(app).delete('/api/bookings/1');
+      const res = await request(app).delete('/booking/1');
 
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty('message', 'Booking not found');

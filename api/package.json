@@ -12,7 +12,15 @@
     "generate": "drizzle-kit generate --config=src/drizzle.config.ts",
     "migrate": "tsx src/drizzle/migrate.ts",
     "seed": "tsx src/Drizzle/seed.ts",
-    "test": "jest"
+    "test": "jest",
+    "smoke:login": "k6 run load-tests/smoke/login.smoke.ts",
+    "smoke:register": "k6 run load-tests/smoke/register.smoke.ts",
+    "smoke:users": "k6 run load-tests/smoke/users.get.smoke.ts",
+    "load:users": "k6 run load-tests/load/users.get.load.ts",
+    "stress:users": "k6 run load-tests/stress/users.get.stress.ts",
+    "spike:users": "k6 run load-tests/spike/users.get.spike.ts",
+    "soak:users": "k6 run load-tests/soak/users.get.soak.ts",
+    "breakpoint:users": "k6 run load-tests/breakpoint/users.get.breakpoint.ts"
   },
   "keywords": [],
   "author": "Emmanuel Mose",
@@ -20,12 +28,14 @@
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
+    "@types/k6": "^1.1.1",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "drizzle-orm": "^0.44.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "k6": "^0.0.0",
     "nodemailer": "^7.0.5",
     "pg": "^8.16.3"
   },

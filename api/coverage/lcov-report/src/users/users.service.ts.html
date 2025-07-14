@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.52% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,71 +96,71 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { eq } from "drizzle-orm";
 import  db  from "../Drizzle/db";
 import { users } from "../Drizzle/schema";
 &nbsp;
 // Create User
-export const createUserService = <span class="fstat-no" title="function not covered" >async </span>(user: any) =&gt; {
-  const [inserted] = <span class="cstat-no" title="statement not covered" >await db.insert(users).values(user).returning();</span>
-<span class="cstat-no" title="statement not covered" >  return inserted ?? null;</span>
+export const createUserService = async (user: any) =&gt; {
+  const [inserted] = await db.insert(users).values(user).returning();
+  return inserted ?? <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
 };
 &nbsp;
 // Get All Users
-export const getAllUsersService = <span class="fstat-no" title="function not covered" >async </span>() =&gt; {
-  const allUsers = <span class="cstat-no" title="statement not covered" >await db.select().from(users);</span>
-<span class="cstat-no" title="statement not covered" >  return allUsers;</span>
+export const getAllUsersService = async () =&gt; {
+  const allUsers = await db.select().from(users);
+  return allUsers;
 };
 &nbsp;
 // Get User by ID
-export const getUserByIdService = <span class="fstat-no" title="function not covered" >async </span>(id: number) =&gt; {
-  const [user] = <span class="cstat-no" title="statement not covered" >await db.select().from(users).where(eq(users.userId, id));</span>
-<span class="cstat-no" title="statement not covered" >  return user ?? null;</span>
+export const getUserByIdService = async (id: number) =&gt; {
+  const [user] = await db.select().from(users).where(eq(users.userId, id));
+  return user ?? <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
 };
 &nbsp;
 // Update User
-export const updateUserService = <span class="fstat-no" title="function not covered" >async </span>(id: number, updateData: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >  await db.update(users).set({ ...updateData, updatedAt: new Date() }).where(eq(users.userId, id));</span>
-<span class="cstat-no" title="statement not covered" >  return "User updated successfully";</span>
+export const updateUserService = async (id: number, updateData: any) =&gt; {
+  await db.update(users).set({ ...updateData, updatedAt: new Date() }).where(eq(users.userId, id));
+  return "User updated successfully";
 };
 &nbsp;
 // Delete User
-export const deleteUserService = <span class="fstat-no" title="function not covered" >async </span>(id: number) =&gt; {
-<span class="cstat-no" title="statement not covered" >  await db.delete(users).where(eq(users.userId, id)).returning();</span>
-<span class="cstat-no" title="statement not covered" >  return "User deleted successfully";</span>
+export const deleteUserService = async (id: number) =&gt; {
+  await db.delete(users).where(eq(users.userId, id)).returning();
+  return "User deleted successfully";
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -169,7 +169,7 @@ export const deleteUserService = <span class="fstat-no" title="function not cove
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-14T09:54:29.604Z
+                at 2025-07-14T12:03:21.213Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

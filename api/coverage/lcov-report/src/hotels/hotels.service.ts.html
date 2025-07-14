@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.52% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,71 +96,71 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { eq } from "drizzle-orm";
 import  db  from "../Drizzle/db";
 import { hotels } from "../Drizzle/schema";
 &nbsp;
 // Create Hotel
-export const createHotelService = <span class="fstat-no" title="function not covered" >async </span>(hotel: any) =&gt; {
-  const [inserted] = <span class="cstat-no" title="statement not covered" >await db.insert(hotels).values(hotel).returning();</span>
-<span class="cstat-no" title="statement not covered" >  return inserted ?? null;</span>
+export const createHotelService = async (hotel: any) =&gt; {
+  const [inserted] = await db.insert(hotels).values(hotel).returning();
+  return inserted ?? <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
 };
 &nbsp;
 // Get All Hotels
-export const getAllHotelsService = <span class="fstat-no" title="function not covered" >async </span>() =&gt; {
-  const allHotels = <span class="cstat-no" title="statement not covered" >await db.select().from(hotels);</span>
-<span class="cstat-no" title="statement not covered" >  return allHotels;</span>
+export const getAllHotelsService = async () =&gt; {
+  const allHotels = await db.select().from(hotels);
+  return allHotels;
 };
 &nbsp;
 // Get Hotel by ID
-export const getHotelByIdService = <span class="fstat-no" title="function not covered" >async </span>(id: number) =&gt; {
-  const [hotel] = <span class="cstat-no" title="statement not covered" >await db.select().from(hotels).where(eq(hotels.hotelId, id));</span>
-<span class="cstat-no" title="statement not covered" >  return hotel ?? null;</span>
+export const getHotelByIdService = async (id: number) =&gt; {
+  const [hotel] = await db.select().from(hotels).where(eq(hotels.hotelId, id));
+  return hotel ?? <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
 };
 &nbsp;
 // Update Hotel
-export const updateHotelService = <span class="fstat-no" title="function not covered" >async </span>(id: number, updateData: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >  await db.update(hotels).set({ ...updateData, updatedAt: new Date() }).where(eq(hotels.hotelId, id));</span>
-<span class="cstat-no" title="statement not covered" >  return "Hotel updated successfully";</span>
+export const updateHotelService = async (id: number, updateData: any) =&gt; {
+  await db.update(hotels).set({ ...updateData, updatedAt: new Date() }).where(eq(hotels.hotelId, id));
+  return "Hotel updated successfully";
 };
 &nbsp;
 // Delete Hotel
-export const deleteHotelService = <span class="fstat-no" title="function not covered" >async </span>(id: number) =&gt; {
-<span class="cstat-no" title="statement not covered" >  await db.delete(hotels).where(eq(hotels.hotelId, id)).returning();</span>
-<span class="cstat-no" title="statement not covered" >  return "Hotel deleted successfully";</span>
+export const deleteHotelService = async (id: number) =&gt; {
+  await db.delete(hotels).where(eq(hotels.hotelId, id)).returning();
+  return "Hotel deleted successfully";
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -169,7 +169,7 @@ export const deleteHotelService = <span class="fstat-no" title="function not cov
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-14T09:54:29.604Z
+                at 2025-07-14T12:03:21.213Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

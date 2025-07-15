@@ -5,25 +5,24 @@ const BASE_URL = 'http://localhost:3000'; // Update if your API runs on a differ
 
 export const options = {
     stages: [
-        { duration: '20s', target: 40 }, // ramp-up to 40 users over 30 seconds
-        { duration: '40s', target: 100 },
-        { duration: '2m', target: 200 }, // stay at 50 users for 30 seconds
-        { duration: '10s', target: 0 },  // ramp-down to 0 users
+        { duration: '10s', target: 10 },   // ramp-up to 10 users
+        { duration: '10s', target: 200 },  // sudden spike to 200 users
+        { duration: '20s', target: 300 },  // stay at 300 users
+        { duration: '10s', target: 10 },   // quick ramp-down to 10 users
+        { duration: '10s', target: 0 },    // ramp-down to 0 users
     ],
     ext: {
         loadimpact: {
-            name: 'Todos GET Load Test',
+            name: 'Todos GET Spike Test',
         },
     },
 };
 
 export default function () {
-    // If authentication is required, add a valid token here
-    // const token = 'YOUR_VALID_TOKEN';
-    const res = http.get(`${BASE_URL}/users`, {
+    const res = http.get(`${BASE_URL}/bookings`, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`,
+            // 'Authorization': `Bearer YOUR_VALID_TOKEN`,
         },
     });
 

@@ -20,7 +20,13 @@
     "stress:users": "k6 run load-tests/stress/users.get.stress.ts",
     "spike:users": "k6 run load-tests/spike/users.get.spike.ts",
     "soak:users": "k6 run load-tests/soak/users.get.soak.ts",
-    "breakpoint:users": "k6 run load-tests/breakpoint/users.get.breakpoint.ts"
+    "breakpoint:users": "k6 run load-tests/breakpoint/users.get.breakpoint.ts",
+    "smoke:bookings": "k6 run load-tests/smoke/bookings.get.smoke.ts",
+    "load:bookings": "k6 run load-tests/load/bookings.get.load.ts",
+    "stress:bookings": "k6 run load-tests/stress/bookings.get.stress.ts",
+    "spike:bookings": "k6 run load-tests/spike/bookings.get.spike.ts",
+    "soak:bookings": "k6 run load-tests/soak/bookings.get.soak.ts",
+    "breakpoint:bookings": "k6 run load-tests/breakpoint/bookings.get.breakpoint.ts"
   },
   "keywords": [],
   "author": "Emmanuel Mose",

@@ -5,25 +5,22 @@ const BASE_URL = 'http://localhost:3000'; // Update if your API runs on a differ
 
 export const options = {
     stages: [
-        { duration: '20s', target: 40 }, // ramp-up to 40 users over 30 seconds
-        { duration: '40s', target: 100 },
-        { duration: '2m', target: 200 }, // stay at 50 users for 30 seconds
-        { duration: '10s', target: 0 },  // ramp-down to 0 users
+        { duration: '1m', target: 20 },   // ramp-up to 20 users over 2 minutes
+        { duration: '3m', target: 20 },  // stay at 20 users for 56 minutes (total 58m)
+        { duration: '40s', target: 0 },    // ramp-down to 0 users
     ],
     ext: {
         loadimpact: {
-            name: 'Todos GET Load Test',
+            name: 'Todos GET Soak Test',
         },
     },
 };
 
 export default function () {
-    // If authentication is required, add a valid token here
-    // const token = 'YOUR_VALID_TOKEN';
     const res = http.get(`${BASE_URL}/users`, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`,
+            // 'Authorization': `Bearer YOUR_VALID_TOKEN`,
         },
     });
 

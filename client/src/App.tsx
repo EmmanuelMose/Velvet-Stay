@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import { BrowserRouter, useRoutes } from "react-router-dom";
+import { Toaster } from "sonner";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Pages
+//import AboutPage from "./pages/Aboutpage";
+import Landingpage from "./pages/Landingpage";
+//import Register from "./pages/auth/Register";
+//import Login from "./pages/auth/Login";
+//import VerifyUser from "./pages/auth/VerifyUser";
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+// Components
+//import AdminDashboard from "./dashboard/AdminDashboard";
+//import Cars from "./dashboard/Admin/cars/Cars";
+//import Bookings from "./dashboard/Admin/bookings/Booking";
+//import Contact from "./components/Contact/Contact";
+//import Services from "./components/Services/Services";
+//import UserDashboard from "./dashboard/UserDashboard/UserDashboard";
+
+const routes = [
+  {
+    path: '/',
+    element: <Landingpage />
+  },
+  
+    ]
+  
+function AppRoutes() {
+  const element = useRoutes(routes);
+  return element;
 }
 
-export default App
+function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          classNames: {
+            error: 'bg-red-500 text-white',
+            success: 'bg-green-500 text-white',
+            info: 'bg-blue-500 text-white',
+          },
+        }}
+      />
+    </>
+  );
+}
+
+export default App;

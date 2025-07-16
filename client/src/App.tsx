@@ -5,9 +5,9 @@ import { Toaster } from "sonner";
 // Pages
 //import AboutPage from "./pages/Aboutpage";
 import Landingpage from "./pages/Landingpage";
-//import Register from "./pages/auth/Register";
-//import Login from "./pages/auth/Login";
-//import VerifyUser from "./pages/auth/VerifyUser";
+import Register from "../../client/src/pages/auth/Register";
+import Login from "../../client/src/pages/auth/Login";
+import VerifyUser from "./pages/auth/VerifyUser";
 
 // Components
 //import AdminDashboard from "./dashboard/AdminDashboard";
@@ -21,6 +21,18 @@ const routes = [
   {
     path: '/',
     element: <Landingpage />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/register',
+    element: <Register />
+  },
+  {
+    path: '/auth/verify',
+    element: <VerifyUser />
   },
   
     ]

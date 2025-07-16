@@ -3,11 +3,12 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 import { Toaster } from "sonner";
 
 // Pages
-//import AboutPage from "./pages/Aboutpage";
+import AboutPage from "./pages/Aboutpage";
 import Landingpage from "./pages/Landingpage";
 import Register from "../../client/src/pages/auth/Register";
 import Login from "../../client/src/pages/auth/Login";
 import VerifyUser from "./pages/auth/VerifyUser";
+
 
 // Components
 //import AdminDashboard from "./dashboard/AdminDashboard";
@@ -16,12 +17,19 @@ import VerifyUser from "./pages/auth/VerifyUser";
 //import Contact from "./components/Contact/Contact";
 //import Services from "./components/Services/Services";
 //import UserDashboard from "./dashboard/UserDashboard/UserDashboard";
+import Contactpage from "../../client/src/pages/Contactpage";
+import ServicesPage from "../../client/src/pages/Servicespage";
 
 const routes = [
   {
     path: '/',
     element: <Landingpage />
   },
+  {
+    path: '/about',
+    element: <AboutPage />
+  },
+  
   {
     path: '/login',
     element: <Login />
@@ -33,6 +41,14 @@ const routes = [
   {
     path: '/auth/verify',
     element: <VerifyUser />
+  },
+  {
+    path: '/services',
+    element: <ServicesPage/>
+  },
+  {
+    path: '/contact',
+    element: <Contactpage />
   },
   
     ]

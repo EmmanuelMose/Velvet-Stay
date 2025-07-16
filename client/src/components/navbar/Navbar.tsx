@@ -32,7 +32,7 @@ function Navbar() {
           {/* Centered navigation links */}
           <ul className="flex flex-col md:flex-row md:justify-center md:flex-1 gap-2 md:gap-6 text-sm text-center">
             <li className="hover:bg-green-600 px-4 py-1 rounded transition">
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
             </li>
             <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <a href="/services">Services</a>

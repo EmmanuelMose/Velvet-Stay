@@ -2,55 +2,54 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <main className="min-h-screen px-6 py-10 bg-gray-50 text-gray-800">
-      
-      <section className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-4">
-          About Our Car Management System
-        </h1>
-        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-          Your all-in-one platform to manage vehicles, customers, bookings, and maintenance efficiently.
-        </p>
-      </section>
-
-      
-      <section className="grid md:grid-cols-2 gap-10 mb-16">
-        <div>
-          <h2 className="text-2xl font-semibold text-blue-600 mb-4">Our Mission</h2>
-          <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-            We aim to simplify and streamline all aspects of vehicle management, whether you're running a car rental business, a repair shop, or a dealership. Our solution gives you real-time insights, automation tools, and a user-friendly interface to stay in control.
+    <main className="min-h-screen px-4 py-6 bg-gray-100 text-gray-800">
+      <section className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {/* Frame 1: About */}
+        <div className="bg-blue-300 hover:bg-green-400 transition-all duration-300 p-4 rounded-lg shadow-sm border border-gray-200 h-64 flex flex-col justify-center items-center relative z-0 hover:z-10 hover:scale-105">
+          <h1 className="text-xl font-bold text-blue-700 mb-2 text-center">
+            About Velvet Stay
+          </h1>
+          <p className="text-sm text-gray-700 text-center px-2">
+            Your ultimate platform to manage hotel rooms, guests, bookings, and services efficiently and effortlessly.
           </p>
         </div>
-        <div>
-          <h2 className="text-2xl font-semibold text-blue-600 mb-4">What We Offer</h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 text-base md:text-lg">
-            <li>Customer and Vehicle Records Management</li>
-            <li>Reservation and Booking System</li>
-            <li>Maintenance & Insurance Tracking</li>
-            <li>Payment Integration and Reporting</li>
-          </ul>
+
+        {/* Frame 2: Our Mission */}
+        <div className="bg-blue-300 hover:bg-green-400 transition-all duration-300 p-4 rounded-lg shadow-sm border border-gray-200 h-64 flex flex-col justify-center relative z-0 hover:z-10 hover:scale-105">
+          <h2 className="text-xl font-semibold text-blue-600 mb-2 text-center">Our Mission</h2>
+          <p className="text-gray-700 text-sm leading-relaxed text-center px-2">
+            We aim to redefine hotel management by offering a modern, user-friendly solution that streamlines operations, enhances guest satisfaction, and boosts profitability.
+          </p>
+        </div>
+
+        {/* Frame 3: What We Offer */}
+        <div className="bg-blue-300 hover:bg-green-400 transition-all duration-300 p-4 rounded-lg shadow-sm border border-gray-200 h-64 flex flex-col justify-center relative z-0 hover:z-10 hover:scale-105">
+          <h2 className="text-xl font-semibold text-blue-600 mb-2 text-center">What We Offer</h2>
+          <div className="text-gray-700 text-sm space-y-1 text-center">
+            <p>Room and Guest Management</p>
+            <p>Online Booking System</p>
+            <p>Staff Scheduling</p>
+            <p>Payment Reports</p>
+            <p>Facility Tracking</p>
+          </div>
+        </div>
+
+        {/* Frame 4: Why Choose Us */}
+        <div className="bg-blue-300 hover:bg-green-400 transition-all duration-300 p-4 rounded-lg shadow-sm border border-gray-200 h-64 flex flex-col justify-center relative z-0 hover:z-10 hover:scale-105">
+          <h3 className="text-xl font-semibold text-blue-600 mb-2 text-center">Why Choose Us?</h3>
+          <p className="text-gray-700 text-sm text-center px-2 mb-3">
+            Built with cutting-edge tech, Velvet Stay ensures security, speed, and scalability for all hotel types.
+          </p>
+          <div className="flex justify-center gap-3">
+            <button className="px-4 py-1 bg-blue-800 text-white rounded hover:bg-black transition text-sm">
+              Learn More
+            </button>
+            <button className="px-4 py-1 bg-blue-800 text-white rounded hover:bg-black transition text-sm">
+              Contact
+            </button>
+          </div>
         </div>
       </section>
-
-      <section className="text-center mb-12">
-        <h3 className="text-2xl font-semibold text-blue-600 mb-4">Why Choose Us?</h3>
-        <p className="text-gray-700 max-w-2xl mx-auto mb-6 text-lg">
-          Our system is built with modern technologies, focusing on security, scalability, and speed. It's tailored to meet the unique needs of businesses managing vehicle operations.
-        </p>
-        <div className="flex justify-center gap-4">
-          <button className="px-6 py-2 bg-blue-500 text-black rounded hover:bg-green-600 transition">
-            Learn More
-          </button>
-          <button className="px-6 py-2 bg-blue-500 text-black-600 rounded hover:bg-green-600 transition">
-            Contact Us
-          </button>
-        </div>
-      </section>
-
-      
-      <footer className="border-t pt-8 text-sm text-gray-500 text-center">
-        &copy; {new Date().getFullYear()} Car Management System. All rights reserved.
-      </footer>
     </main>
   );
 };

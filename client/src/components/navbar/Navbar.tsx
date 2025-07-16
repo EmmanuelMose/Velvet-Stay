@@ -31,16 +31,16 @@ function Navbar() {
         >
           {/* Centered navigation links */}
           <ul className="flex flex-col md:flex-row md:justify-center md:flex-1 gap-2 md:gap-6 text-sm text-center">
-            <li className="hover:bg-gray-600 px-4 py-1 rounded transition">
+            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <a href="/home">Home</a>
             </li>
-            <li className="hover:bg-gray-600 px-4 py-1 rounded transition">
+            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <a href="/services">Services</a>
             </li>
-            <li className="hover:bg-gray-600 px-4 py-1 rounded transition">
+            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <a href="/about">About</a>
             </li>
-            <li className="hover:bg-gray-600 px-4 py-1 rounded transition">
+            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <a href="/contact">Contact</a>
             </li>
           </ul>
@@ -50,7 +50,7 @@ function Navbar() {
             <li>
               <a
                 href="/login"
-                className="bg-white text-blue-800 w-28 text-center px-4 py-1 rounded-full hover:bg-blue-600 hover:text-white transition block"
+                className="bg-white text-blue-800 w-28 text-center px-4 py-1 rounded-full hover:bg-green-600 hover:text-white transition block"
               >
                 Login
               </a>
@@ -58,7 +58,7 @@ function Navbar() {
             <li>
               <a
                 href="/register"
-                className="bg-white text-blue-800 w-28 text-center px-4 py-1 rounded-full hover:bg-blue-600 hover:text-white transition block"
+                className="bg-white text-blue-800 w-28 text-center px-4 py-1 rounded-full hover:bg-green-600 hover:text-white transition block"
               >
                 Register
               </a>

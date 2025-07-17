@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 //import type { RootState } from "../../app/store";
 import { ApiDomain } from "../../../src/utils/APIDomain";
+//import VerifyUser from "../../pages/auth/VerifyUser";
 
 export type TUser = {
     id: number
@@ -12,6 +13,10 @@ export type TUser = {
     isVerified: string;
     image_url?: string;
 
+}
+export type TverifyUser = {
+    email: string;
+    code: string;
 }
 
 export const usersAPI = createApi({
@@ -31,5 +36,12 @@ tagTypes: ["User"],
             }),
             invalidatesTags: ["User"],
         }),
-    }),
-    })
+       VerifyUser: builder.mutation<{ message: string }, TverifyUser>({ 
+           query: (data) => ({
+               url: "/auth/verify",
+               method: "POST",
+               body: data,
+           }),
+       }),
+        })
+    });

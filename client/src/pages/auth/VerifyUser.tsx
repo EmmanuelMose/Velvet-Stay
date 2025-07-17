@@ -1,32 +1,58 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { usersAPI } from '../../Features/users/usersAPI';
+import { useLocation, useNavigate } from 'react-router';
+import { toast } from 'sonner';
 
 type VerifyInputs = {
-  email: string;
-  code: string;
+    email: string;
+    code: string;
 };
 
 const schema = yup.object({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  code: yup
-    .string()
-    .matches(/^\d{6}$/, 'Code must be a 6 digit number')
-    .required('Verification code is required'),
+    email: yup.string().email('Invalid email').required('Email is required'),
+    code: yup
+        .string()
+        .matches(/^\d{6}$/, 'Code must be a 6 digit number')
+        .required('Verification code is required'),
 });
 
 const VerifyUser = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<VerifyInputs>({
-    resolver: yupResolver(schema),
-  });
+    const navigate = useNavigate()
+    const location = useLocation();
+    const emailFromState = location.state?.email || '';
 
-  const onSubmit: SubmitHandler<VerifyInputs> = (data) => {
-    console.log('Verification submitted:', data);
-  };
+    const [verifyUser] = usersAPI.useVerifyUserMutation();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<VerifyInputs>({
+        resolver: yupResolver(schema),
+        defaultValues: {
+            email: emailFromState,
+        },
+    });
+
+    const onSubmit: SubmitHandler<VerifyInputs> = async (data) => {
+        try {
+            const response = await verifyUser(data).unwrap();
+            console.log("Verification response:", response);
+
+            toast.success("Account verified successfully!");
+            // Redirect or show success
+            setTimeout(() => {
+                navigate('/login', {
+                    state: { email: data.email }
+                });
+            }, 2000);
+        } catch (error) {
+            console.error("Verification error:", error);
+            toast.error(`Verification failed. Please check your code and try again`);
+            // Error handling
+        }
+    };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-base-200 px-4">

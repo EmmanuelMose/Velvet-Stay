@@ -108,7 +108,7 @@ function Register() {
           <p className="mt-4 text-center text-xs text-gray-600">
             Already have an account?{' '}
             <a href="/login" className="text-blue-600 hover:underline hover:text-green-600">
-              Login
+              SignIn
             </a>
           </p>
         </div>

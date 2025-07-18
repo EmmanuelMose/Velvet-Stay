@@ -13,7 +13,7 @@ export const options = {
     ],
     ext: {
         loadimpact: {
-            name: 'Todos GET Stress Test',
+            name: 'bookings GET Stress Test',
         },
     },
 };

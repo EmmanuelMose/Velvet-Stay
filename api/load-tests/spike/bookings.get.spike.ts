@@ -13,7 +13,7 @@ export const options = {
     ],
     ext: {
         loadimpact: {
-            name: 'Todos GET Spike Test',
+            name: 'bookings GET Spike Test',
         },
     },
 };

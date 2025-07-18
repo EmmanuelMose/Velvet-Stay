@@ -18,9 +18,9 @@ const schema = yup.object({
 });
 
 function Login() {
-    const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const emailFromState = location.state?.email || ''
 
@@ -45,15 +45,13 @@ function Login() {
             const response = await loginUser(data).unwrap()
             console.log("Login response:", response);
             dispatch(loginSuccess(response))
+          
 
             console.log("Login response:", response);
             toast.success("Login successful!");
 
-            if (response.user.role === 'admin') {
-                navigate('/admin/dashboard/todos');
-            } else if (response.user.role === 'user') {
-                navigate('/user/dashboard/todos');
-            }
+            navigate('/homepage')
+
 
         } catch (error) {
             console.log("Login error:", error);
@@ -84,6 +82,7 @@ function Login() {
               })}
               placeholder="Email"
               className="bg-white border border-gray-300 rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-sm"
+              readOnly={!!emailFromState}
             />
             {errors.email?.message && typeof errors.email.message === 'string' && (
               <span className="text-xs text-red-700">{errors.email.message}</span>

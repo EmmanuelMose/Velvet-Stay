@@ -11,7 +11,7 @@ export const options = {
     ],
     ext: {
         loadimpact: {
-            name: 'Todos GET Soak Test',
+            name: 'bookings GET Soak Test',
         },
     },
 };

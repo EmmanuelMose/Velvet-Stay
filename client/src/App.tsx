@@ -8,6 +8,7 @@ import Landingpage from "./pages/Landingpage";
 import Register from "../../client/src/pages/auth/Register";
 import Login from "../../client/src/pages/auth/Login";
 import VerifyUser from "./pages/auth/VerifyUser";
+import Homepage from "./components/homepage/Homepage";
 
 
 // Components
@@ -28,6 +29,10 @@ const routes = [
   {
     path: '/about',
     element: <AboutPage />
+  },
+  {
+    path: '/homepage',
+    element: <Homepage />
   },
   
   {

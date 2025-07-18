@@ -7,12 +7,12 @@ import { toast } from 'sonner';
 
 type VerifyInputs = {
     email: string;
-    code: string;
+    verificationCode: string;
 };
 
 const schema = yup.object({
     email: yup.string().email('Invalid email').required('Email is required'),
-    code: yup
+    verificationCode: yup
         .string()
         .matches(/^\d{6}$/, 'Code must be a 6 digit number')
         .required('Verification code is required'),
@@ -36,6 +36,7 @@ const VerifyUser = () => {
     });
 
     const onSubmit: SubmitHandler<VerifyInputs> = async (data) => {
+      console.log(data)
         try {
             const response = await verifyUser(data).unwrap();
             console.log("Verification response:", response);
@@ -78,13 +79,13 @@ const VerifyUser = () => {
 
             <input
               type="text"
-              {...register('code')}
+              {...register('verificationCode')}
               placeholder="6 Digit Code"
               maxLength={6}
               className="bg-white border border-gray-300 rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-sm"
             />
-            {errors.code && (
-              <span className="text-xs text-red-700">{errors.code.message}</span>
+            {errors.verificationCode && (
+              <span className="text-xs text-red-700">{errors.verificationCode.message}</span>
             )}
 
             <button

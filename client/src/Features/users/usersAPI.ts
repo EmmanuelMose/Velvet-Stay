@@ -16,7 +16,7 @@ export type TUser = {
 }
 export type TverifyUser = {
     email: string;
-    code: string;
+    verificationCode: string;
 }
 
 export const usersAPI = createApi({

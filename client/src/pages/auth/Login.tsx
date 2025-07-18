@@ -1,43 +1,65 @@
-// src/pages/Login.tsx
-
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useLocation, useNavigate } from 'react-router';
+import { loginAPI } from '../../Features/login/loginAPI';
+import { toast } from 'sonner';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../Features/login/userSlice';
 
 type LoginInputs = {
-  email: string;
-  password: string;
+    email: string;
+    password: string;
 };
 
-const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginInputs>();
+const schema = yup.object({
+    email: yup.string().email('Invalid email').max(100, 'Max 100 characters').required('Email is required'),
+    password: yup.string().min(6, 'Min 6 characters').max(255, 'Max 255 characters').required('Password is required'),
+});
 
-  const navigate = useNavigate();
+function Login() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const dispatch = useDispatch();
 
-  const onSubmit = async (data: LoginInputs) => {
-    try {
-      const res = await fetch('http://localhost:3001/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+    const emailFromState = location.state?.email || ''
 
-      const result = await res.json();
+    const [loginUser] = loginAPI.useLoginUserMutation()
 
-      if (res.ok) {
-        alert(result.message || 'Login successful');
-        navigate('/home');
-      } else {
-        alert(result.error || result.message || 'Login failed');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('Something went wrong. Please try again later.');
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginInputs>({
+        resolver: yupResolver(schema),
+        defaultValues: {
+            email: emailFromState,
+        }
+    });
+
+    const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
+        console.log('Login data:', data);
+
+        try {
+            const response = await loginUser(data).unwrap()
+            console.log("Login response:", response);
+            dispatch(loginSuccess(response))
+
+            console.log("Login response:", response);
+            toast.success("Login successful!");
+
+            if (response.user.role === 'admin') {
+                navigate('/admin/dashboard/todos');
+            } else if (response.user.role === 'user') {
+                navigate('/user/dashboard/todos');
+            }
+
+        } catch (error) {
+            console.log("Login error:", error);
+            toast.error("Login failed. Please check your credentials and try again.");
+        }
     }
-  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-base-200 px-4">

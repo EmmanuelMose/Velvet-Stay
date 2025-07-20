@@ -6,6 +6,7 @@ import { loginAPI } from '../../Features/login/loginAPI';
 import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../Features/login/userSlice';
+import { Link } from 'react-router-dom';
 
 type LoginInputs = {
     email: string;
@@ -50,7 +51,11 @@ function Login() {
             console.log("Login response:", response);
             toast.success("Login successful!");
 
-            navigate('/homepage')
+            if (response.user.role === 'Admin') {
+                navigate('/admin/dashboard');
+            } else if (response.user.role === 'User') {
+                navigate('/user/dashboard');
+            }
 
 
         } catch (error) {
@@ -121,9 +126,9 @@ function Login() {
           <div className="mt-4 flex flex-col items-center space-y-1 text-xs text-gray-600">
             <p>
               Don&apos;t have an account?{' '}
-              <a href="/register" className="text-blue-600 hover:underline hover:text-green-600">
+              <Link to="/register" className="text-blue-600 hover:underline hover:text-green-600">
                 SignUp
-              </a>
+              </Link>
             </p>
             <p>
               <a href="/" className="text-blue-600 hover:underline hover:text-green-600">

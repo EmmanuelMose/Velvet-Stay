@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { usersAPI } from '../../Features/users/usersAPI';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 type RegisterInputs = {
     firstName: string;
@@ -130,9 +131,9 @@ function Register() {
 
           <p className="mt-4 text-center text-xs text-gray-600">
             Already have an account?{' '}
-            <a href="/login" className="text-blue-600 hover:underline hover:text-green-600">
+            <Link to ="/login" className="text-blue-600 hover:underline hover:text-green-600">
               SignIn
-            </a>
+            </Link>
           </p>
         </div>
       </div>

@@ -1,75 +1,123 @@
 // src/App.tsx
-import { BrowserRouter, useRoutes } from "react-router-dom";
-import { Toaster } from "sonner";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
 
-// Pages
-import AboutPage from "./pages/Aboutpage";
-import Landingpage from "./pages/Landingpage";
-import Register from "../../client/src/pages/auth/Register";
-import Login from "../../client/src/pages/auth/Login";
-import VerifyUser from "./pages/auth/VerifyUser";
-import Homepage from "./components/homepage/Homepage";
-
-
-// Components
-//import AdminDashboard from "./dashboard/AdminDashboard";
-//import Cars from "./dashboard/Admin/cars/Cars";
-//import Bookings from "./dashboard/Admin/bookings/Booking";
-//import Contact from "./components/Contact/Contact";
-//import Services from "./components/Services/Services";
-//import UserDashboard from "./dashboard/UserDashboard/UserDashboard";
-import Contactpage from "../../client/src/pages/Contactpage";
-import ServicesPage from "../../client/src/pages/Servicespage";
-
-const routes = [
-  {
-    path: '/',
-    element: <Landingpage />
-  },
-  {
-    path: '/about',
-    element: <AboutPage />
-  },
-  {
-    path: '/homepage',
-    element: <Homepage />
-  },
-  
-  {
-    path: '/login',
-    element: <Login />
-  },
-  {
-    path: '/register',
-    element: <Register />
-  },
-  {
-    path: '/auth/verify',
-    element: <VerifyUser />
-  },
-  {
-    path: '/services',
-    element: <ServicesPage/>
-  },
-  {
-    path: '/contact',
-    element: <Contactpage />
-  },
-  
-    ]
-  
-function AppRoutes() {
-  const element = useRoutes(routes);
-  return element;
-}
+import LandingPage from './pages/Landingpage';
+import Register from './pages/auth/Register';
+import Login from './pages/auth/Login';
+import AboutPage from './pages/Aboutpage';
+import VerifyUser from './pages/auth/VerifyUser';
+import ContactPage from './pages/Contactpage';
+import ServicesPage from './pages/Servicespage';
+import AdminDashboard from './dashboard/AdminDashboard/AdminDashboard';
+import UserDashboard from '../../client/src/dashboard/UserDashboard/UserDashboard';
+import { Toaster } from 'sonner';
+import { useSelector } from 'react-redux';
+import { type RootState } from './app/store';
+import Error from './components/error/Error';
 
 function App() {
+  const isAdmin = useSelector((state: RootState) => state.user.user?.role === 'admin');
+  const isUser = useSelector((state: RootState) => state.user.user?.role === 'user');
+  
+  
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <LandingPage />,
+    },
+    {
+      path: '/about',
+      element: <AboutPage />
+    },
+    {
+      path: '/services',
+      element: <ServicesPage />
+    },
+    {
+      path: '/contact',
+      element: <ContactPage />
+    },
+    {
+      path: '/register',
+      element: <Register />
+    },
+    {
+      path: '/register/verify',
+      element: <VerifyUser />
+    },
+    {
+      path: '/login',
+      element: <Login />
+    },
+    {
+      path: '/admin/dashboard',
+      element: isAdmin ? <AdminDashboard /> : <Login />,
+      children: [
+        {
+          path: 'manage',
+          element: <h1>manage hotels and bookings</h1>
+        },
+        {
+          path: 'users',
+          element: <h1>users</h1>
+        },
+        {
+          path: 'profile',
+          element: <h1>profile</h1>
+        },
+        {
+          path: 'monitor',
+          element: <h1>Monitor Bookings</h1>
+        },
+        {
+          path: 'support',
+          element: <h1>Support Tickets</h1>
+        },
+        {
+          path: 'analytics',
+          element: <h1>Analytics</h1>
+        },
+      ]
+    },
+    // User dashboard routes
+    {
+      path: '/user/dashboard',
+      element: isUser ? <UserDashboard /> : <Login />,
+      children: [
+        {
+          path: 'view',
+          element: <h1>Analytics</h1>
+        },
+        {
+          path: 'monitor',
+          element: <h1>1</h1>
+        },
+        {
+          path: 'book',
+          element: <h2>2</h2>
+        },
+        {
+          path: 'pay',
+          element: <h3>3</h3>
+        },
+        {
+          path: 'history',
+          element: <h4>4</h4>
+        },
+      ]
+    },
+
+    {
+      path: '*',
+      element: <Error />
+    }
+  ]);
+
   return (
     <>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-
+      <RouterProvider router={router} />
       <Toaster
         position="top-right"
         toastOptions={{

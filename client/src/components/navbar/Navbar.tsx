@@ -40,7 +40,10 @@ const Navbar = () => {
             <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <NavLink to="/">Home</NavLink>
             </li>
-            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
+          {
+            userToken &&
+            (
+                <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <NavLink to={
                 isAdmin
                   ? "/admin/dashboard"
@@ -51,6 +54,8 @@ const Navbar = () => {
                 Dashboard
               </NavLink>
             </li>
+            )
+          }
             <li className="hover:bg-green-600 px-4 py-1 rounded transition">
               <NavLink to="/services">Services</NavLink>
             </li>
@@ -63,7 +68,7 @@ const Navbar = () => {
           </ul>
 
           {/* Auth Buttons */}
-          {!userToken && (
+         
             <ul className="flex flex-col md:flex-row gap-2 md:gap-3 mt-4 md:mt-0 md:ml-auto text-sm">
               <li>
                 <NavLink
@@ -82,7 +87,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-          )}
+       
         </div>
       </nav>
     </div>

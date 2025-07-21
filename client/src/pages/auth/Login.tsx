@@ -51,13 +51,11 @@ function Login() {
             console.log("Login response:", response);
             toast.success("Login successful!");
 
-            if (response.user.role === 'Admin') {
+        if (response.user.role === 'admin') {
                 navigate('/admin/dashboard');
-            } else if (response.user.role === 'User') {
+            } else if (response.user.role === 'user') {
                 navigate('/user/dashboard');
             }
-
-
         } catch (error) {
             console.log("Login error:", error);
             toast.error("Login failed. Please check your credentials and try again.");

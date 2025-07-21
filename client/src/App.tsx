@@ -44,7 +44,7 @@ function App() {
       element: <Register />
     },
     {
-      path: '/register/verify',
+      path: '/auth/verify',
       element: <VerifyUser />
     },
     {
@@ -88,7 +88,7 @@ function App() {
       children: [
         {
           path: 'view',
-          element: <h1>Analytics</h1>
+          element: <h1>view</h1>
         },
         {
           path: 'monitor',

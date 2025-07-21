@@ -4,18 +4,20 @@ import { combineReducers,configureStore } from "@reduxjs/toolkit";
 import { usersAPI } from "../Features/users/usersAPI";
 import { persistReducer, persistStore } from "redux-persist";
 import { loginAPI } from '../Features/login/loginAPI'
+import userSlice from "../Features/login/userSlice";
 
 
 const persistConfig = {
     key: 'root',
     version: 1,
     storage,
+    whitelist: ['user']
 }
 
 const rootReducer = combineReducers({
 [usersAPI.reducerPath]: usersAPI.reducer,
- [loginAPI.reducerPath]: loginAPI.reducer
-
+ [loginAPI.reducerPath]: loginAPI.reducer,
+   user: userSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -25,7 +27,8 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
-        }).concat(usersAPI.middleware)
+        })
+        .concat(usersAPI.middleware)
         .concat(loginAPI.middleware) // add the loginAPI middleware
 });
 

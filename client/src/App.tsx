@@ -15,10 +15,17 @@ import { Toaster } from 'sonner';
 import { useSelector } from 'react-redux';
 import { type RootState } from './app/store';
 import Error from './components/error/Error';
+import Bookings from '../../client/src/dashboard/AdminDashboard/bookings/Booking';
+import ManagePayment from '../../client/src/dashboard/AdminDashboard/payments/ManagePayments'
+import Rooms from '../../client/src/dashboard/AdminDashboard/rooms/Rooms'
+import Hotels from '../../client/src/dashboard/AdminDashboard/hotels/Hotels'
+import User from "../../client/src/dashboard/AdminDashboard/users/User"
+import ManageAnalytics from '../../client/src/dashboard/AdminDashboard/analytics/ManageAnalytics'
+import ManageSettings from '../../client/src/dashboard/AdminDashboard/settings/ManageSettings'
 
 function App() {
-  const isAdmin = useSelector((state: RootState) => state.user.user?.role === 'admin');
-  const isUser = useSelector((state: RootState) => state.user.user?.role === 'user');
+  const isAdmin = useSelector((state: RootState) => state.user.user?.role === 'Admin');
+  const isUser = useSelector((state: RootState) => state.user.user?.role === 'User');
   
   
 
@@ -56,29 +63,34 @@ function App() {
       element: isAdmin ? <AdminDashboard /> : <Login />,
       children: [
         {
-          path: 'manage',
-          element: <h1>manage hotels and bookings</h1>
+          path: 'bookings',
+          element: <Bookings />
         },
         {
           path: 'users',
-          element: <h1>users</h1>
+          element: <User />
         },
         {
-          path: 'profile',
-          element: <h1>profile</h1>
+          path: 'payments',
+          element: <ManagePayment/>
         },
         {
-          path: 'monitor',
-          element: <h1>Monitor Bookings</h1>
+          path: 'rooms',
+          element: <Rooms/>
         },
         {
-          path: 'support',
-          element: <h1>Support Tickets</h1>
+          path: 'hotels',
+          element: <Hotels/>
         },
         {
           path: 'analytics',
-          element: <h1>Analytics</h1>
+          element: <ManageAnalytics/>
         },
+        {
+          path: 'settings',
+          element: <ManageSettings/>
+        },
+
       ]
     },
     // User dashboard routes

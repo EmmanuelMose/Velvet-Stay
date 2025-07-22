@@ -1,7 +1,15 @@
-import { TbBrandGoogleAnalytics } from "react-icons/tb";
-import { FaTasks } from "react-icons/fa";
-import { FiUsers } from "react-icons/fi";
-import { FaUserCheck } from "react-icons/fa6";
+
+import {
+    FaChartLine,
+    FaBuilding,
+    FaUsers,
+    FaCalendarCheck,
+    FaBed,
+    FaCreditCard,
+    FaCog,
+    FaSignOutAlt
+} from "react-icons/fa";
+
 
 
 export type DrawerData = {
@@ -9,45 +17,70 @@ export type DrawerData = {
     name: string;
     icon: React.ComponentType<{ size?: number }>;
     link: string;
+    badge?: string;
+    description?: string;
 }
 
 export const adminDrawerData: DrawerData[] = [
 
+    
     {
-        id: "manage",
-        name: "Manage Hotels & Rooms",
-        icon: FaTasks,
-        link: "manage"
+        id: "hotels",
+        name: "Hotels",
+        icon: FaBuilding,
+        description: "Manage hotel listings",
+        link: "hotels"
+    },
+    {
+        id: "rooms",
+        name: "Rooms",
+        icon: FaBed,
+        link: "rooms",
+        description: "Room Management"
+    },
+    {
+        id: "bookings",
+        name: "Bookings",
+        icon: FaCalendarCheck,
+        link: "bookings",
+        description: "Reservation Management"
     },
     {
         id: "users",
         name: "Users",
-        icon: FiUsers,
-        link: "users"
+        link: "users",
+        icon: FaUsers,
+        description: "Customer Management"
     },
     {
-        id: "profile",
-        name: "Profile",
-        icon: FaUserCheck,
-        link: "profile"
-    },
-    {
-        id: "monitor",
-        name: "Monitor bookings",
-        icon: TbBrandGoogleAnalytics,
-        link: "monitor"
-    },
-    {
-        id: "support",
-        name: "Support Tickets",
-        icon: TbBrandGoogleAnalytics,
-        link: "support"
+        id: "payments",
+        name: "Payments",
+        icon: FaCreditCard,
+        link: "payments",
+        description: "Financial Transactions"
     },
     {
         id: "analytics",
         name: "Analytics",
-        icon: TbBrandGoogleAnalytics,
-        link: "analytics"
+        icon: FaChartLine,
+        link: "analytics",
+        description: "Reports & Insights"
     },
+    {
+        id: "settings",
+        name: "Settings",
+        icon: FaCog,
+        link: "settings",
+        description: "System Configuration"
+    },
+    
+    {
+        id: "logout",
+        name: "Logout",
+        icon: FaSignOutAlt,
+        link: "logout",
+         description: "Sign Out"
+    }
+
 
 ]

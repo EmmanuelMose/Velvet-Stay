@@ -51,9 +51,9 @@ function Login() {
             console.log("Login response:", response);
             toast.success("Login successful!");
 
-        if (response.user.role === 'admin') {
+        if (response.user.role === 'Admin') {
                 navigate('/admin/dashboard');
-            } else if (response.user.role === 'user') {
+            } else if (response.user.role === 'User') {
                 navigate('/user/dashboard');
             }
         } catch (error) {

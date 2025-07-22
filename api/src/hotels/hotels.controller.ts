@@ -28,7 +28,7 @@ export const getAllHotelsController = async (req: Request, res: Response) => {
     if (!hotels || hotels.length === 0) {
       return res.status(404).json({ message: "No hotels found" });
     }
-    return res.status(200).json({ data: hotels });
+    return res.status(200).json(hotels);
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }

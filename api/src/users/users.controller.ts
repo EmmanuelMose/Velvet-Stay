@@ -28,7 +28,7 @@ export const getAllUsersController = async (req: Request, res: Response) => {
     if (!users || users.length === 0) {
       return res.status(404).json({ message: "No users found" });
     }
-    return res.status(200).json({ data: users });
+    return res.status(200).json(users);
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }

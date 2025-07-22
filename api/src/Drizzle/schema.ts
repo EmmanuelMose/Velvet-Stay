@@ -40,9 +40,11 @@ export const hotels = pgTable("Hotels", {
   address: text("Address"),
   contactPhone: varchar("ContactPhone", { length: 20 }),
   category: varchar("Category", { length: 100 }),
+  imgUrl: varchar("img_url", { length: 255 }).notNull(),
   rating: real("Rating"),
   createdAt: timestamp("CreatedAt").defaultNow(),
   updatedAt: timestamp("UpdatedAt").defaultNow(),
+  description: varchar("description", { length: 500 }).notNull(),
 });
 
 export const rooms = pgTable("Rooms", {

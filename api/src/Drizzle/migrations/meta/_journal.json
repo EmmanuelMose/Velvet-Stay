@@ -36,6 +36,13 @@
       "when": 1752051117326,
       "tag": "0004_chubby_captain_cross",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1753168974673,
+      "tag": "0005_sad_sinister_six",
+      "breakpoints": true
     }
   ]
 }

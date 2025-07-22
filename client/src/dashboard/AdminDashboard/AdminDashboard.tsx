@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom"; // Changed to react-router-dom
 import Navbar from "../../components/navbar/Navbar";
 import AdminDrawer from "./aside/AdminDrawer";
 import { FaBars } from "react-icons/fa";
@@ -14,50 +14,49 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-100 via-white to-green-100">
+            {/* Top Navbar */}
             <Navbar />
 
-            {/* Top bar */}
-            <div className="flex px-4 py-4 bg-gray-700 items-center">
-                {/* Drawer toggle button: visible on small screens */}
+            {/* Welcome Bar */}
+            <div className="flex items-center justify-between px-4 py-4 bg-green-600 shadow-md">
                 <button
-                    className="mr-4 text-white text-2xl lg:hidden"
+                    className="text-white text-2xl lg:hidden"
                     onClick={handleDrawerToggle}
                 >
                     {drawerOpen ? <IoCloseSharp /> : <FaBars />}
                 </button>
-                <span className="text-white text-lg font-semibold">
-                    Welcome to your Admin dashboard
+                <span className="text-white text-lg font-bold tracking-wide">
+                    Welcome to your Admin Dashboard
                 </span>
             </div>
 
+            {/* Layout */}
             <div className="flex flex-1">
-                {/* Drawer */}
+                {/* Sidebar / Drawer */}
                 <aside
-                    className={`
-                        fixed top-0 z-40 w-64 bg-gray-600
-                        ${drawerOpen ? "" : "hidden"} 
-                        lg:static lg:block lg:w-64
-                        `}
-                    style={{ minHeight: "100vh" }}
+                    className={`bg-gradient-to-b from-blue-800 to-green-700 text-white w-64 transition-transform duration-300 ease-in-out 
+                        fixed top-0 left-0 z-40 min-h-screen lg:static lg:translate-x-0 ${drawerOpen ? "translate-x-0" : "-translate-x-full"}`}
                 >
-                    <div className="h-full">
-                        {/* Close button for mobile */}
+                    {/* Mobile Close Button */}
+                    <div className="relative">
                         <button
                             className="absolute top-4 right-4 text-white text-2xl lg:hidden"
                             onClick={handleDrawerToggle}
                         >
                             <IoCloseSharp />
                         </button>
-                        <AdminDrawer />
                     </div>
+                    <AdminDrawer />
                 </aside>
 
-                {/* Main content */}
-                <main className="flex-1 bg-green-200 min-h-screen">
+                {/* Main Content */}
+                <main className="flex-1 p-6 bg-white rounded-tl-3xl shadow-inner overflow-y-auto">
                     <Outlet />
                 </main>
             </div>
+
+            {/* Footer */}
             <Footer />
         </div>
     );

@@ -1,33 +1,33 @@
-import { Link } from "react-router"
-import { userDrawerData } from "../../UserDashboard/aside/drawerData"
-
+import { Link } from "react-router-dom";
+import { userDrawerData } from "../../UserDashboard/aside/drawerData";
 
 const UserDrawer = () => {
     return (
-        <div>
-
-            <h2 className="text-xl font-bold text-white p-4 border-b-2 border-gray-700 ">
+        <div className="bg-gradient-to-b from-blue-800 via-blue-600 to-green-600 min-h-screen w-full mt-[10px] ml-[10px] rounded-lg">
+            <h2 className="text-2xl font-bold text-white p-6 border-b border-white tracking-wide">
                 Dashboard Menu
             </h2>
-            <ul>
-                {
-                    userDrawerData.map((item) => (
-                        <li key={item.id}>
-                            <Link
-                                to={item.link}
-                                className="flex space-x-3 border-b-2 border-transparent hover:border-blue-400 text-white hover:bg-gray-700 p-4"
-                            >
-                                <item.icon size={30} />
-                                <span className="text-xl text-gray-100 mb-2">{item.name}</span>
-                            </Link>
 
-                        </li>
-                    ))
-                }
+            <ul className="mt-4">
+                {userDrawerData.map((item) => (
+                    <li key={item.id}>
+                        <Link
+                            to={item.link}
+                            className="flex items-center space-x-4 p-4 mx-2 my-2 rounded-lg transition duration-300 ease-in-out 
+                                       text-white hover:text-green-300 hover:bg-white/10 hover:border-l-4 hover:border-lightBlue-400"
+                        >
+                            <span className="text-lightBlue-300 group-hover:text-green-300 transition">
+                                <item.icon size={26} />
+                            </span>
+                            <span className="text-lg font-medium group-hover:text-green-300 transition">
+                                {item.name}
+                            </span>
+                        </Link>
+                    </li>
+                ))}
             </ul>
-
         </div>
-    )
-}
+    );
+};
 
-export default UserDrawer
+export default UserDrawer;

@@ -22,6 +22,7 @@ import Hotels from '../../client/src/dashboard/AdminDashboard/hotels/Hotels'
 import User from "../../client/src/dashboard/AdminDashboard/users/User"
 import ManageAnalytics from '../../client/src/dashboard/AdminDashboard/analytics/ManageAnalytics'
 import ManageSettings from '../../client/src/dashboard/AdminDashboard/settings/ManageSettings'
+import SearchFilters from '../../client/src/dashboard/UserDashboard/ViewHotels/Hotels';  
 
 function App() {
   const isAdmin = useSelector((state: RootState) => state.user.user?.role === 'Admin');
@@ -99,8 +100,8 @@ function App() {
       element: isUser ? <UserDashboard /> : <Login />,
       children: [
         {
-          path: 'view',
-          element: <h1>view</h1>
+          path: 'viewhotels',
+          element: <SearchFilters />
         },
         {
           path: 'monitor',

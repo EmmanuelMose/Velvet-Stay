@@ -8,10 +8,13 @@ import { sendEmail } from "../../src/mailer";
 
 export const registerUserController = async (req: Request, res: Response) => {
     try {
-        const { email, password, confirmPassword, firstName, lastName, contactPhone, address } = req.body;
+        const { email, password, firstName, lastName, contactPhone, address } = req.body;
 
-        if (!email || !password || !confirmPassword) return res.status(400).json({ message: "Email and passwords are required." });
-        if (password !== confirmPassword) return res.status(400).json({ message: "Passwords do not match." });
+        console.log(req.body)
+
+        console.log(email, password)
+
+        if (!email || !password ) return res.status(400).json({ message: "Email and passwords are required." });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();

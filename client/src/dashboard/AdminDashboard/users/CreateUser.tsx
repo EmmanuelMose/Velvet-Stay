@@ -1,4 +1,3 @@
-// src/dashboard/AdminDashboard/users/CreateUser.tsx
 import { useState, type FormEvent } from "react";
 import { usersAPI } from "../../../Features/users/usersAPI";
 import { toast } from "sonner";
@@ -14,6 +13,7 @@ const CreateUser = () => {
     contactPhone: string;
     address: string;
     role: "User" | "Admin";
+    isVerified: "True" | "False";
   }>({
     firstName: "",
     lastName: "",
@@ -21,7 +21,8 @@ const CreateUser = () => {
     password: "",
     contactPhone: "",
     address: "",
-    role: "User", // default
+    role: "User", // default role
+    isVerified: "False", // default to No
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -35,10 +36,29 @@ const CreateUser = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    if (
+      !formData.firstName.trim() ||
+      !formData.lastName.trim() ||
+      !formData.email.trim() ||
+      !formData.password.trim()
+    ) {
+      toast.error("Please fill all required fields.");
+      return;
+    }
+
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    const payload = {
+      ...formData,
+      isVerified: formData.isVerified === "True",
+      verificationCode,
+    };
+
     try {
-      await createUser(formData).unwrap();
+      await createUser(payload).unwrap();
       toast.success("User created successfully!");
       (document.getElementById("create_user_modal") as HTMLDialogElement)?.close();
+
       setFormData({
         firstName: "",
         lastName: "",
@@ -47,6 +67,7 @@ const CreateUser = () => {
         contactPhone: "",
         address: "",
         role: "User",
+        isVerified: "False",
       });
     } catch (error) {
       console.error("Create user failed:", error);
@@ -107,15 +128,29 @@ const CreateUser = () => {
             value={formData.address}
             onChange={handleChange}
           />
+
           <select
             name="role"
             className="select select-bordered bg-white text-gray-800"
             value={formData.role}
             onChange={handleChange}
+            required
           >
             <option value="User">User</option>
             <option value="Admin">Admin</option>
           </select>
+
+          <select
+            name="isVerified"
+            className="select select-bordered bg-white text-gray-800"
+            value={formData.isVerified}
+            onChange={handleChange}
+            required
+          >
+            <option value="False">False</option>
+            <option value="True">True</option>
+          </select>
+
           <div className="modal-action justify-end gap-4 mt-6">
             <button
               type="button"

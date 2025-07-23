@@ -12,7 +12,7 @@ const DeleteUser = ({ user }: Props) => {
   const handleDelete = async () => {
     if (!user) return;
     try {
-      await deleteUser(user.userId).unwrap(); // ✅ Corrected from user.id
+      await deleteUser(user.userId).unwrap();
       toast.success("User deleted successfully!");
       (document.getElementById("delete_user_modal") as HTMLDialogElement)?.close();
     } catch (err) {

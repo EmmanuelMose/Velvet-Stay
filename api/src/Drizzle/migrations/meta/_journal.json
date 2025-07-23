@@ -43,6 +43,13 @@
       "when": 1753168974673,
       "tag": "0005_sad_sinister_six",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1753270993231,
+      "tag": "0006_magenta_deadpool",
+      "breakpoints": true
     }
   ]
 }

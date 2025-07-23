@@ -38,16 +38,16 @@ const Users = () => {
           <table className="table table-zebra w-full text-sm">
             <thead className="bg-blue-600 text-white text-md">
               <tr>
-                <th className="p-4">User ID</th>
-                <th className="p-4">First Name</th>
-                <th className="p-4">Last Name</th>
+                <th className="p-4">UserID</th>
+                <th className="p-4">FirstName</th>
+                <th className="p-4">LastName</th>
                 <th className="p-4">Email</th>
                 <th className="p-4">Phone</th>
                 <th className="p-4">Address</th>
                 <th className="p-4">Role</th>
                 <th className="p-4">Verified</th>
-                <th className="p-4">Created</th>
-                <th className="p-4">Updated</th>
+                <th className="p-4">CreatedAt</th>
+                <th className="p-4">UpdatedAt</th>
                 <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
@@ -64,7 +64,7 @@ const Users = () => {
                   <td className="p-4">{user.contactPhone || "N/A"}</td>
                   <td className="p-4">{user.address || "N/A"}</td>
                   <td className="p-4">{user.role}</td>
-                  <td className="p-4">{user.isVerified ? "Yes" : "No"}</td>
+                  <td className="p-4">{user.isVerified ? "True" : "False"}</td>
                   <td className="p-4">
                     {user.createdAt
                       ? new Date(user.createdAt).toLocaleDateString()

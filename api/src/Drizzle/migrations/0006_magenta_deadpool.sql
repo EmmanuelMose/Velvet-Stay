@@ -1,0 +1,1 @@
+ALTER TABLE "Users" ALTER COLUMN "VerificationCode" SET DEFAULT '000000';

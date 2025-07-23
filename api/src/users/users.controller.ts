@@ -11,6 +11,8 @@ import {
 export const createUserController = async (req: Request, res: Response) => {
   try {
     const user = req.body;
+
+    console.log(user);
     const newUser = await createUserService(user);
     if (!newUser) {
       return res.status(400).json({ message: "User not created" });

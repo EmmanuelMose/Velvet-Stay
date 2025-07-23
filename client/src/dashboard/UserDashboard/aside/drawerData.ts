@@ -13,28 +13,28 @@ export type DrawerData = {
 export const userDrawerData: DrawerData[] = [
     
     {
-        id: "view",
-        name: "View Rooms",
+        id: "View",
+        name: "View Hotels",
         icon: FaTasks,
-        link: "todos"
-    },
-    {
-        id: "book",
-        name: "Book Room",
-        icon: FaUserCheck,
-        link: "book"
-    },
-    {
-        id: "pay",
-        name: "Pay For Room",
-        icon: TbBrandGoogleAnalytics,
-        link: "pay"
+        link: "viewhotels"
     },
     {
         id: "history",
         name: "Booking History",
+        icon: FaUserCheck,
+        link: "bookinghistory"
+    },
+    {
+        id: "Support Ticket",
+        name: "Support Ticket",
         icon: TbBrandGoogleAnalytics,
-        link: "history"
+        link: "suportticket"
+    },
+    {
+        id: "Logout",
+        name: "LogOut",
+        icon: TbBrandGoogleAnalytics,
+        link: "loggingout"
     }
 
 ]

@@ -4,7 +4,9 @@ import {
   getAllHotelsController,
   getHotelByIdController,
   updateHotelController,
-  deleteHotelController
+  deleteHotelController,
+  searchHotelsByLocationController,
+  searchHotelsByRatingController,
 } from "../hotels/hotels.controller";
 
 
@@ -64,6 +66,30 @@ const hotelRoutes = (app: Express) => {
       }
     }
   );
+
+
+// Search hotels by location
+  app.route('/hotels/:location').get(
+    async (req, res, next) => {
+      try {
+        await searchHotelsByLocationController(req, res);
+      } catch (error) {
+        next(error);
+      }
+    }
+  );
+
+  app.route('/hotels/rating/:rating').get(
+  async (req, res, next) => {
+    try {
+      await searchHotelsByRatingController(req, res);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 };
+
 
 export default hotelRoutes;

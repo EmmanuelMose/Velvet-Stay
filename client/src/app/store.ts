@@ -7,8 +7,10 @@ import { loginAPI } from '../Features/login/loginAPI'
 import userSlice from "../Features/login/userSlice";
 import { bookingApi } from "../Features/bookings/bookingAPI";
 import { paymentApi } from "../Features/payment/paymentAPI";
-import { roomsApi } from "../Features/rooms/roomAPI";
+import { roomsApi } from "../Features/rooms/roomAPI";//admin dashboard
 import { hotelApi } from "../Features/hotels/hotelAPI";
+import { hotelsAPI } from "../../../client/src/Features/hotels//HotelsAPI";
+import { roomAPI } from "../Features/rooms/roomsAPI";//user dashboard
 
 
 
@@ -26,6 +28,8 @@ const rootReducer = combineReducers({
 [paymentApi.reducerPath]: paymentApi.reducer,
 [roomsApi.reducerPath]: roomsApi.reducer,
 [hotelApi.reducerPath]: hotelApi.reducer,
+[hotelsAPI.reducerPath]: hotelsAPI.reducer,
+[roomAPI.reducerPath]: roomAPI.reducer,
 user: userSlice
 });
 
@@ -40,9 +44,11 @@ export const store = configureStore({
         .concat(usersAPI.middleware)
         .concat(loginAPI.middleware) // add the loginAPI middleware
         .concat(bookingApi.middleware)
+        .concat(hotelsAPI.middleware)
         .concat(paymentApi.middleware)
             .concat(roomsApi.middleware)
             .concat(hotelApi.middleware)
+            .concat(roomAPI.middleware),
 });
 
 export const persistedStore = persistStore(store);

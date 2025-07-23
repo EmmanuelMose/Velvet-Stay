@@ -30,7 +30,7 @@ export const users = pgTable("Users", {
   createdAt: timestamp("CreatedAt").defaultNow(),
   updatedAt: timestamp("UpdatedAt").defaultNow(),
   isVerified: boolean("IsVerified").default(false),                        
-  verificationCode: varchar("VerificationCode", { length: 10 }), 
+  verificationCode: varchar("VerificationCode", { length: 10 }).default("000000"), 
 });
 
 export const hotels = pgTable("Hotels", {

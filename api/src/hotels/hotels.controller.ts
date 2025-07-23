@@ -4,7 +4,9 @@ import {
   getAllHotelsService,
   getHotelByIdService,
   updateHotelService,
-  deleteHotelService
+  deleteHotelService,
+  searchHotelsByLocationService,
+  searchHotelsByRatingService,
 } from "../hotels/hotels.service";
 
 // Create Hotel
@@ -90,3 +92,48 @@ export const deleteHotelController = async (req: Request, res: Response) => {
     return res.status(500).json({ error: error.message });
   }
 };
+
+// Search by location
+export const searchHotelsByLocationController = async (req: Request, res: Response) => {
+  try {
+    const { location } = req.params;
+
+    if (!location || typeof location !== "string") {
+      return res.status(400).json({ message: "Location parameter is required" });
+    }
+
+    const results = await searchHotelsByLocationService(location);
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({ message: "No hotels found for this location" });
+    }
+
+    return res.status(200).json(results);
+  } catch (error: any) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+export const searchHotelsByRatingController = async (req: Request, res: Response) => {
+  try {
+    const { rating } = req.params;
+    const ratingNumber = parseFloat(rating as string);
+
+    if (isNaN(ratingNumber)) {
+      return res.status(400).json({ message: "Valid numeric rating is required" });
+    }
+
+    const results = await searchHotelsByRatingService(ratingNumber);
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({ message: "No hotels found for this rating" });
+    }
+
+    return res.status(200).json(results);
+  } catch (error: any) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+

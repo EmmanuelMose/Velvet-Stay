@@ -64,25 +64,29 @@ const Hotels = () => {
           <table className="table table-zebra w-full text-sm">
             <thead>
               <tr className="bg-blue-600 text-white text-md text-left">
+                <th className="p-4">HotelId</th>
                 <th className="p-4">Name</th>
                 <th className="p-4">Location</th>
+                <th className="p-4">Address</th>
+                <th className="p-4">Contact Phone</th>
                 <th className="p-4">Category</th>
-                <th className="p-4">Phone</th>
-                <th className="p-4">Rating</th>
                 <th className="p-4">Image</th>
+                <th className="p-4">Rating</th>
+                <th className="p-4">Created At</th>
+                <th className="p-4">Updated At</th>
+                <th className="p-4">Description</th>
                 <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {hotelsData.map((hotel) => (
                 <tr key={hotel.hotelId} className="hover:bg-blue-50">
+                  <td className="p-4">{hotel.hotelId}</td>
                   <td className="p-4">{hotel.name}</td>
                   <td className="p-4">{hotel.location}</td>
-                  <td className="p-4">{hotel.category}</td>
+                  <td className="p-4">{hotel.address}</td>
                   <td className="p-4">{hotel.contactPhone}</td>
-                  <td className="p-4">
-                    {hotel.rating !== null ? hotel.rating.toFixed(1) : "N/A"}
-                  </td>
+                  <td className="p-4">{hotel.category}</td>
                   <td className="p-4">
                     <img
                       src={hotel.imgUrl}
@@ -90,6 +94,20 @@ const Hotels = () => {
                       className="w-20 h-14 object-cover rounded border border-white"
                     />
                   </td>
+                  <td className="p-4">
+                    {hotel.rating !== null ? hotel.rating.toFixed(1) : "N/A"}
+                  </td>
+                  <td className="p-4">
+                    {hotel.createdAt
+                      ? new Date(hotel.createdAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="p-4">
+                    {hotel.updatedAt
+                      ? new Date(hotel.updatedAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="p-4">{hotel.description}</td>
                   <td className="p-4 flex gap-2 justify-center">
                     <button
                       onClick={() => handleEdit(hotel)}

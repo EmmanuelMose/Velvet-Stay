@@ -6,8 +6,8 @@ import { bookingApi } from "../../../Features/bookings/bookingAPI";
 
 interface Props {
   booking: {
-    BookingId: number;
-    BookingStatus: "Pending" | "Confirmed" | "Cancelled";
+    bookingId: number;
+    bookingStatus: "Pending" | "Confirmed" | "Cancelled";
   } | null;
 }
 
@@ -20,7 +20,7 @@ const UpdateBooking = ({ booking }: Props) => {
 
   useEffect(() => {
     if (booking) {
-      setBookingStatus(booking.BookingStatus);
+      setBookingStatus(booking.bookingStatus);
     }
   }, [booking]);
 
@@ -29,9 +29,9 @@ const UpdateBooking = ({ booking }: Props) => {
 
     try {
       await updateBooking({
-        BookingId: booking.BookingId,
+        bookingId: booking.bookingId,
         updatedData: {
-          BookingStatus: bookingStatus,
+          bookingStatus: bookingStatus,
         },
       }).unwrap();
 

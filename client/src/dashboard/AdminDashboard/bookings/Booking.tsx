@@ -1,4 +1,5 @@
 // src/dashboard/AdminDashboard/bookings/Bookings.tsx
+
 import { useState } from "react";
 import { bookingApi } from "../../../Features/bookings/bookingAPI";
 import CreateBooking from "./CreateBooking";
@@ -41,25 +42,51 @@ const Bookings = () => {
         <div className="overflow-x-auto border-4 border-blue-500 rounded-xl shadow-md">
           <table className="table table-zebra w-full text-sm">
             <thead>
-              <tr className="bg-blue-600 text-white text-md">
-                <th className="px-4 py-2 border-r border-blue-400">User ID</th>
-                <th className="px-4 py-2 border-r border-blue-400">Room ID</th>
-                <th className="px-4 py-2 border-r border-blue-400">Check-In</th>
-                <th className="px-4 py-2 border-r border-blue-400">Check-Out</th>
-                <th className="px-4 py-2 border-r border-blue-400">Amount</th>
-                <th className="px-4 py-2 border-r border-blue-400">Status</th>
-                <th className="px-4 py-2">Actions</th>
+              <tr className="bg-blue-600 text-white text-md text-left">
+                <th className="px-4 py-2">BookingID</th>
+                <th className="px-4 py-2">UserID</th>
+                <th className="px-4 py-2">RoomID</th>
+                <th className="px-4 py-2">CheckIn</th>
+                <th className="px-4 py-2">CheckOut</th>
+                <th className="px-4 py-2">Amount</th>
+                <th className="px-4 py-2">Status</th>
+                <th className="px-4 py-2">CreatedAt</th>
+                <th className="px-4 py-2">UpdatedAt</th>
+                <th className="px-4 py-2 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {data.map((booking: any) => (
-                <tr key={booking.BookingId} className="hover">
-                  <td className="px-4 py-2 border-r border-blue-100">{booking.UserId}</td>
-                  <td className="px-4 py-2 border-r border-blue-100">{booking.RoomId}</td>
-                  <td className="px-4 py-2 border-r border-blue-100">{booking.CheckInDate?.slice(0, 10)}</td>
-                  <td className="px-4 py-2 border-r border-blue-100">{booking.CheckOutDate?.slice(0, 10)}</td>
-                  <td className="px-4 py-2 border-r border-blue-100">${booking.TotalAmount?.toFixed(2)}</td>
-                  <td className="px-4 py-2 border-r border-blue-100">{booking.BookingStatus}</td>
+                <tr key={booking.bookingId} className="hover">
+                  <td className="px-4 py-2">{booking.bookingId}</td>
+                  <td className="px-4 py-2">{booking.userId}</td>
+                  <td className="px-4 py-2">{booking.roomId}</td>
+                  <td className="px-4 py-2">
+                    {booking.checkInDate
+                      ? new Date(booking.checkInDate).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {booking.checkOutDate
+                      ? new Date(booking.checkOutDate).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {booking.totalAmount != null
+                      ? `Ksh ${booking.totalAmount.toFixed(2)}`
+                      : "N/A"}
+                  </td>
+                  <td className="px-4 py-2">{booking.bookingStatus}</td>
+                  <td className="px-4 py-2">
+                    {booking.createdAt
+                      ? new Date(booking.createdAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {booking.updatedAt
+                      ? new Date(booking.updatedAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
                   <td className="px-4 py-2 flex gap-2 justify-center">
                     <button
                       onClick={() => handleEdit(booking)}

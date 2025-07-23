@@ -26,17 +26,13 @@ const CreateBooking = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-  
     const payload = {
-      UserId: parseInt(formData.userId),
-      RoomId: parseInt(formData.roomId),
-      CheckInDate: formData.checkInDate,
-      CheckOutDate: formData.checkOutDate,
-      TotalAmount: parseFloat(formData.totalAmount),
-      BookingStatus: formData.bookingStatus as
-        | "Pending"
-        | "Confirmed"
-        | "Cancelled",
+      userId: parseInt(formData.userId),
+      roomId: parseInt(formData.roomId),
+      checkInDate: formData.checkInDate,
+      checkOutDate: formData.checkOutDate,
+      totalAmount: parseFloat(formData.totalAmount),
+      bookingStatus: formData.bookingStatus as "Pending" | "Confirmed" | "Cancelled",
     };
 
     try {

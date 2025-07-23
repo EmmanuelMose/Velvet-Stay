@@ -60,8 +60,9 @@ const Rooms = () => {
           <table className="table table-zebra w-full text-sm">
             <thead>
               <tr className="bg-blue-600 text-white text-md text-left">
+                <th className="p-4">RoomId</th>
                 <th className="p-4">Type</th>
-                <th className="p-4">Hotel ID</th>
+                <th className="p-4">HotelID</th>
                 <th className="p-4">Price</th>
                 <th className="p-4">Capacity</th>
                 <th className="p-4">Amenities</th>
@@ -72,6 +73,7 @@ const Rooms = () => {
             <tbody>
               {data.map((room) => (
                 <tr key={room.roomId} className="hover:bg-blue-50">
+                  <td className="p-4">{room.roomId}</td>
                   <td className="p-4">{room.roomType}</td>
                   <td className="p-4">{room.hotelId}</td>
                   <td className="p-4">${room.pricePerNight.toFixed(2)}</td>

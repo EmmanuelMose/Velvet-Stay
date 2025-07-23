@@ -9,7 +9,14 @@ type Props = {
 
 const UpdateUser = ({ user }: Props) => {
   const [updateUser, { isLoading }] = usersAPI.useUpdateUserMutation();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    contactPhone: string;
+    address: string;
+    role: "User" | "Admin";
+  }>({
     firstName: "",
     lastName: "",
     email: "",
@@ -33,14 +40,26 @@ const UpdateUser = ({ user }: Props) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "role" ? (value as "User" | "Admin") : value,
+    }));
   };
 
   const handleUpdate = async () => {
     if (!user) return;
 
+    const updatedData: Partial<TUser> = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      contactPhone: formData.contactPhone,
+      address: formData.address,
+      role: formData.role,
+    };
+
     try {
-      await updateUser({ id: user.id, data: formData }).unwrap();
+      await updateUser({ id: user.userId, data: updatedData }).unwrap();
       toast.success("User updated successfully!");
       (document.getElementById("update_user_modal") as HTMLDialogElement)?.close();
     } catch (err) {
@@ -96,8 +115,8 @@ const UpdateUser = ({ user }: Props) => {
             value={formData.role}
             onChange={handleChange}
           >
-            <option>User</option>
-            <option>Admin</option>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
           </select>
 
           <div className="modal-action justify-end gap-4 mt-6">

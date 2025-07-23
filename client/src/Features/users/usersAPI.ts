@@ -5,17 +5,20 @@ import { ApiDomain } from "../../../src/utils/APIDomain";
 
 // Types
 export type TUser = {
-  id: number;
+  userId: number;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   contactPhone: string;
   address: string;
-  role: string;
+  role: "User" | "Admin";
   isVerified: boolean;
   verificationCode?: string;
+  createdAt?: string;
+  updatedAt?: string;
 };
+
 
 export type TverifyUser = {
   email: string;

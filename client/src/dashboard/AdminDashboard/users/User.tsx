@@ -1,5 +1,3 @@
-// src/dashboard/AdminDashboard/users/Users.tsx
-
 import { useState } from "react";
 import { usersAPI, type TUser } from "../../../Features/users/usersAPI";
 import { FaEdit } from "react-icons/fa";
@@ -40,27 +38,43 @@ const Users = () => {
           <table className="table table-zebra w-full text-sm">
             <thead className="bg-blue-600 text-white text-md">
               <tr>
-                <th className="p-4">Name</th>
+                <th className="p-4">User ID</th>
+                <th className="p-4">First Name</th>
+                <th className="p-4">Last Name</th>
                 <th className="p-4">Email</th>
                 <th className="p-4">Phone</th>
+                <th className="p-4">Address</th>
                 <th className="p-4">Role</th>
                 <th className="p-4">Verified</th>
+                <th className="p-4">Created</th>
+                <th className="p-4">Updated</th>
                 <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user) => (
                 <tr
-                  key={user.id}
+                  key={user.userId}
                   className="hover:bg-blue-50 transition-all duration-200"
                 >
-                  <td className="p-4">
-                    {user.firstName} {user.lastName}
-                  </td>
+                  <td className="p-4">{user.userId}</td>
+                  <td className="p-4">{user.firstName}</td>
+                  <td className="p-4">{user.lastName}</td>
                   <td className="p-4">{user.email}</td>
-                  <td className="p-4">{user.contactPhone}</td>
+                  <td className="p-4">{user.contactPhone || "N/A"}</td>
+                  <td className="p-4">{user.address || "N/A"}</td>
                   <td className="p-4">{user.role}</td>
                   <td className="p-4">{user.isVerified ? "Yes" : "No"}</td>
+                  <td className="p-4">
+                    {user.createdAt
+                      ? new Date(user.createdAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="p-4">
+                    {user.updatedAt
+                      ? new Date(user.updatedAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
                   <td className="p-4">
                     <div className="flex justify-center gap-2">
                       <button

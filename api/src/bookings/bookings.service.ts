@@ -3,9 +3,9 @@ import { eq } from "drizzle-orm";
 import db from "../Drizzle/db";
 import { bookings } from "../Drizzle/schema";
 
-export const createBookingService = async (booking: any) => {
-  const [inserted] = await db.insert(bookings).values(booking).returning();
-  return inserted ?? null;
+export const createBookingService = async (booking:any) => {
+const newBooking = await db.insert(bookings).values(booking).returning();
+return newBooking 
 };
 
 export const getAllBookingsService = async () => {

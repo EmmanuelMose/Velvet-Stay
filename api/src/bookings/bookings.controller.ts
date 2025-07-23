@@ -19,10 +19,18 @@ export const createBookingController = async (req: Request, res: Response) => {
     if (!newBooking) {
       return res.status(400).json({ message: "Booking not created" });
     }
+     console.log("Booking created successfully:", booking);
+
     return res.status(201).json({ message: "Booking created successfully", booking: newBooking });
+    // if it fails, it will throw an error which will be caught by the catch block
+    
+
   } catch (error: any) {
+        console.error("Error creating booking:", error);
     return res.status(500).json({ error: error.message });
+
   }
+ 
 };
 
 export const getAllBookingsController = async (req: Request, res: Response) => {

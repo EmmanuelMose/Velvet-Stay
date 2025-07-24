@@ -4,7 +4,8 @@ import {
   getAllRoomsController,
   getRoomByIdController,
   updateRoomController,
-  deleteRoomController
+  deleteRoomController,
+  getAvailableRoomsByHotelController
 } from "../rooms/rooms.controller";
 
 const roomRoutes = (app: Express) => {
@@ -47,6 +48,15 @@ const roomRoutes = (app: Express) => {
       next(error);
     }
   });
+  //  Get available rooms by hotelId
+  app.route('/rooms/available/:hotelId').get(async (req, res, next) => {
+    try {
+      await getAvailableRoomsByHotelController(req, res);
+    } catch (error) {
+      next(error);
+    }
+  });
 };
+
 
 export default roomRoutes;

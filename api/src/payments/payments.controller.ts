@@ -5,7 +5,8 @@ import {
   getAllPaymentsService,
   getPaymentByIdService,
   updatePaymentService,
-  deletePaymentService
+  deletePaymentService,
+  getPaymentsByDateService
 } from "../payments/payments.service";
 
 export const createPaymentController = async (req: Request, res: Response) => {
@@ -93,6 +94,27 @@ export const deletePaymentController = async (req: Request, res: Response) => {
 
     const deleted = await deletePaymentService(id);
     return res.status(202).json({ message: deleted });
+  } catch (error: any) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+
+export const getPaymentsByDateController = async (req: Request, res: Response) => {
+  try {
+    const { date } = req.params;
+
+    if (!date || typeof date !== "string") {
+      return res.status(400).json({ message: "Invalid or missing payment date" });
+    }
+
+    const results = await getPaymentsByDateService(date);
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({ message: "No payments found on that date" });
+    }
+
+    return res.status(200).json({ data: results });
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }

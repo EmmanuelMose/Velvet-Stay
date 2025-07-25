@@ -1,11 +1,9 @@
-// src/Features/bookings/bookingAPI.ts
-
-import { fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { ApiDomain } from "../../utils/APIDomain";
 import type { RootState } from "../../app/store";
 
-// Booking type matching backend schema (camelCase)
+// Booking type based on backend
 export type TBooking = {
   bookingId: number;
   userId: number;
@@ -18,7 +16,10 @@ export type TBooking = {
   updatedAt: string;
 };
 
-// Pagination types
+// Booking creation payload (omit auto-generated fields)
+export type TBookingCreate = Omit<TBooking, "bookingId" | "createdAt" | "updatedAt">;
+
+// Pagination response type
 export type TPaginationInfo = {
   currentPage: number;
   totalPages: number;
@@ -52,20 +53,17 @@ export const bookingApi = createApi({
   }),
   tagTypes: ["Bookings"],
   endpoints: (builder) => ({
-    // Create Booking
-    createBooking: builder.mutation<
-      TBooking,
-      Omit<TBooking, "bookingId" | "createdAt" | "updatedAt">
-    >({
-      query: (newBooking) => ({
+    // Create booking
+    createBooking: builder.mutation<TBooking, TBookingCreate>({
+      query: (bookingData) => ({
         url: "/booking",
         method: "POST",
-        body: newBooking,
+        body: bookingData,
       }),
       invalidatesTags: ["Bookings"],
     }),
 
-    // Get Bookings (Paginated)
+    // Get paginated bookings
     getBookings: builder.query<TBookingResponse, TPaginationParams>({
       query: ({ page = 1, limit = 10 } = {}) => ({
         url: "/bookings",
@@ -74,27 +72,22 @@ export const bookingApi = createApi({
       providesTags: ["Bookings"],
     }),
 
-    // Get All Bookings (Unpaginated)
+    // Get all bookings
     getAllBookings: builder.query<TBooking[], void>({
       query: () => "/bookings",
       providesTags: ["Bookings"],
     }),
 
-    // Get Booking by ID
+    // Get booking by ID
     getBookingById: builder.query<TBooking, number>({
-      query: (bookingId) => `/booking/${bookingId}`,
+      query: (id) => `/booking/${id}`,
       providesTags: ["Bookings"],
     }),
 
-    // Update Booking
+    // Update booking
     updateBooking: builder.mutation<
       TBooking,
-      {
-        bookingId: number;
-        updatedData: Partial<
-          Omit<TBooking, "bookingId" | "createdAt" | "updatedAt">
-        >;
-      }
+      { bookingId: number; updatedData: Partial<TBookingCreate> }
     >({
       query: ({ bookingId, updatedData }) => ({
         url: `/booking/${bookingId}`,
@@ -104,10 +97,10 @@ export const bookingApi = createApi({
       invalidatesTags: ["Bookings"],
     }),
 
-    // Delete Booking
+    // Delete booking
     deleteBooking: builder.mutation<{ success: boolean }, number>({
-      query: (bookingId) => ({
-        url: `/booking/${bookingId}`,
+      query: (id) => ({
+        url: `/booking/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Bookings"],
@@ -115,6 +108,7 @@ export const bookingApi = createApi({
   }),
 });
 
+// Export hooks
 export const {
   useCreateBookingMutation,
   useGetBookingsQuery,

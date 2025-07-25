@@ -1,87 +1,47 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+// paymentAPI.ts
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ApiDomain } from "../../utils/APIDomain";
-import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import type { RootState } from "../../app/store";
 
-
-
-
-
 export type TPayment = {
-    payment_id: number ;
-    booking_id: number;
-    user_id: number;
-    amount: number;
-    payment_method: string;
-    payment_status: string;
-    transaction_id: string;
-    payment_date: string;
-
-
-}
-export type TPaginationInfo = {
-    currentPage: number;
-    totalPages: number;
-    totalItems: number;
-    itemsPerPage: number;
-    hasNextPage: boolean;
-    hasPrevPage: boolean;
-}
-export type TPaymentResponse = {
-    payments: TPayment[];
-    pagination: TPaginationInfo;
-}
-export type TPaginationParams = {
-    page?: number;
-    limit?: number;
-}
-
-
+  paymentId: number;
+  bookingId: number;
+  amount: number;
+  paymentStatus: "Pending" | "Completed" | "Failed";
+  paymentDate: string;
+  paymentMethod: string;
+  transactionId: string;
+  createdAt: string;
+  updatedAt: string;
+};
 
 export const paymentApi = createApi({
-    reducerPath: "paymentApi",
-    baseQuery: fetchBaseQuery({
-        baseUrl: ApiDomain,
-        prepareHeaders: (headers, { getState }) => {
-            const token = (getState() as RootState).user.token; 
-            if (token) {
-                headers.set("Authorization", `Bearer ${token}`);
-            }
-            return headers;
-        },
+  reducerPath: "paymentApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: ApiDomain,
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).user.token;
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
+  endpoints: (builder) => ({
+    getAllPayments: builder.query<TPayment[], void>({
+      query: () => "/payments",
     }),
-    tagTypes: ["Payments"],
-    endpoints: (builder) => ({
-        createPayment: builder.mutation<TPayment, Partial<TPayment>>({
-            query: (newPayment) => ({
-                url: "/payments",
-                method: "POST",
-                body: newPayment,
-            }),
-            invalidatesTags: ["Payments"],
-        }),
-        getPayments: builder.query<TPaymentResponse, TPaginationParams>({
-            query: ({page=1,limit=10}) => ({
-                url: "/payments",
-                params: { page, limit }
-            }),
-            providesTags: ["Payments"],
-        }),
-        getAllPayments: builder.query<TPayment[], void>({
-            query: () => "/payments/without-pagination",
-            providesTags: ["Payments"],
-        }),
+    getPaymentById: builder.query<TPayment, number>({
+      query: (id) => `/payment/${id}`,
+    }),
+    getPaymentsByDate: builder.query<TPayment[], string>({
+      query: (date) => `/payments/date/${date}`,
+    }),
+  }),
+});
 
-       
-        updatePaymentStatus: builder.mutation<TPayment, { payment_id: number; status: string }>({
-            query: ({ payment_id, status }) => ({
-                url: `/payments/${payment_id}`,
-                method: "PATCH",
-                body: { payment_status: status },
-            }),
-            invalidatesTags: ["Payments"],
-        }),
-    }),
-        
-    
-})
+export const {
+  useGetAllPaymentsQuery,
+  useGetPaymentByIdQuery,
+  useGetPaymentsByDateQuery,
+} = paymentApi;

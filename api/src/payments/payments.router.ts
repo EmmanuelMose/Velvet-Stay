@@ -5,7 +5,8 @@ import {
   getAllPaymentsController,
   getPaymentByIdController,
   updatePaymentController,
-  deletePaymentController
+  deletePaymentController,
+  getPaymentsByDateController
 } from "../payments/payments.controller";
 
 const paymentRoutes = (app: Express) => {
@@ -58,6 +59,16 @@ const paymentRoutes = (app: Express) => {
       }
     }
   );
+
+  app.route('/payments/date/:date').get(
+  async (req, res, next) => {
+    try {
+      await getPaymentsByDateController(req, res);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 };
 
 export default paymentRoutes;

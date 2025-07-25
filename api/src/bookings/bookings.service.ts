@@ -2,9 +2,18 @@
 import { eq } from "drizzle-orm";
 import db from "../Drizzle/db";
 import { bookings } from "../Drizzle/schema";
+import { rooms } from "../Drizzle/schema"
+
 
 export const createBookingService = async (booking:any) => {
 const newBooking = await db.insert(bookings).values(booking).returning();
+// Mark room as unavailable
+  if (booking.roomId) {
+    await db
+      .update(rooms)
+      .set({ isAvailable: false })
+      .where(eq(rooms.roomId, booking.roomId));
+  }
 return newBooking 
 };
 

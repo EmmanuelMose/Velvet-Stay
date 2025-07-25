@@ -16,13 +16,13 @@ import { useSelector } from 'react-redux';
 import { type RootState } from './app/store';
 import Error from './components/error/Error';
 import Bookings from '../../client/src/dashboard/AdminDashboard/bookings/Booking';
-import ManagePayment from '../../client/src/dashboard/AdminDashboard/payments/ManagePayments'
 import Rooms from '../../client/src/dashboard/AdminDashboard/rooms/Rooms'
 import Hotels from '../../client/src/dashboard/AdminDashboard/hotels/Hotels'
 import User from "../../client/src/dashboard/AdminDashboard/users/User"
 import ManageAnalytics from '../../client/src/dashboard/AdminDashboard/analytics/ManageAnalytics'
 import ManageSettings from '../../client/src/dashboard/AdminDashboard/settings/ManageSettings'
-import SearchFilters from '../../client/src/dashboard/UserDashboard/ViewHotels/Hotels';  
+import SearchFilters from '../../client/src/dashboard/UserDashboard/ViewHotels/Hotels'; 
+import Payment from './dashboard/AdminDashboard/payments/Payment'; 
 
 function App() {
   const isAdmin = useSelector((state: RootState) => state.user.user?.role === 'Admin');
@@ -73,7 +73,7 @@ function App() {
         },
         {
           path: 'payments',
-          element: <ManagePayment/>
+          element: <Payment/>
         },
         {
           path: 'rooms',

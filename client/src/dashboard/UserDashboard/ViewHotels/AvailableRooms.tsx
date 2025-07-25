@@ -13,24 +13,16 @@ const AvailableRooms: React.FC<Props> = ({ hotelId }) => {
   if (!rooms?.length) return <p className="text-sm text-gray-500">No available rooms in this hotel.</p>;
 
   return (
-    <div className="mt-2 space-y-3">
+    <div className="mt-2 space-y-2">
       {rooms.map((room) => (
         <div
           key={room.roomId}
-          className="border border-blue-300 bg-blue-50 p-4 rounded-md shadow-sm flex flex-col sm:flex-row sm:justify-between items-start sm:items-center"
+          className="border border-blue-300 p-2 rounded bg-blue-50 text-sm"
         >
-          <div className="text-sm text-gray-700 space-y-1">
-            <p className="font-semibold text-blue-800">Type: {room.roomType}</p>
-            <p>Capacity: {room.capacity}</p>
-            <p>Price: <span className="text-green-700 font-medium">${room.pricePerNight}</span></p>
-            <p>Amenities: {room.amenities}</p>
-          </div>
-
-          <button
-            className="mt-3 sm:mt-0 sm:ml-4 bg-green-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded transition"
-          >
-            Book Room
-          </button>
+          <p className="font-semibold">Type: {room.roomType}</p>
+          <p>Capacity: {room.capacity}</p>
+          <p>Price: ${room.pricePerNight}</p>
+          <p>Amenities: {room.amenities}</p>
         </div>
       ))}
     </div>

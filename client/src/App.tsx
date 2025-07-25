@@ -23,6 +23,10 @@ import ManageAnalytics from '../../client/src/dashboard/AdminDashboard/analytics
 import ManageSettings from '../../client/src/dashboard/AdminDashboard/settings/ManageSettings'
 import SearchFilters from '../../client/src/dashboard/UserDashboard/ViewHotels/Hotels'; 
 import Payment from './dashboard/AdminDashboard/payments/Payment'; 
+//import Logout from './dashboard/AdminDashboard/logout/Logout'
+import LogoutModal from './dashboard/AdminDashboard/logout/Logout';
+import UserLogout from './dashboard/UserDashboard/userLogout/UserLogout';
+
 
 function App() {
   const isAdmin = useSelector((state: RootState) => state.user.user?.role === 'Admin');
@@ -91,6 +95,10 @@ function App() {
           path: 'settings',
           element: <ManageSettings/>
         },
+        {
+          path: 'logout',
+          element: <LogoutModal/>
+        },
 
       ]
     },
@@ -118,6 +126,10 @@ function App() {
         {
           path: 'history',
           element: <h4>4</h4>
+        },
+        {
+          path: 'loggingout',
+          element: <UserLogout />
         },
       ]
     },

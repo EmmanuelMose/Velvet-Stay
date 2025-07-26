@@ -42,8 +42,10 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "k6": "^0.0.0",
+    "natural": "^8.1.0",
     "nodemailer": "^7.0.5",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "stopword": "^3.1.5"
   },
   "devDependencies": {
     "@jest/globals": "^30.0.4",
@@ -56,6 +58,7 @@
     "@types/node": "^24.0.10",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.15.4",
+    "@types/stopword": "^2.0.3",
     "@types/supertest": "^6.0.3",
     "drizzle-kit": "^0.31.4",
     "jest": "^30.0.4",

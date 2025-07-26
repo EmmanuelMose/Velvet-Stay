@@ -31,6 +31,12 @@ export const userDrawerData: DrawerData[] = [
         link: "suportticket"
     },
     {
+        id: "User Analytics",
+        name: "Analytics",
+        icon: FaUserCheck,
+        link: "useranalytics"
+    },
+    {
         id: "Logout",
         name: "LogOut",
         icon: TbBrandGoogleAnalytics,

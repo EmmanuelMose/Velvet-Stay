@@ -26,6 +26,8 @@ import Payment from './dashboard/AdminDashboard/payments/Payment';
 //import Logout from './dashboard/AdminDashboard/logout/Logout'
 import LogoutModal from './dashboard/AdminDashboard/logout/Logout';
 import UserLogout from './dashboard/UserDashboard/userLogout/UserLogout';
+import Chat from './components/Chat/Chat';
+import Analytics from './dashboard/UserDashboard/analytics/Analytics';
 
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
       path: '/',
       element: <LandingPage />,
     },
+    
     {
       path: '/about',
       element: <AboutPage />
@@ -131,6 +134,10 @@ function App() {
           path: 'loggingout',
           element: <UserLogout />
         },
+         {
+          path: 'useranalytics',
+          element: <Analytics />
+        },
       ]
     },
 
@@ -143,6 +150,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <Chat />
       <Toaster
         position="top-right"
         toastOptions={{

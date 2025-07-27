@@ -6,7 +6,8 @@ import {
   getAllBookingsController,
   getBookingByIdController,
   updateBookingController,
-  deleteBookingController
+  deleteBookingController,
+  updateBookingStatus
 } from "../bookings/bookings.controller";
 
 //create booking
@@ -42,6 +43,7 @@ const bookingRoutes = (app: Express) => {
       next(error);
     }
   });
+  
 //delete booking
   app.route('/booking/:id').delete(async (req, res, next) => {
     try {
@@ -50,6 +52,15 @@ const bookingRoutes = (app: Express) => {
       next(error);
     }
   });
+  // update booking status
+  app.route('/booking/:bookingId/status').patch(async (req, res, next) => {
+   try {
+    await updateBookingStatus(req, res);
+  } catch (error) {
+    next(error);
+  }
+  });
+
 };
 
 export default bookingRoutes;

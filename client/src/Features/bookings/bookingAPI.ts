@@ -63,28 +63,7 @@ export const bookingApi = createApi({
       invalidatesTags: ["Bookings"],
     }),
 
-    // Get paginated bookings
-    getBookings: builder.query<TBookingResponse, TPaginationParams>({
-      query: ({ page = 1, limit = 10 } = {}) => ({
-        url: "/bookings",
-        params: { page, limit },
-      }),
-      providesTags: ["Bookings"],
-    }),
-
-    // Get all bookings
-    getAllBookings: builder.query<TBooking[], void>({
-      query: () => "/bookings",
-      providesTags: ["Bookings"],
-    }),
-
-    // Get booking by ID
-    getBookingById: builder.query<TBooking, number>({
-      query: (id) => `/booking/${id}`,
-      providesTags: ["Bookings"],
-    }),
-
-    // Update booking
+    // Update entire booking (e.g., dates, room)
     updateBooking: builder.mutation<
       TBooking,
       { bookingId: number; updatedData: Partial<TBookingCreate> }
@@ -97,6 +76,19 @@ export const bookingApi = createApi({
       invalidatesTags: ["Bookings"],
     }),
 
+    // Update booking status only
+    updateBookingStatus: builder.mutation<
+      TBooking,
+      { bookingId: number; status: TBooking["bookingStatus"] }
+    >({
+      query: ({ bookingId, status }) => ({
+        url: `/booking/${bookingId}/status`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["Bookings"],
+    }),
+
     // Delete booking
     deleteBooking: builder.mutation<{ success: boolean }, number>({
       query: (id) => ({
@@ -104,6 +96,27 @@ export const bookingApi = createApi({
         method: "DELETE",
       }),
       invalidatesTags: ["Bookings"],
+    }),
+
+    // Get paginated bookings
+    getBookings: builder.query<TBookingResponse, TPaginationParams>({
+      query: ({ page = 1, limit = 10 } = {}) => ({
+        url: "/bookings",
+        params: { page, limit },
+      }),
+      providesTags: ["Bookings"],
+    }),
+
+    // Get all bookings (no pagination)
+    getAllBookings: builder.query<TBooking[], void>({
+      query: () => "/bookings",
+      providesTags: ["Bookings"],
+    }),
+
+    // Get booking by ID
+    getBookingById: builder.query<TBooking, number>({
+      query: (id) => `/booking/${id}`,
+      providesTags: ["Bookings"],
     }),
   }),
 });
@@ -116,4 +129,5 @@ export const {
   useGetBookingByIdQuery,
   useUpdateBookingMutation,
   useDeleteBookingMutation,
+  useUpdateBookingStatusMutation,
 } = bookingApi;

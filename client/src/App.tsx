@@ -28,6 +28,7 @@ import LogoutModal from './dashboard/AdminDashboard/logout/Logout';
 import UserLogout from './dashboard/UserDashboard/userLogout/UserLogout';
 import Chat from './components/Chat/Chat';
 import Analytics from './dashboard/UserDashboard/analytics/Analytics';
+import BookingHistory from './dashboard/UserDashboard/bookings/BookingHistory';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
       path: '/',
       element: <LandingPage />,
     },
+    
     
     {
       path: '/about',
@@ -113,6 +115,10 @@ function App() {
         {
           path: 'viewhotels',
           element: <SearchFilters />
+        },
+        {
+          path: 'bookinghistory',
+          element: <BookingHistory />,
         },
         {
           path: 'monitor',

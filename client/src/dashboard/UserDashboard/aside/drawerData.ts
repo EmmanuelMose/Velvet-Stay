@@ -20,7 +20,7 @@ export const userDrawerData: DrawerData[] = [
     },
     {
         id: "history",
-        name: "Booking History",
+        name: "Bookings",
         icon: FaUserCheck,
         link: "bookinghistory"
     },

@@ -14,11 +14,11 @@ const Navbar = () => {
 
   return (
     <div className="bg-blue-800 text-white">
-      <nav className="px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
+      <nav className="px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-between">
         
       
         <div className="flex items-center justify-between w-full md:w-auto">
-          <div className="w-20">
+          <div className="w-15">
             <img src={logo} alt="Logo" className="w-full" />
           </div>
           <button
@@ -43,7 +43,7 @@ const Navbar = () => {
           {
             userToken &&
             (
-                <li className="hover:bg-green-600 px-4 py-1 rounded transition">
+                <li className="hover:bg-green-700 px-4 py-1 rounded transition">
               <NavLink to={
                 isAdmin
                   ? "/admin/dashboard"
@@ -56,13 +56,13 @@ const Navbar = () => {
             </li>
             )
           }
-            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
+            <li className="hover:bg-green-700 px-4 py-1 rounded transition">
               <NavLink to="/services">Services</NavLink>
             </li>
-            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
+            <li className="hover:bg-green-700 px-4 py-1 rounded transition">
               <NavLink to="/about">About</NavLink>
             </li>
-            <li className="hover:bg-green-600 px-4 py-1 rounded transition">
+            <li className="hover:bg-green-700 px-4 py-1 rounded transition">
               <NavLink to="/contact">Contact</NavLink>
             </li>
           </ul>

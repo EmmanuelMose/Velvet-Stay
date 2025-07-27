@@ -36,3 +36,13 @@ export const deleteBookingService = async (id: number) => {
   await db.delete(bookings).where(eq(bookings.bookingId, id)).returning();
   return "Booking deleted successfully";
 };
+
+export const updateBookingStatusService = async (bookingId: number, status: "Pending" | "Confirmed" | "Cancelled") => {
+  const updated = await db
+    .update(bookings)
+    .set({ bookingStatus: status })
+    .where(eq(bookings.bookingId, bookingId))
+    .returning();
+
+  return updated[0]; // return the updated booking
+};

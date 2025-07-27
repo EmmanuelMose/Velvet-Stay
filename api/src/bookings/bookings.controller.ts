@@ -37,14 +37,17 @@ export const createBookingController = async (req: Request, res: Response) => {
 export const getAllBookingsController = async (req: Request, res: Response) => {
   try {
     const bookings = await getAllBookingsService();
+
     if (!bookings || bookings.length === 0) {
       return res.status(404).json({ message: "No bookings found" });
     }
-    return res.status(200).json(bookings);
+
+    return res.status(200).json(bookings); // includes hotel name & location now
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }
 };
+
 
 export const getBookingByIdController = async (req: Request, res: Response) => {
   try {

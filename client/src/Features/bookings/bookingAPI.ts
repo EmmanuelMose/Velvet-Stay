@@ -3,7 +3,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { ApiDomain } from "../../utils/APIDomain";
 import type { RootState } from "../../app/store";
 
-// Booking type based on backend
+// Basic booking structure
 export type TBooking = {
   bookingId: number;
   userId: number;
@@ -14,6 +14,21 @@ export type TBooking = {
   bookingStatus: "Pending" | "Confirmed" | "Cancelled";
   createdAt: string;
   updatedAt: string;
+};
+
+// Room and Hotel extended info for frontend display
+export type THotel = {
+  hotelName: string;
+  location: string;
+};
+
+export type TRoom = {
+  roomId: number;
+  hotel: THotel;
+};
+
+export type TBookingWithHotel = TBooking & {
+  room: TRoom;
 };
 
 // Booking creation payload (omit auto-generated fields)
@@ -30,7 +45,7 @@ export type TPaginationInfo = {
 };
 
 export type TBookingResponse = {
-  bookings: TBooking[];
+  bookings: TBookingWithHotel[];
   pagination: TPaginationInfo;
 };
 
@@ -107,13 +122,13 @@ export const bookingApi = createApi({
       providesTags: ["Bookings"],
     }),
 
-    // Get all bookings (no pagination)
-    getAllBookings: builder.query<TBooking[], void>({
+    // Get all bookings (with hotel and room info)
+    getAllBookings: builder.query<TBookingWithHotel[], void>({
       query: () => "/bookings",
       providesTags: ["Bookings"],
     }),
 
-    // Get booking by ID
+    // Get single booking
     getBookingById: builder.query<TBooking, number>({
       query: (id) => `/booking/${id}`,
       providesTags: ["Bookings"],

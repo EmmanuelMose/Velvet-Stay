@@ -16,6 +16,8 @@ type Booking = {
   totalAmount: number;
   bookingStatus: BookingStatus;
   createdAt: string;
+  hotelName?: string;
+  hotelLocation?: string;
 };
 
 const BookingHistory: React.FC = () => {
@@ -24,7 +26,6 @@ const BookingHistory: React.FC = () => {
 
   const [localBookings, setLocalBookings] = useState<Booking[] | undefined>(bookingsData);
 
-  // Sync local state with fetched data
   useEffect(() => {
     setLocalBookings(bookingsData);
   }, [bookingsData]);
@@ -39,13 +40,11 @@ const BookingHistory: React.FC = () => {
     }
 
     try {
-      // Backend call
       await updateBookingStatus({
         bookingId,
         status: "Confirmed",
       }).unwrap();
 
-      // Local update
       setLocalBookings((prev) =>
         prev?.map((b) =>
           b.bookingId === bookingId ? { ...b, bookingStatus: "Confirmed" } : b
@@ -63,19 +62,19 @@ const BookingHistory: React.FC = () => {
       <Toaster position="top-center" reverseOrder={false} />
       <h2 className="text-2xl font-bold text-gray-800">Booking History</h2>
 
-      {/* Status Messages */}
       {isLoading && <p className="text-center text-blue-600 font-medium">Loading bookings...</p>}
       {error && <p className="text-center text-red-600 font-medium">Error fetching bookings.</p>}
       {!isLoading && localBookings?.length === 0 && (
         <p className="text-center text-gray-500 font-medium">No bookings found.</p>
       )}
 
-      {/* Scrollable Table */}
       {localBookings?.length ? (
         <div className="max-h-[500px] overflow-y-auto border-4 border-blue-500 rounded-xl shadow-md">
           <table className="table table-zebra w-full text-sm">
             <thead>
               <tr className="bg-blue-600 text-white text-md text-left">
+                <th className="p-4">Hotel</th>
+                <th className="p-4">Location</th>
                 <th className="p-4">BookingID</th>
                 <th className="p-4">UserID</th>
                 <th className="p-4">RoomID</th>
@@ -84,12 +83,16 @@ const BookingHistory: React.FC = () => {
                 <th className="p-4">Amount</th>
                 <th className="p-4">Status</th>
                 <th className="p-4">CreatedAt</th>
+                
+                <th className="p-4">Location</th>
                 <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {localBookings.map((booking) => (
                 <tr key={booking.bookingId} className="hover:bg-blue-50">
+                  <td className="p-4">{booking.hotelName ?? "N/A"}</td>
+                  <td className="p-4">{booking.hotelLocation ?? "N/A"}</td>
                   <td className="p-4">{booking.bookingId}</td>
                   <td className="p-4">{booking.userId}</td>
                   <td className="p-4">{booking.roomId}</td>
@@ -116,6 +119,8 @@ const BookingHistory: React.FC = () => {
                   <td className="p-4">
                     {new Date(booking.createdAt).toLocaleString()}
                   </td>
+                  
+                  <td className="p-4">{booking.hotelLocation ?? "N/A"}</td>
                   <td className="p-4 flex justify-center">
                     <button
                       className="btn btn-sm bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1 rounded"

@@ -2,7 +2,7 @@
 import { eq } from "drizzle-orm";
 import db from "../Drizzle/db";
 import { bookings } from "../Drizzle/schema";
-import { rooms } from "../Drizzle/schema"
+import {hotels, rooms } from "../Drizzle/schema"
 
 
 export const createBookingService = async (booking:any) => {
@@ -18,7 +18,23 @@ return newBooking
 };
 
 export const getAllBookingsService = async () => {
-  const allBookings = await db.select().from(bookings);
+  const allBookings = await db
+    .select({
+      bookingId: bookings.bookingId,
+      userId: bookings.userId,
+      roomId: bookings.roomId,
+      checkInDate: bookings.checkInDate,
+      checkOutDate: bookings.checkOutDate,
+      totalAmount: bookings.totalAmount,
+      bookingStatus: bookings.bookingStatus,
+      createdAt: bookings.createdAt,
+      hotelName: hotels.name,
+      hotelLocation: hotels.location,
+    })
+    .from(bookings)
+    .leftJoin(rooms, eq(bookings.roomId, rooms.roomId))
+    .leftJoin(hotels, eq(rooms.hotelId, hotels.hotelId));
+
   return allBookings;
 };
 

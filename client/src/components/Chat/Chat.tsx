@@ -37,7 +37,7 @@ const Chat = () => {
 
       {showChat && (
         <div className="chat-popup">
-          <h2 className="chat-title">🧠 System Assistant</h2>
+          <h2 className="chat-title">Welcome To AI System Assistant</h2>
           <textarea
             className="chat-textarea"
             rows={4}

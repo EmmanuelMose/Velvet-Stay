@@ -1,59 +1,73 @@
+/* Floating chat button */
 .chat-float-button {
   position: fixed;
   bottom: 25px;
   right: 25px;
   background-color: #2563eb;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   border: none;
   border-radius: 50%;
   padding: 16px;
   cursor: pointer;
   z-index: 999;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  animation: bounceIn 0.4s ease;
 }
 
 .chat-float-button:hover {
   background-color: #1d4ed8;
+  transform: scale(1.05);
 }
 
+/* Chat popup panel */
 .chat-popup {
   position: fixed;
-  bottom: 90px;
+  bottom: 100px;
   right: 25px;
-  width: 350px;
-  background: white;
-  border: 1px solid #cbd5e1;
+  width: 100%;
+  max-width: 370px;
+  background: #e0f2fe; /* Light blue background */
+  border: 1px solid #93c5fd;
   border-radius: 1rem;
   padding: 1.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   z-index: 1000;
+  animation: slideFadeIn 0.4s ease forwards;
 }
 
+/* Title inside popup */
 .chat-title {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #1e293b;
+  color: #1e3a8a;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
+/* Textarea for input */
 .chat-textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #93c5fd;
   border-radius: 0.5rem;
   font-size: 1rem;
-  color: #1e293b;
+  color: #1e3a8a;
   resize: none;
   outline: none;
+  font-family: inherit;
+  background-color: #f0f9ff;
+  transition: border 0.2s, box-shadow 0.2s, background-color 0.3s ease;
 }
 
 .chat-textarea:focus {
   border-color: #3b82f6;
-  box-shadow: 0 0 0 2px #bfdbfe;
+  background-color: #e0f2fe;
+  box-shadow: 0 0 0 3px #bfdbfe;
 }
 
+/* Ask button */
 .chat-button {
   margin-top: 1rem;
   padding: 0.75rem;
@@ -64,28 +78,99 @@
   border-radius: 0.5rem;
   cursor: pointer;
   width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  animation: fadeInUp 0.4s ease;
 }
 
 .chat-button:hover {
   background-color: #1d4ed8;
+  transform: translateY(-2px);
 }
 
 .chat-button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
+/* Answer section */
 .chat-answer {
   margin-top: 1.5rem;
   padding: 1rem;
-  background-color: #f1f5f9;
+  background-color: #f8fafc;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   color: #334155;
   white-space: pre-wrap;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-height: 200px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease;
 }
 
+/* Label before the answer */
 .chat-answer-label {
-  font-weight: 600;
-  color: #1e293b;
+  font-weight: 700;
+  color: #1e3a8a;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Slide & fade animation for popup */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bounce effect for button */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* FadeIn and upward motion */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Basic fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 420px) {
+  .chat-popup {
+    right: 15px;
+    left: 15px;
+    width: auto;
+    padding: 1rem;
+  }
 }

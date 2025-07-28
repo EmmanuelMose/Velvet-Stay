@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import html2pdf from "html2pdf.js";
 import {
   useGetAllBookingsQuery,
   useUpdateBookingStatusMutation,
@@ -23,7 +24,6 @@ type Booking = {
 const BookingHistory: React.FC = () => {
   const { data: bookingsData, isLoading, error } = useGetAllBookingsQuery();
   const [updateBookingStatus] = useUpdateBookingStatusMutation();
-
   const [localBookings, setLocalBookings] = useState<Booking[] | undefined>(bookingsData);
 
   useEffect(() => {
@@ -40,10 +40,7 @@ const BookingHistory: React.FC = () => {
     }
 
     try {
-      await updateBookingStatus({
-        bookingId,
-        status: "Confirmed",
-      }).unwrap();
+      await updateBookingStatus({ bookingId, status: "Confirmed" }).unwrap();
 
       setLocalBookings((prev) =>
         prev?.map((b) =>
@@ -55,6 +52,39 @@ const BookingHistory: React.FC = () => {
     } catch (err) {
       toast.error("Failed to confirm booking.");
     }
+  };
+
+  const handleDownloadReceipt = (booking: Booking) => {
+    const element = document.createElement("div");
+    element.innerHTML = `
+      <div style="font-family: Arial; padding: 20px; max-width: 300px; font-size: 11px; line-height: 1.4;">
+        <h2 style="text-align: center; color: #333;">Booking Receipt</h2>
+        <hr />
+        <p><strong>Booking ID:</strong> ${booking.bookingId}</p>
+        <p><strong>User ID:</strong> ${booking.userId}</p>
+        <p><strong>Hotel:</strong> ${booking.hotelName ?? "N/A"}</p>
+        <p><strong>Location:</strong> ${booking.hotelLocation ?? "N/A"}</p>
+        <p><strong>Room ID:</strong> ${booking.roomId}</p>
+        <p><strong>Check-In:</strong> ${new Date(booking.checkInDate).toLocaleDateString()}</p>
+        <p><strong>Check-Out:</strong> ${new Date(booking.checkOutDate).toLocaleDateString()}</p>
+        <p><strong>Total:</strong> $${booking.totalAmount.toFixed(2)}</p>
+        <p><strong>Status:</strong> ${booking.bookingStatus}</p>
+        <p><strong>Created:</strong> ${new Date(booking.createdAt).toLocaleString()}</p>
+        <hr />
+        <p style="text-align: center;">Thank you for booking with us!</p>
+      </div>
+    `;
+
+    html2pdf()
+      .set({
+        margin: 5,
+        filename: `Booking_Receipt_${booking.bookingId}.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a6", orientation: "portrait" },
+      })
+      .from(element)
+      .save();
   };
 
   return (
@@ -83,8 +113,6 @@ const BookingHistory: React.FC = () => {
                 <th className="p-4">Amount</th>
                 <th className="p-4">Status</th>
                 <th className="p-4">CreatedAt</th>
-                
-                <th className="p-4">Location</th>
                 <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
@@ -96,12 +124,8 @@ const BookingHistory: React.FC = () => {
                   <td className="p-4">{booking.bookingId}</td>
                   <td className="p-4">{booking.userId}</td>
                   <td className="p-4">{booking.roomId}</td>
-                  <td className="p-4">
-                    {new Date(booking.checkInDate).toLocaleDateString()}
-                  </td>
-                  <td className="p-4">
-                    {new Date(booking.checkOutDate).toLocaleDateString()}
-                  </td>
+                  <td className="p-4">{new Date(booking.checkInDate).toLocaleDateString()}</td>
+                  <td className="p-4">{new Date(booking.checkOutDate).toLocaleDateString()}</td>
                   <td className="p-4">${booking.totalAmount.toFixed(2)}</td>
                   <td className="p-4">
                     <span
@@ -116,18 +140,22 @@ const BookingHistory: React.FC = () => {
                       {booking.bookingStatus}
                     </span>
                   </td>
+                  <td className="p-4">{new Date(booking.createdAt).toLocaleString()}</td>
                   <td className="p-4">
-                    {new Date(booking.createdAt).toLocaleString()}
-                  </td>
-                  
-                  <td className="p-4">{booking.hotelLocation ?? "N/A"}</td>
-                  <td className="p-4 flex justify-center">
-                    <button
-                      className="btn btn-sm bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1 rounded"
-                      onClick={() => handleBookRoom(booking.bookingId)}
-                    >
-                      Book Room
-                    </button>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <button
+                        className="btn btn-sm bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded"
+                        onClick={() => handleBookRoom(booking.bookingId)}
+                      >
+                        Book Room
+                      </button>
+                      <button
+                        className="btn btn-sm bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
+                        onClick={() => handleDownloadReceipt(booking)}
+                      >
+                        Download Receipt
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

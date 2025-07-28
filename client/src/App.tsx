@@ -29,6 +29,8 @@ import UserLogout from './dashboard/UserDashboard/userLogout/UserLogout';
 import Chat from './components/Chat/Chat';
 import Analytics from './dashboard/UserDashboard/analytics/Analytics';
 import BookingHistory from './dashboard/UserDashboard/bookings/BookingHistory';
+import Tickets from './dashboard/UserDashboard/tickets/Tickets';
+import Support from "../../client/src/dashboard/AdminDashboard/support/Support"
 
 
 function App() {
@@ -77,6 +79,10 @@ function App() {
           element: <Bookings />
         },
         {
+          path: 'support',
+          element: <Support />
+        },
+        {
           path: 'users',
           element: <User />
         },
@@ -121,8 +127,8 @@ function App() {
           element: <BookingHistory />,
         },
         {
-          path: 'monitor',
-          element: <h1>1</h1>
+          path: 'supportticket',
+          element: <Tickets />
         },
         {
           path: 'book',
@@ -132,10 +138,7 @@ function App() {
           path: 'pay',
           element: <h3>3</h3>
         },
-        {
-          path: 'history',
-          element: <h4>4</h4>
-        },
+        
         {
           path: 'loggingout',
           element: <UserLogout />

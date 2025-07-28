@@ -10,21 +10,31 @@ import {
 
 export const createCustomerSupportTicketController = async (req: Request, res: Response) => {
   try {
-    const ticketData = req.body;
+    const { userId, subject, description } = req.body;
 
-    
-    delete ticketData.createdAt;
-    delete ticketData.updatedAt;
+    if (!userId || !subject || !description) {
+      return res.status(400).json({ message: "Missing required fields." });
+    }
 
-    const newTicket = await createCustomerSupportTicketService(ticketData);
+    const newTicket = await createCustomerSupportTicketService({
+      userId,
+      subject,
+      description,
+    });
+
     if (!newTicket) {
       return res.status(400).json({ message: "Ticket not created" });
     }
-    return res.status(201).json({ message: "Ticket created successfully", ticket: newTicket });
+
+    return res.status(201).json({
+      message: "Ticket created successfully",
+      ticket: newTicket,
+    });
   } catch (error: any) {
     return res.status(500).json({ error: error.message });
   }
 };
+
 
 export const getAllCustomerSupportTicketsController = async (req: Request, res: Response) => {
   try {

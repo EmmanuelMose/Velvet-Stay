@@ -4,9 +4,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export type UserState = {
     token: string | null;
     user: {
-        user_id: number;
-        first_name: string;
-        last_name: string;
+        userId: number;
+        firstName: string;
+        lastName: string;
         email: string;
         role: string;
     } | null;

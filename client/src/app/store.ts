@@ -11,6 +11,7 @@ import { roomsApi } from "../Features/rooms/roomAPI";//admin dashboard
 import { hotelApi } from "../Features/hotels/hotelAPI";
 import { hotelsAPI } from "../../../client/src/Features/hotels//HotelsAPI";
 import { roomAPI } from "../Features/rooms/roomsAPI";//user dashboard
+import { ticketApi } from "../Features/tickets/ticketAPI";
 
 
 
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
 [hotelApi.reducerPath]: hotelApi.reducer,
 [hotelsAPI.reducerPath]: hotelsAPI.reducer,
 [roomAPI.reducerPath]: roomAPI.reducer,
+[ticketApi.reducerPath]: ticketApi.reducer,
 user: userSlice
 });
 
@@ -46,6 +48,7 @@ export const store = configureStore({
         .concat(bookingApi.middleware)
         .concat(hotelsAPI.middleware)
         .concat(paymentApi.middleware)
+        .concat(ticketApi.middleware)
             .concat(roomsApi.middleware)
             .concat(hotelApi.middleware)
             .concat(roomAPI.middleware),

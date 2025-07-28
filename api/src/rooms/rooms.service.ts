@@ -40,13 +40,11 @@ export const deleteRoomService = async (id: number) => {
   return "Room deleted successfully";
 };
 
-//Get Available Rooms by Hotel ID
-export const getAvailableRoomsByHotelService = async (hotelId: number) => {
-  const availableRooms = await db
+// Get All Rooms by Hotel ID
+export const getRoomsByHotelIdService = async (hotelId: number) => {
+  const allRooms = await db
     .select()
     .from(rooms)
-    .where(
-      and(eq(rooms.hotelId, hotelId), eq(rooms.isAvailable, true))
-    );
-  return availableRooms;
+    .where(eq(rooms.hotelId, hotelId));
+  return allRooms;
 };

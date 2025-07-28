@@ -5,7 +5,7 @@ import {
   getRoomByIdController,
   updateRoomController,
   deleteRoomController,
-  getAvailableRoomsByHotelController
+  getRoomsByHotelIdController,
 } from "../rooms/rooms.controller";
 
 const roomRoutes = (app: Express) => {
@@ -49,9 +49,9 @@ const roomRoutes = (app: Express) => {
     }
   });
   //  Get available rooms by hotelId
-  app.route('/rooms/available/:hotelId').get(async (req, res, next) => {
+  app.route('/rooms/hotel/:hotelId').get(async (req, res, next) => {
     try {
-      await getAvailableRoomsByHotelController(req, res);
+      await getRoomsByHotelIdController(req, res);
     } catch (error) {
       next(error);
     }

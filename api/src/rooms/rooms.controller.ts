@@ -5,7 +5,7 @@ import {
   getRoomByIdService,
   updateRoomService,
   deleteRoomService,
-  getAvailableRoomsByHotelService
+  getRoomsByHotelIdService
 } from "../rooms/rooms.service";
 
 // Create Room Controller
@@ -92,17 +92,17 @@ export const deleteRoomController = async (req: Request, res: Response) => {
   }
 };
 
-// Get Available Rooms by Hotel ID
-export const getAvailableRoomsByHotelController = async (req: Request, res: Response) => {
+// Get Rooms by Hotel ID (All Rooms)
+export const getRoomsByHotelIdController = async (req: Request, res: Response) => {
   try {
     const hotelId = parseInt(req.params.hotelId);
     if (isNaN(hotelId)) {
       return res.status(400).json({ message: "Invalid hotel ID" });
     }
 
-    const rooms = await getAvailableRoomsByHotelService(hotelId);
+    const rooms = await getRoomsByHotelIdService(hotelId);
     if (!rooms || rooms.length === 0) {
-      return res.status(404).json({ message: "No available rooms found for this hotel" });
+      return res.status(404).json({ message: "No rooms found for this hotel" });
     }
 
     return res.status(200).json(rooms);
@@ -110,3 +110,4 @@ export const getAvailableRoomsByHotelController = async (req: Request, res: Resp
     return res.status(500).json({ error: error.message });
   }
 };
+

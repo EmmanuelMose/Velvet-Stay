@@ -25,6 +25,12 @@ export const userDrawerData: DrawerData[] = [
         link: "bookinghistory"
     },
     {
+        id: "order",
+        name: "Order Food",
+        icon: FaUserCheck,
+        link: "orderfood"
+    },
+    {
         id: "Support Ticket",
         name: "Support Ticket",
         icon: TbBrandGoogleAnalytics,

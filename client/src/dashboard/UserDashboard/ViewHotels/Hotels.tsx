@@ -1,3 +1,5 @@
+// src/components/Hotels/Hotels.tsx
+
 import React, { useState } from "react";
 import {
   useGetHotelsQuery,
@@ -33,17 +35,20 @@ const Hotels = () => {
   const handleLocationSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearchType("location");
+    setSelectedHotelId(null);
     refetchLocation();
   };
 
   const handleRatingSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setSearchType("rating");
+    setSelectedHotelId(null);
     refetchRating();
   };
 
   const handleViewAll = () => {
     setSearchType("all");
+    setSelectedHotelId(null);
     refetchAll();
   };
 

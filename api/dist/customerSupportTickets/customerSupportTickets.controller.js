@@ -1,4 +1,4 @@
-import { createCustomerSupportTicketService, getAllCustomerSupportTicketsService, getCustomerSupportTicketByIdService, updateCustomerSupportTicketService, deleteCustomerSupportTicketService } from "../customerSupportTickets/customerSupportTickets.service.js";
+import { createCustomerSupportTicketService, getAllCustomerSupportTicketsService, getCustomerSupportTicketByIdService, updateCustomerSupportTicketService, deleteCustomerSupportTicketService } from "../customerSupportTickets/customerSupportTickets.service";
 export const createCustomerSupportTicketController = async (req, res) => {
     try {
         const { userId, subject, description } = req.body;

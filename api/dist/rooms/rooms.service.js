@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import db from "../Drizzle/db.js";
-import { rooms } from "../Drizzle/schema.js";
+import { rooms } from "../Drizzle/schema";
 //Create Room
 export const createRoomService = async (room) => {
     const [inserted] = await db.insert(rooms).values(room).returning();

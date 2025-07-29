@@ -1,5 +1,5 @@
-import db from "../Drizzle/db.js";
-import { users, hotels, rooms, bookings, payments, customerSupportTickets, } from "../Drizzle/schema.js";
+import db from "../Drizzle/db";
+import { users, hotels, rooms, bookings, payments, customerSupportTickets, } from "../Drizzle/schema";
 async function seed() {
     try {
         console.log("Seeding database...");

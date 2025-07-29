@@ -7,7 +7,7 @@ import {
   deleteHotelService,
   searchHotelsByLocationService,
   searchHotelsByRatingService,
-} from "../hotels/hotels.service.js";
+} from "../hotels/hotels.service";
 
 // Create Hotel
 export const createHotelController = async (req: Request, res: Response) => {

@@ -2,7 +2,7 @@
 import { eq } from "drizzle-orm";
 import db from "../Drizzle/db.js";
 import { bookings } from "../Drizzle/schema.js";
-import {hotels, rooms } from "../Drizzle/schema.js"
+import {hotels, rooms } from "../Drizzle/schema"
 
 
 export const createBookingService = async (booking:any) => {

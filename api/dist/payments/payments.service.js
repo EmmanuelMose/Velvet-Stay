@@ -1,7 +1,7 @@
 // payments.service.ts
 import { eq } from "drizzle-orm";
-import db from "../Drizzle/db.js";
-import { payments } from "../Drizzle/schema.js";
+import db from "../Drizzle/db";
+import { payments } from "../Drizzle/schema";
 import { and, gte, lt } from "drizzle-orm";
 export const createPaymentService = async (payment) => {
     const [inserted] = await db.insert(payments).values(payment).returning();

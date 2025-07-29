@@ -1,4 +1,4 @@
-import { createPaymentController, getAllPaymentsController, getPaymentByIdController, updatePaymentController, deletePaymentController, getPaymentsByDateController } from "../payments/payments.controller.js";
+import { createPaymentController, getAllPaymentsController, getPaymentByIdController, updatePaymentController, deletePaymentController, getPaymentsByDateController } from "../payments/payments.controller";
 const paymentRoutes = (app) => {
     app.route('/payment').post(async (req, res, next) => {
         try {

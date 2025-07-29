@@ -7,7 +7,7 @@ import {
   updatePaymentController,
   deletePaymentController,
   getPaymentsByDateController
-} from "../payments/payments.controller.js";
+} from "../payments/payments.controller";
 
 const paymentRoutes = (app: Express) => {
   app.route('/payment').post(

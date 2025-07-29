@@ -7,7 +7,7 @@ import {
   updateBookingService,
   deleteBookingService,
   updateBookingStatusService
-} from "../bookings/bookings.service.js";
+} from "../bookings/bookings.service";
 
 export const createBookingController = async (req: Request, res: Response) => {
   try {

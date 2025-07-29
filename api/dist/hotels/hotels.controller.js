@@ -1,4 +1,4 @@
-import { createHotelService, getAllHotelsService, getHotelByIdService, updateHotelService, deleteHotelService, searchHotelsByLocationService, searchHotelsByRatingService, } from "../hotels/hotels.service.js";
+import { createHotelService, getAllHotelsService, getHotelByIdService, updateHotelService, deleteHotelService, searchHotelsByLocationService, searchHotelsByRatingService, } from "../hotels/hotels.service";
 // Create Hotel
 export const createHotelController = async (req, res) => {
     try {

@@ -3,14 +3,14 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import db from "./Drizzle/db.js";
-import userRoutes from "./users/users.router.js";
-import roomRoutes from "./rooms/rooms.router.js";
-import hotelRoutes from "./hotels/hotels.router.js";
-import bookingRoutes from "./bookings/bookings.router.js";
-import paymentRoutes from "./payments/payments.router.js";
-import customerSupportRoutes from "./customerSupportTickets/customerSupportTickets.router.js";
-import authRoutes from "./auth/auth.router.js";
-import chatRoute from "./routes/chat.js"; 
+import userRoutes from "./users/users.router";
+import roomRoutes from "./rooms/rooms.router";
+import hotelRoutes from "./hotels/hotels.router";
+import bookingRoutes from "./bookings/bookings.router";
+import paymentRoutes from "./payments/payments.router";
+import customerSupportRoutes from "./customerSupportTickets/customerSupportTickets.router";
+import authRoutes from "./auth/auth.router";
+import chatRoute from "./routes/chat"; 
 
 dotenv.config();
 

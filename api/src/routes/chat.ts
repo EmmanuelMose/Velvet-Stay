@@ -1,6 +1,6 @@
 
 import express, { Request, Response } from 'express';
-import { handleUserQuery } from '../services/chatService.js';
+import { handleUserQuery } from '../services/chatService';
 
 const router = express.Router();
 

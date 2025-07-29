@@ -1,5 +1,5 @@
 // src/auth/auth.router.ts
-import { registerUserController, verifyUserController, loginUserController } from "../../src/auth/auth.controller.js";
+import { registerUserController, verifyUserController, loginUserController } from "../../src/auth/auth.controller.ts";
 const authRoutes = (app) => {
     // Register route
     app.route("/auth/register").post(async (req, res, next) => {

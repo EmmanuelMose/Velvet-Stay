@@ -6,7 +6,7 @@ import {
   updateRoomService,
   deleteRoomService,
   getRoomsByHotelIdService
-} from "../rooms/rooms.service.js";
+} from "../rooms/rooms.service";
 
 // Create Room Controller
 export const createRoomController = async (req: Request, res: Response) => {

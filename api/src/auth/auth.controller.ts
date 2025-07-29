@@ -3,8 +3,8 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createUserService, getUserByEmailService, verifyUserService, userLoginService } from "./auth.service.js";
-import { sendEmail } from "../../src/mailer.js";
+import { createUserService, getUserByEmailService, verifyUserService, userLoginService } from "./auth.service";
+import { sendEmail } from "../../src/mailer";
 
 export const registerUserController = async (req: Request, res: Response) => {
     try {

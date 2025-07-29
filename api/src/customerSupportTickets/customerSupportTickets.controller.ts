@@ -6,7 +6,7 @@ import {
   getCustomerSupportTicketByIdService,
   updateCustomerSupportTicketService,
   deleteCustomerSupportTicketService
-} from "../customerSupportTickets/customerSupportTickets.service.js";
+} from "../customerSupportTickets/customerSupportTickets.service";
 
 export const createCustomerSupportTicketController = async (req: Request, res: Response) => {
   try {

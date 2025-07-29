@@ -1,4 +1,4 @@
-import { createUserController, getAllUsersController, getUserByIdController, updateUserController, deleteUserController, } from "../users/users.controller.js";
+import { createUserController, getAllUsersController, getUserByIdController, updateUserController, deleteUserController, } from "../users/users.controller";
 //create user
 const userRoutes = (app) => {
     app.route('/user').post(async (req, res, next) => {

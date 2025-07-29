@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import  db  from "../Drizzle/db.js";
-import { hotels } from "../Drizzle/schema.js";
+import  db  from "../Drizzle/db";
+import { hotels } from "../Drizzle/schema";
 import {ilike } from "drizzle-orm";
 
 

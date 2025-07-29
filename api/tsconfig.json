@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

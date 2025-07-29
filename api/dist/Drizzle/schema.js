@@ -17,7 +17,7 @@ export const users = pgTable("Users", {
     createdAt: timestamp("CreatedAt").defaultNow(),
     updatedAt: timestamp("UpdatedAt").defaultNow(),
     isVerified: boolean("IsVerified").default(false),
-    verificationCode: varchar("VerificationCode", { length: 10 }),
+    verificationCode: varchar("VerificationCode", { length: 10 }).default("000000"),
 });
 export const hotels = pgTable("Hotels", {
     hotelId: serial("HotelId").primaryKey(),
@@ -26,9 +26,11 @@ export const hotels = pgTable("Hotels", {
     address: text("Address"),
     contactPhone: varchar("ContactPhone", { length: 20 }),
     category: varchar("Category", { length: 100 }),
+    imgUrl: varchar("img_url", { length: 255 }).notNull(),
     rating: real("Rating"),
     createdAt: timestamp("CreatedAt").defaultNow(),
     updatedAt: timestamp("UpdatedAt").defaultNow(),
+    description: varchar("description", { length: 500 }).notNull(),
 });
 export const rooms = pgTable("Rooms", {
     roomId: serial("RoomId").primaryKey(),

@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import  db  from "../Drizzle/db";
-import { users } from "../Drizzle/schema";
+import  db  from "../Drizzle/db.js";
+import { users } from "../Drizzle/schema.js";
 
 // Create User
 export const createUserService = async (user: any) => {

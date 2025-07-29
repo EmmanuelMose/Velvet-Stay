@@ -6,7 +6,7 @@ import {
   updateRoomController,
   deleteRoomController,
   getRoomsByHotelIdController,
-} from "../rooms/rooms.controller";
+} from "../rooms/rooms.controller.js";
 
 const roomRoutes = (app: Express) => {
   app.route('/room').post(async (req, res, next) => {

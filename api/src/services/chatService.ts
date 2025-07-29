@@ -1,4 +1,4 @@
-import { loadDocuments } from '../../src/utils/loadDocs';
+import { loadDocuments } from '../../src/utils/loadDocs.js';
 
 export const handleUserQuery = async (question: string): Promise<string> => {
   const docs = await loadDocuments();

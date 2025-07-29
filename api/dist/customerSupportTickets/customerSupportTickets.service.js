@@ -1,7 +1,7 @@
 // customerSupportTickets.service.ts
 import { eq } from "drizzle-orm";
-import db from "../Drizzle/db";
-import { customerSupportTickets } from "../Drizzle/schema";
+import db from "../Drizzle/db.js";
+import { customerSupportTickets } from "../Drizzle/schema.js";
 export const createCustomerSupportTicketService = async (ticket) => {
     const [inserted] = await db.insert(customerSupportTickets).values(ticket).returning();
     return inserted ?? null;

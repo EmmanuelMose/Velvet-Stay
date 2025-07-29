@@ -1,4 +1,4 @@
-import { createCustomerSupportTicketController, getAllCustomerSupportTicketsController, getCustomerSupportTicketByIdController, updateCustomerSupportTicketController, deleteCustomerSupportTicketController } from "../customerSupportTickets/customerSupportTickets.controller";
+import { createCustomerSupportTicketController, getAllCustomerSupportTicketsController, getCustomerSupportTicketByIdController, updateCustomerSupportTicketController, deleteCustomerSupportTicketController } from "../customerSupportTickets/customerSupportTickets.controller.js";
 const customerSupportRoutes = (app) => {
     app.route('/ticket').post(async (req, res, next) => {
         try {

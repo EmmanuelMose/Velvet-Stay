@@ -1,4 +1,4 @@
-import db from "../Drizzle/db";
+import db from "../Drizzle/db.js";
 import { users, hotels, rooms, bookings, payments, customerSupportTickets, } from "../Drizzle/schema.js";
 async function seed() {
     try {

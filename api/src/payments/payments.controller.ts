@@ -7,7 +7,7 @@ import {
   updatePaymentService,
   deletePaymentService,
   getPaymentsByDateService
-} from "../payments/payments.service";
+} from "../payments/payments.service.js";
 
 export const createPaymentController = async (req: Request, res: Response) => {
   try {

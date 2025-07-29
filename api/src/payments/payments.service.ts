@@ -1,7 +1,7 @@
 // payments.service.ts
 import { eq } from "drizzle-orm";
-import db from "../Drizzle/db";
-import { payments } from "../Drizzle/schema";
+import db from "../Drizzle/db.js";
+import { payments } from "../Drizzle/schema.js";
 import { and, gte, lt } from "drizzle-orm";
 
 

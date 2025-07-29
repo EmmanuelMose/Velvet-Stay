@@ -5,8 +5,8 @@ import {
   getUserByIdController,
   updateUserController,
   deleteUserController,
-} from "../users/users.controller";
-import { adminRoleAuth, bothRoleAuth, userRoleAuth } from "../middleware/bearAuth";
+} from "../users/users.controller.js";
+import { adminRoleAuth, bothRoleAuth, userRoleAuth } from "../middleware/bearAuth.js";
 
 //create user
 const userRoutes = (app: Express) => {

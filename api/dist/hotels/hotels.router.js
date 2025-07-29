@@ -1,4 +1,4 @@
-import { createHotelController, getAllHotelsController, getHotelByIdController, updateHotelController, deleteHotelController, searchHotelsByLocationController, searchHotelsByRatingController, } from "../hotels/hotels.controller";
+import { createHotelController, getAllHotelsController, getHotelByIdController, updateHotelController, deleteHotelController, searchHotelsByLocationController, searchHotelsByRatingController, } from "../hotels/hotels.controller.js";
 //create hotel
 const hotelRoutes = (app) => {
     app.route('/hotel').post(async (req, res, next) => {

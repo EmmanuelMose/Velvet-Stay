@@ -1,6 +1,6 @@
 // src/auth/auth.service.ts
-import db from "../Drizzle/db";
-import { users } from "../Drizzle/schema";
+import db from "../Drizzle/db.js";
+import { users } from "../Drizzle/schema.js";
 import { eq } from "drizzle-orm";
 export const createUserService = async (user) => {
     return db.insert(users).values(user).returning().then(res => res[0]);

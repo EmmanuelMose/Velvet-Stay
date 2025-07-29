@@ -1,4 +1,4 @@
-import { createBookingController, getAllBookingsController, getBookingByIdController, updateBookingController, deleteBookingController, updateBookingStatus } from "../bookings/bookings.controller";
+import { createBookingController, getAllBookingsController, getBookingByIdController, updateBookingController, deleteBookingController, updateBookingStatus } from "../bookings/bookings.controller.js";
 //create booking
 const bookingRoutes = (app) => {
     app.route('/booking').post(async (req, res, next) => {

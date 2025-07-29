@@ -1,4 +1,4 @@
-import { createRoomService, getAllRoomsService, getRoomByIdService, updateRoomService, deleteRoomService, getRoomsByHotelIdService } from "../rooms/rooms.service";
+import { createRoomService, getAllRoomsService, getRoomByIdService, updateRoomService, deleteRoomService, getRoomsByHotelIdService } from "../rooms/rooms.service.js";
 // Create Room Controller
 export const createRoomController = async (req, res) => {
     try {

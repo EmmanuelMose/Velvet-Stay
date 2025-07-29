@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import db from "../Drizzle/db";
-import { hotels } from "../Drizzle/schema";
+import db from "../Drizzle/db.js";
+import { hotels } from "../Drizzle/schema.js";
 import { ilike } from "drizzle-orm";
 // Create Hotel
 export const createHotelService = async (hotel) => {

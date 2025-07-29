@@ -1,8 +1,8 @@
 // src/auth/auth.controller.ts
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createUserService, getUserByEmailService, verifyUserService, userLoginService } from "./auth.service";
-import { sendEmail } from "../../src/mailer";
+import { createUserService, getUserByEmailService, verifyUserService, userLoginService } from "./auth.service.js";
+import { sendEmail } from "../../src/mailer.js";
 export const registerUserController = async (req, res) => {
     try {
         const { email, password, firstName, lastName, contactPhone, address } = req.body;

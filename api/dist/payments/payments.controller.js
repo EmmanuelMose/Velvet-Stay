@@ -1,4 +1,4 @@
-import { createPaymentService, getAllPaymentsService, getPaymentByIdService, updatePaymentService, deletePaymentService, getPaymentsByDateService } from "../payments/payments.service";
+import { createPaymentService, getAllPaymentsService, getPaymentByIdService, updatePaymentService, deletePaymentService, getPaymentsByDateService } from "../payments/payments.service.js";
 export const createPaymentController = async (req, res) => {
     try {
         const payment = req.body;

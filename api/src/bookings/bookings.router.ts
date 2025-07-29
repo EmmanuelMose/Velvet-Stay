@@ -8,7 +8,7 @@ import {
   updateBookingController,
   deleteBookingController,
   updateBookingStatus
-} from "../bookings/bookings.controller";
+} from "../bookings/bookings.controller.js";
 
 //create booking
 const bookingRoutes = (app: Express) => {

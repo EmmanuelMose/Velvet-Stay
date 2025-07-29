@@ -1,4 +1,4 @@
-import { loadDocuments } from '../../src/utils/loadDocs';
+import { loadDocuments } from '../../src/utils/loadDocs.js';
 export const handleUserQuery = async (question) => {
     const docs = await loadDocuments();
     const questionLower = question.toLowerCase();

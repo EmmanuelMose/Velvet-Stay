@@ -6,7 +6,7 @@ import {
   getCustomerSupportTicketByIdController,
   updateCustomerSupportTicketController,
   deleteCustomerSupportTicketController
-} from "../customerSupportTickets/customerSupportTickets.controller";
+} from "../customerSupportTickets/customerSupportTickets.controller.js";
 
 const customerSupportRoutes = (app: Express) => {
   app.route('/ticket').post(

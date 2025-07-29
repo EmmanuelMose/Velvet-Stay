@@ -3,7 +3,7 @@ import "dotenv/config"
 //import { drizzle } from "drizzle-orm/node-postgres"
   import {drizzle} from  "drizzle-orm/neon-http"
 //import { Client } from "pg"
-import * as schema from "./schema"
+import * as schema from "./schema.js"
 import { neon } from "@neondatabase/serverless"
 
 // export const client = new Client({

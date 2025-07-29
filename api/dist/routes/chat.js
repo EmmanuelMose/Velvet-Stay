@@ -1,5 +1,5 @@
 import express from 'express';
-import { handleUserQuery } from '../services/chatService';
+import { handleUserQuery } from '../services/chatService.js';
 const router = express.Router();
 router.post('/chat', async (req, res) => {
     const { question } = req.body;

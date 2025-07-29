@@ -7,7 +7,7 @@ import {
   deleteHotelController,
   searchHotelsByLocationController,
   searchHotelsByRatingController,
-} from "../hotels/hotels.controller";
+} from "../hotels/hotels.controller.js";
 
 
 //create hotel

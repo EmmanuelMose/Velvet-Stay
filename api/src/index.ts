@@ -25,7 +25,7 @@ app.use(cors({
 app.use(express.json());
 
 // Register routes
-app.use('/api', chatRoute); // Chatbot API: /api/chat
+app.use('/api', chatRoute); 
 
 userRoutes(app);
 roomRoutes(app);

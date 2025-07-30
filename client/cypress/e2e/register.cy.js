@@ -17,9 +17,9 @@ describe("Register Page", () => {
   it("should show email format and password mismatch errors", () => {
     cy.getDataTest('signup-firstname').type('Emmanuel');
     cy.getDataTest('signup-lastname').type('Mose');
-    cy.getDataTest('signup-email').type('emmanuelmose5@gmail'); // invalid
+    cy.getDataTest('signup-email').type('emmanuelmose5@gmail'); 
     cy.getDataTest('signup-password').type('@Mose2022');
-    cy.getDataTest('signup-confirmpassword').type('@Mose2021'); // mismatch
+    cy.getDataTest('signup-confirmpassword').type('@Mose2021'); 
     cy.getDataTest('signup-submitbtn').click();
 
     cy.contains(/Enter a valid email/i);

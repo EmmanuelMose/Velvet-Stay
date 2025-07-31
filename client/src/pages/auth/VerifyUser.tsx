@@ -57,10 +57,10 @@ const VerifyUser = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-base-200 px-4">
-      <div className="w-full max-w-sm rounded-xl shadow-lg bg-white border border-gray-300">
+      <div className="w-full max-w-sm rounded-xl shadow-lg bg-white border border-green-700">
         
         {/* Blue header with hover to green */}
-        <div className="bg-blue-700 text-white text-center py-3 rounded-t-xl hover:bg-green-600 transition-colors duration-300">
+        <div className="bg-blue-900 text-white text-center py-3 rounded-t-xl hover:bg-green-900 transition-colors duration-300">
           <h1 className="text-xl font-semibold">Verify Your Account</h1>
         </div>
 
@@ -71,7 +71,7 @@ const VerifyUser = () => {
               type="email"
               {...register('email')}
               placeholder="Email"
-              className="bg-white border border-gray-300 rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-sm"
+              className="bg-white border border-green-700 rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-sm"
             />
             {errors.email && (
               <span className="text-xs text-red-700">{errors.email.message}</span>
@@ -82,7 +82,7 @@ const VerifyUser = () => {
               {...register('verificationCode')}
               placeholder="6 Digit Code"
               maxLength={6}
-              className="bg-white border border-gray-300 rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-sm"
+              className="bg-white border border-green-700 rounded w-full p-2 focus:ring-2 focus:ring-blue-500 text-sm"
             />
             {errors.verificationCode && (
               <span className="text-xs text-red-700">{errors.verificationCode.message}</span>
@@ -90,7 +90,7 @@ const VerifyUser = () => {
 
             <button
               type="submit"
-              className="bg-blue-700 hover:bg-green-600 text-white font-medium py-2 px-4 rounded w-full text-sm"
+              className="bg-blue-900 hover:bg-green-900 text-white font-medium py-2 px-4 rounded w-full text-sm"
             >
               Verify
             </button>

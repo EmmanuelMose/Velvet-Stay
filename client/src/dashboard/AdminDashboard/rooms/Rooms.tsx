@@ -76,7 +76,11 @@ const Rooms = () => {
                   <td className="p-4">{room.roomId}</td>
                   <td className="p-4">{room.roomType}</td>
                   <td className="p-4">{room.hotelId}</td>
-                  <td className="p-4">${room.pricePerNight.toFixed(2)}</td>
+                  <td className="p-4">
+                    {room.pricePerNight != null
+                      ? `$${room.pricePerNight.toFixed(2)}`
+                      : "N/A"}
+                  </td>
                   <td className="p-4">{room.capacity}</td>
                   <td className="p-4">{room.amenities}</td>
                   <td className="p-4">

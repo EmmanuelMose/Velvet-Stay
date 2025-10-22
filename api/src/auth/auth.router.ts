@@ -1,7 +1,7 @@
 // src/auth/auth.router.ts
 
 import { Express } from "express";
-import { registerUserController, verifyUserController, loginUserController } from "../../src/auth/auth.controller.ts";
+import { registerUserController, verifyUserController, loginUserController } from "../../src/auth/auth.controller";
 
 
 const authRoutes = (app: Express) => {
